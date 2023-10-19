@@ -1,0 +1,67 @@
+$font-family: 'Neue Haas Grotesk Display Pro';
+.OneWrapper{
+    display: flex;
+    flex-direction: row;
+    width:100%;
+    .StatisticWrapper{
+        display: flex;
+        flex-direction: column;
+        width:100%;
+        .descriptionboard{
+            display: flex;
+            flex-direction: column;
+            width:100%;
+            align-items: flex-start;
+            .subject{
+                font-family: $font-family;
+                font-weight: 600;
+                font-size: 32px;
+                line-height: 38.4px;
+            }
+            .description{
+                font-family: $font-family;
+                font-weight: 500;
+                font-size: 16px;
+                line-height: 19.2px;
+            }
+        }
+        .MarketOverviewWrapper{
+            padding-top: 30px;
+            .MarketOverviewContainer{
+                display: flex;
+                flex-direction: column;
+                padding:24px;
+                .ClassifyButtons{
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: space-between;
+                    .mcbtn{
+                        border: 1px solid #2B2E31;
+                        border-radius: 32px;
+                        -webkit-border-radius: 32px;
+                        -moz-border-radius: 32px;
+                        -ms-border-radius: 32px;
+                        -o-border-radius: 32px;
+                        height:40px;
+                        background-color: #1E2121;
+                        width:177px;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        font-family: $font-family;
+                        font-size: 14px;
+                        font-weight: 600;
+                        line-height: 17px;
+                        color:white;
+                        &:active {
+                            background-color: #D96BFF;
+                            border-color: transparent;
+                            color:black;
+                        }
+                    }
+                }
+            }
+            
+        }
+    }
+}
