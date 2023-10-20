@@ -59,21 +59,21 @@ export default function Walletpanel() {
                         style={{border:"none", color:"white"}}
                     >
                         <MenuItem value={10}>
-                            <div style={{display: "flex", gap: "16px", flexDirection: "row", alignItems: "center"}}>
+                            <div style={{display: "flex", gap: "16px", flexDirection: "row", alignItems: "center", paddingRight: "60px"}}>
                                 <img src="../../assets/icons/dashboard/ETHw.png" />
                                 Ethereum ETH
                             </div>
                         </MenuItem>
                         <MenuItem value={20}>
-                            <div style={{display: "flex", gap: "16px", flexDirection: "row", alignItems: "center"}}>
-                                <img src="../../assets/icons/dashboard/ETHw.png" />
-                                Ethereum ETH
+                            <div style={{display: "flex", gap: "16px", flexDirection: "row", alignItems: "center", paddingRight: "60px"}}>
+                                <img src="../../assets/icons/dashboard/PLG.png" />
+                                Polygon PLG
                             </div>
                         </MenuItem>
                         <MenuItem value={30}>
-                            <div style={{display: "flex", gap: "16px", flexDirection: "row", alignItems: "center"}}>
-                                <img src="../../assets/icons/dashboard/ETHw.png" />
-                               Ethereum ETH
+                            <div style={{display: "flex", gap: "16px", flexDirection: "row", alignItems: "center", paddingRight: "60px"}}>
+                                <img src="../../assets/icons/dashboard/SOL.png" />
+                                Solana SOL
                             </div>
                         </MenuItem>
                     </Select>
