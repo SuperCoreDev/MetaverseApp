@@ -102,7 +102,9 @@ export default function Header({ onOpenNav }: Props) {
         sx={{
           height: 1,
           px: { lg: 5 },
+          background : '#202324'
         }}
+        
       >
         {renderContent}
       </Toolbar>
