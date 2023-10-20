@@ -8,7 +8,7 @@ $font-family: 'Neue Haas Grotesk Display Pro';
     .StatisticWrapper{
         display: flex;
         flex-direction: column;
-        width:100%;
+    //    width:100%;
         gap: 40px;
         .descriptionboard{
             display: flex;
@@ -69,6 +69,242 @@ $font-family: 'Neue Haas Grotesk Display Pro';
                 }
             }
             
+        }
+    }
+    .Walletpanel {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        color: white;
+        background-color: #1E2121;
+        border-color: #2B2E31;
+        height: 100%;
+        .Buttongroup {
+            display: flex;
+            flex-direction: row;
+            gap: 20px;
+            .Button {
+                border-radius: 12px;
+                border: solid;
+                border-width: 1px;
+                height: 92px;
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                padding: 24px;
+                width: 33%;
+                .Content{
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    gap: 7px;
+                    font-family: neue haas grotesk;
+                    font-weight: 500;
+                    font-size: 16px;
+                    line-height: 19.2px;
+                    text-wrap: nowrap;
+                    color: white;
+                }
+            }
+        }
+        .Walletbalance {
+            border-radius: 12px;
+            border: solid;
+            border-width: 1px;
+            border-color: #2B2E31;
+            padding: 24px;
+            gap: 24px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            .BalanceText {
+                display: flex;
+                flex-direction: row;
+                gap: 8px;
+                align-items: flex-end;
+                .Symbol {
+                    font-weight: 600;
+                    font-size: 20px;
+                    line-height: 24px;
+                }
+                .Amount {
+                    font-weight: 600;
+                    font-size: 32px;
+                    line-height: 38.4px;
+                }
+            }
+            .InOutInfo {
+                display: flex;
+                flex-direction: row;
+                gap: 20px;
+                .InInfo {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    gap: 32px;
+                    .Label {
+                        display: flex;
+                        flex-direction: row;
+                        align-items: center;
+                        border-radius: 8px;
+                        border: solid;
+                        border-width: 1px;
+                        border-color: #2B2E31;
+                        padding-left: 24px;
+                        padding-right: 24px;
+                        padding-top: 8px;
+                        padding-bottom: 8px;
+                        gap: 6px;
+                    }
+                    .InflowValue {
+                        display: flex;
+                        flex-direction: row;
+                        align-items: flex-end;
+                        gap: 8px;
+                        .Amount {
+                            color: green;
+                            font-weight: 700;
+                            font-size: 20px;
+                            line-height: 24px;
+                        }
+                        .Symbol {
+                            font-weight: 500;
+                            font-size: 14px;
+                            line-height: 16.8px;
+                        }
+                    }
+                }
+                .OutInfo {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    gap: 32px;
+                    .Label {
+                        display: flex;
+                        flex-direction: row;
+                        align-items: center;
+                        border-radius: 8px;
+                        border: solid;
+                        border-width: 1px;
+                        border-color: #2B2E31;
+                        padding-left: 24px;
+                        padding-right: 24px;
+                        padding-top: 8px;
+                        padding-bottom: 8px;
+                        gap: 6px;
+                    }
+                    .OutflowValue {
+                        display: flex;
+                        flex-direction: row;
+                        align-items: flex-end;
+                        gap: 8px;
+                        .Amount {
+                            color: red;
+                            font-weight: 700;
+                            font-size: 20px;
+                            line-height: 24px;
+                        }
+                        .Symbol {
+                            font-weight: 500;
+                            font-size: 14px;
+                            line-height: 16.8px;
+                        }
+                    }
+                }
+            }
+        }
+        .Transactions {
+            border: solid;
+            border-radius: 12px;
+            border-width: 1px;
+            border-color: #2B2E31;
+            padding: 24px;
+            gap: 15px;
+            display: flex;
+            flex-direction: column;
+            .Label {
+                font-weight: 400;
+                font-size: 24px;
+                line-height: 32px;
+                color: #C5BEC8;
+            }
+            .Lookingfor {
+                display: flex;
+                flex-direction: row;
+                gap: 12px;
+                font-weight: 400;
+                font-size: 14px;
+                line-height: 16px;
+                letter-spacing: 0.25px;
+                color: #1FDD00;
+                .Search {
+                    width: 40%;
+                    min-width: 120px;
+                }
+            }
+            .RecentTx {
+                display: flex;
+                flex-direction: column;
+                gap: 4px;
+                .Headbar {
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: space-between;
+                    border-bottom: solid;
+                    border-color: #2B2E31;
+                    border-width: 1px;
+                    font-weight: 400;
+                    font-size: 14px;
+                    line-height: 16px;
+                    letter-spacing: 0.25px;
+                }
+                .Col{
+                    border-bottom: solid;
+                    border-color: #2B2E31;
+                    border-width: 1px;
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: space-between;
+                    .TokenAmount {
+                        padding-left: 0px;
+                        padding-right: 24px;
+                        padding-top: 8px;
+                        padding-bottom: 8px;
+                        .Amount {
+                            display: flex;
+                            flex-direction: row;
+                            gap: 16px;
+                            .AmountText {
+                                display: flex;
+                                flex-direction: column;
+                                gap: 4px;
+                                .Balance {
+                                    font-weight: 600;
+                                    font-size: 16px;
+                                    line-height: 19.2px;
+                                    text-align: center;
+                                    color: #A4A7AF;
+                                }
+                                .Type {
+                                    font-weight: 500;
+                                    font-size: 14px;
+                                    line-height: 16.8px;
+                                    color: #94979E;
+                                }
+                            }
+                        }
+                    }
+                    .UsdAmount {
+                        color: #1FDD00;
+                        font-weight: 700;
+                        font-size: 16px;
+                        line-height: 19.2px;
+                        display: flex;
+                        flex-direction: row;
+                        align-items: center;
+                    }
+                }
+            }
         }
     }
 }

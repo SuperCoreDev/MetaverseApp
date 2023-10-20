@@ -10,6 +10,7 @@ import { useSettingsContext } from '../../components/settings';
 import Metaverse from '../../layouts/dashboard/market_overview/metaverse';
 // ----------------------------------------------------------------------
 import styles from '../../styles/one.module.scss';
+import Walletpanel from 'src/layouts/dashboard/Walletpanel';
 
 PageOne.getLayout = (page: React.ReactElement) => <DashboardLayout>{page}</DashboardLayout>;
 
@@ -42,6 +43,7 @@ export default function PageOne() {
               </div>
             </div>
           </div>
+          <Walletpanel/>
         </div>
       </div>
     </>
