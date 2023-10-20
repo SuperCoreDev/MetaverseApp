@@ -7,7 +7,7 @@ import { Container, Typography } from '@mui/material';
 import DashboardLayout from '../../layouts/dashboard';
 // components
 import { useSettingsContext } from '../../components/settings';
-import Metaverse from './market_overview/metaverse';
+import Metaverse from '../../layouts/dashboard/market_overview/metaverse';
 // ----------------------------------------------------------------------
 import styles from '../../styles/one.module.scss';
 import Walletpanel from 'src/layouts/dashboard/Walletpanel';
@@ -21,10 +21,10 @@ export default function PageOne() {
   return (
     <>
       <Head>
-        <title> Page One | Minimal UI</title>
+        <title> Dashboard </title>
       </Head>
-
-      <Container maxWidth={themeStretch ? false : 'xl'}>
+      {/* <Container maxWidth={themeStretch ? false : 'xl'}>  */}
+      <div style={{paddingLeft:'8px'}}>
         <div className={styles.OneWrapper}>
           <div className={styles.StatisticWrapper}>
             <div className={styles.descriptionboard}>
@@ -45,7 +45,7 @@ export default function PageOne() {
           </div>
           <Walletpanel/>
         </div>
-      </Container>
+      </div>
     </>
   );
 }

@@ -44,19 +44,19 @@ export default function DashboardLayout({ children }: Props) {
   const renderContent = () => {
     if (isNavHorizontal) {
       return (
-        <>
+        <div style={{backgroundColor:'#202324'}}>
           <Header onOpenNav={handleOpen} />
 
           {isDesktop ? <NavHorizontal /> : renderNavVertical}
 
           <Main>{children}</Main>
-        </>
+        </div>
       );
     }
 
     if (isNavMini) {
       return (
-        <>
+        <div style={{backgroundColor:'#202324'}}>
           <Header onOpenNav={handleOpen} />
 
           <Box
@@ -69,12 +69,12 @@ export default function DashboardLayout({ children }: Props) {
 
             <Main>{children}</Main>
           </Box>
-        </>
+        </div>
       );
     }
 
     return (
-      <>
+      <div style={{backgroundColor:'#202324'}}>
         <Header onOpenNav={handleOpen} />
 
         <Box
@@ -87,7 +87,7 @@ export default function DashboardLayout({ children }: Props) {
 
           <Main>{children}</Main>
         </Box>
-      </>
+    </div>
     );
   };
 

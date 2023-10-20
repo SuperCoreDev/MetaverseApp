@@ -24,15 +24,15 @@ export default function Main({ children, sx, ...other }: BoxProps) {
     return (
       <Box
         component="main"
-        sx={{
-          pt: `${HEADER.H_MOBILE + SPACING}px`,
-          pb: `${HEADER.H_MOBILE + SPACING}px`,
-          ...(isDesktop && {
-            px: 2,
-            pt: `${HEADER.H_DASHBOARD_DESKTOP + 80}px`,
-            pb: `${HEADER.H_DASHBOARD_DESKTOP + SPACING}px`,
-          }),
-        }}
+         sx={{
+           pt: `${HEADER.H_MOBILE + SPACING}px`,
+           // pb: `${HEADER.H_MOBILE + SPACING}px`,
+           ...(isDesktop && {
+        //     px: 2,
+             pt: `${HEADER.H_DASHBOARD_DESKTOP + 80}px`,
+        //     pb: `${HEADER.H_DASHBOARD_DESKTOP + SPACING}px`,
+           }),
+         }}
       >
         {children}
       </Box>
@@ -42,19 +42,21 @@ export default function Main({ children, sx, ...other }: BoxProps) {
   return (
     <Box
       component="main"
-      sx={{
-        flexGrow: 1,
-        py: `${HEADER.H_MOBILE + SPACING}px`,
-        ...(isDesktop && {
-          px: 2,
-          py: `${HEADER.H_DASHBOARD_DESKTOP + SPACING}px`,
-          width: `calc(100% - ${NAV.W_DASHBOARD}px)`,
+       sx={{
+      //   flexGrow: 1,
+          // py: `${HEADER.H_MOBILE + SPACING}px`,
+          pt: `${HEADER.H_MOBILE + SPACING}px`,
+         ...(isDesktop && {
+      //     px: 2,
+            // py: `${HEADER.H_DASHBOARD_DESKTOP + SPACING}px`,
+            pt: `${HEADER.H_DASHBOARD_DESKTOP + SPACING}px`,
+           width: `calc(100% - ${NAV.W_DASHBOARD}px)`,
           ...(isNavMini && {
             width: `calc(100% - ${NAV.W_DASHBOARD_MINI}px)`,
           }),
         }),
-        ...sx,
-      }}
+         ...sx,
+       }}
       {...other}
     >
       {children}

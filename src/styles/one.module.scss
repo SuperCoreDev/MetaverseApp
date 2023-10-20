@@ -3,10 +3,13 @@ $font-family: 'Neue Haas Grotesk Display Pro';
     display: flex;
     flex-direction: row;
     width:100%;
+    box-shadow: 0px 6px 12px 0px #00000033;
+    background: #202324;
     .StatisticWrapper{
         display: flex;
         flex-direction: column;
     //    width:100%;
+        gap: 40px;
         .descriptionboard{
             display: flex;
             flex-direction: column;
@@ -17,16 +20,20 @@ $font-family: 'Neue Haas Grotesk Display Pro';
                 font-weight: 600;
                 font-size: 32px;
                 line-height: 38.4px;
+                color: white;
             }
             .description{
                 font-family: $font-family;
                 font-weight: 500;
                 font-size: 16px;
                 line-height: 19.2px;
+                color: white;
             }
         }
         .MarketOverviewWrapper{
             padding-top: 30px;
+            border-radius:12px;
+            border: 1px solid #2B2E31;
             .MarketOverviewContainer{
                 display: flex;
                 flex-direction: column;
