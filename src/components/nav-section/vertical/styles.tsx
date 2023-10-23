@@ -17,12 +17,12 @@ export const StyledItem = styled(ListItemButton, {
   shouldForwardProp: (prop) => prop !== 'active' && prop !== 'caption',
 })<StyledItemProps>(({ active, disabled, depth, caption, theme }) => {
   const isLight = theme.palette.mode === 'light';
-
   const subItem = depth !== 1;
 
   const activeStyle = {
     color: theme.palette.primary.main,
     backgroundColor: alpha(theme.palette.primary.main, theme.palette.action.selectedOpacity),
+    // background:'linear-gradient(264.4deg, #F75BB1 -6.74%, #C392DC 43.26%, #008782 103.97%)',
     ...(!isLight && {
       color: theme.palette.primary.light,
     }),
@@ -36,12 +36,13 @@ export const StyledItem = styled(ListItemButton, {
   return {
     position: 'relative',
     textTransform: 'capitalize',
-    paddingLeft: theme.spacing(2),
-    paddingRight: theme.spacing(1.5),
-    marginBottom: theme.spacing(0.5),
+    // paddingLeft: theme.spacing(2),
+    // paddingRight: theme.spacing(1.5),
+    // marginBottom: theme.spacing(0.5),
     color: theme.palette.text.secondary,
     borderRadius: theme.shape.borderRadius,
     height: NAV.H_DASHBOARD_ITEM,
+    justifyContent:'start',
     // Sub item
     ...(subItem && {
       height: NAV.H_DASHBOARD_ITEM_SUB,
@@ -84,6 +85,7 @@ export const StyledIcon = styled(ListItemIcon)({
   justifyContent: 'center',
   width: ICON.NAV_ITEM,
   height: ICON.NAV_ITEM,
+  color:'white'
 });
 
 // ----------------------------------------------------------------------

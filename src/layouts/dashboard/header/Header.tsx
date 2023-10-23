@@ -1,11 +1,14 @@
+import Image from 'next/image';
+import NextLink from 'next/link';
 // @mui
 import { useTheme } from '@mui/material/styles';
-import { Stack, AppBar, Toolbar, IconButton } from '@mui/material';
+import { Stack, AppBar, Toolbar, Link , Box } from '@mui/material';
 // utils
 import { bgBlur } from '../../../utils/cssStyles';
 // hooks
 import useOffSetTop from '../../../hooks/useOffSetTop';
 import useResponsive from '../../../hooks/useResponsive';
+
 // config
 import { HEADER, NAV } from '../../../config-global';
 // components
@@ -18,7 +21,8 @@ import AccountPopover from './AccountPopover';
 import LanguagePopover from './LanguagePopover';
 import ContactsPopover from './ContactsPopover';
 import NotificationsPopover from './NotificationsPopover';
-
+import { ImageError } from 'next/dist/server/image-optimizer';
+import { Padding } from '@mui/icons-material';
 // ----------------------------------------------------------------------
 
 type Props = {
@@ -40,16 +44,20 @@ export default function Header({ onOpenNav }: Props) {
 
   const renderContent = (
     <>
-      {isDesktop && isNavHorizontal && <Logo sx={{ mr: 2.5 }} />}
+      {/* {isDesktop && isNavHorizontal && <Logo sx={{ mr: 2.5 }} />} */}
 
-      {!isDesktop && (
+      {/* {!isDesktop && (
         <IconButton onClick={onOpenNav} sx={{ mr: 1, color: 'text.primary' }}>
           <Iconify icon="eva:menu-2-fill" />
         </IconButton>
-      )}
+      )} */}
 
-      <Searchbar />
-
+      {/* <Searchbar /> */}
+      <Link href='/dashboard/one' rel="noopener" underline="none">
+        <Image alt="logo" src="/assets/logo.png" width={44.4} height={40}/>
+      </Link>
+      <Box sx={{padding:'10px'}}/>
+      <Image alt="logoCaption" src="/assets/logoCaption.png" width={108} height={22}/>
       <Stack
         flexGrow={1}
         direction="row"
@@ -81,8 +89,9 @@ export default function Header({ onOpenNav }: Props) {
           duration: theme.transitions.duration.shorter,
         }),
         ...(isDesktop && {
-          width: `calc(100% - ${NAV.W_DASHBOARD + 1}px)`,
-          height: HEADER.H_DASHBOARD_DESKTOP,
+          // width: `calc(100% - ${NAV.W_DASHBOARD + 1}px)`,
+          width:'100%',
+          // height: HEADER.H_DASHBOARD_DESKTOP,
           ...(isOffset && {
             height: HEADER.H_DASHBOARD_DESKTOP_OFFSET,
           }),
@@ -93,7 +102,8 @@ export default function Header({ onOpenNav }: Props) {
             borderBottom: `dashed 1px ${theme.palette.divider}`,
           }),
           ...(isNavMini && {
-            width: `calc(100% - ${NAV.W_DASHBOARD_MINI + 1}px)`,
+            // width: `calc(100% - ${NAV.W_DASHBOARD_MINI + 1}px)`,
+            width:'100%'
           }),
         }),
       }}
@@ -102,9 +112,9 @@ export default function Header({ onOpenNav }: Props) {
         sx={{
           height: 1,
           px: { lg: 5 },
-          background : '#202324'
+          background : '#202324',
+          boxShadow: '0px 6px 12px 0px #00000033'
         }}
-        
       >
         {renderContent}
       </Toolbar>

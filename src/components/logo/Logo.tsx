@@ -3,8 +3,7 @@ import { forwardRef } from 'react';
 import NextLink from 'next/link';
 // @mui
 import { useTheme } from '@mui/material/styles';
-import { Box, Link, BoxProps } from '@mui/material';
-
+import { Box, Link, BoxProps, SvgIcon } from '@mui/material';
 // ----------------------------------------------------------------------
 
 export interface LogoProps extends BoxProps {

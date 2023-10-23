@@ -10,10 +10,15 @@ const icon = (name: string) => (
 );
 
 const ICONS = {
-  user: icon('ic_user'),
-  ecommerce: icon('ic_ecommerce'),
-  analytics: icon('ic_analytics'),
   dashboard: icon('ic_dashboard'),
+  metaverse: icon('ic_metaverse'),
+  nfts: icon('ic_nfts'),
+  hiretalent: icon('ic_hiretalent'),
+  workastalent: icon('ic_workastalent'),
+  marketplace: icon('ic_marketplace'),
+  avatar: icon('ic_avatar'),
+  staking: icon('ic_staking'),
+  academy : icon('ic_academy')
 };
 
 const navConfig = [
@@ -22,29 +27,35 @@ const navConfig = [
   {
     subheader: 'general v4.3.0',
     items: [
-      { title: 'One', path: PATH_DASHBOARD.one, icon: ICONS.dashboard },
-      { title: 'Two', path: PATH_DASHBOARD.two, icon: ICONS.ecommerce },
-      { title: 'Three', path: PATH_DASHBOARD.three, icon: ICONS.analytics },
+      { title: 'Dashboard', path: PATH_DASHBOARD.one, icon: ICONS.dashboard },
+      { title: 'Metaverse', path: PATH_DASHBOARD.one, icon: ICONS.metaverse },
+      { title: 'NFTs', path: PATH_DASHBOARD.one, icon: ICONS.nfts },
+      { title: 'Hire Talent', path: PATH_DASHBOARD.one, icon: ICONS.hiretalent },
+      { title: 'Work as Talent', path: PATH_DASHBOARD.one, icon: ICONS.workastalent },
+      { title: 'Marketplace', path: PATH_DASHBOARD.one, icon: ICONS.marketplace },
+      { title: 'Avatar', path: PATH_DASHBOARD.one, icon: ICONS.avatar },
+      { title: 'Staking', path: PATH_DASHBOARD.one, icon: ICONS.staking },
+      { title: 'Academy', path: PATH_DASHBOARD.one, icon: ICONS.academy },
     ],
   },
 
   // MANAGEMENT
   // ----------------------------------------------------------------------
-  {
-    subheader: 'management',
-    items: [
-      {
-        title: 'user',
-        path: PATH_DASHBOARD.user.root,
-        icon: ICONS.user,
-        children: [
-          { title: 'Four', path: PATH_DASHBOARD.user.four },
-          { title: 'Five', path: PATH_DASHBOARD.user.five },
-          { title: 'Six', path: PATH_DASHBOARD.user.six },
-        ],
-      },
-    ],
-  },
+  // {
+  //   subheader: 'management',
+  //   items: [
+  //     {
+  //       title: 'user',
+  //       path: PATH_DASHBOARD.user.root,
+  //       icon: ICONS.user,
+  //       children: [
+  //         { title: 'Four', path: PATH_DASHBOARD.user.four },
+  //         { title: 'Five', path: PATH_DASHBOARD.user.five },
+  //         { title: 'Six', path: PATH_DASHBOARD.user.six },
+  //       ],
+  //     },
+  //   ],
+  // },
 ];
 
 export default navConfig;

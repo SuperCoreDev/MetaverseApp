@@ -20,6 +20,7 @@ export default function useActiveLink(path: string, deep = true): ReturnType {
   const deepActive =
     (!checkPath && pathname.includes(currentPath)) || (!checkPath && asPath.includes(currentPath));
 
+  
   return {
     active: deep ? deepActive : normalActive,
     isExternalLink: path.includes('http'),

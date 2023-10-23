@@ -3,6 +3,7 @@ import Head from 'next/head';
 // eslint-disable-next-line import/no-extraneous-dependencies
 
 import { Container, Typography } from '@mui/material';
+import Walletpanel from 'src/layouts/dashboard/Walletpanel';
 // layouts
 import DashboardLayout from '../../layouts/dashboard';
 // components
@@ -10,13 +11,13 @@ import { useSettingsContext } from '../../components/settings';
 import Metaverse from '../../layouts/dashboard/market_overview/metaverse';
 // ----------------------------------------------------------------------
 import styles from '../../styles/one.module.scss';
-import Walletpanel from 'src/layouts/dashboard/Walletpanel';
+
 
 PageOne.getLayout = (page: React.ReactElement) => <DashboardLayout>{page}</DashboardLayout>;
 
 // ----------------------------------------------------------------------
 export default function PageOne() {
-  const { themeStretch } = useSettingsContext();
+  // const { themeStretch } = useSettingsContext();
 
   return (
     <>
@@ -24,7 +25,7 @@ export default function PageOne() {
         <title> Dashboard </title>
       </Head>
       {/* <Container maxWidth={themeStretch ? false : 'xl'}>  */}
-      <div style={{paddingLeft:'8px'}}>
+      <div style={{paddingLeft:'8px' , paddingRight:'16px'}}>
         <div className={styles.OneWrapper}>
           <div className={styles.StatisticWrapper}>
             <div className={styles.descriptionboard}>

@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 // next
 import { useRouter } from 'next/router';
 // @mui
@@ -22,7 +22,7 @@ export default function NavList({ data, depth, hasChild }: NavListRootProps) {
 
   const { active, isExternalLink } = useActiveLink(data.path);
 
-  const [open, setOpen] = useState(active);
+  const [open, setOpen] = useState(active);  
 
   useEffect(() => {
     if (!active) {
@@ -41,7 +41,8 @@ export default function NavList({ data, depth, hasChild }: NavListRootProps) {
 
   return (
     <>
-      <NavItem
+      <NavItem 
+        sx={{backgroundColor:'transparent' , '&:hover' : {background:'linear-gradient(264.4deg, #F75BB1 -6.74%, #C392DC 43.26%, #008782 103.97%)'}}}
         item={data}
         depth={depth}
         open={open}

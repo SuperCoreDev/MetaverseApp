@@ -6,7 +6,7 @@ import { Box, Stack, Drawer } from '@mui/material';
 // hooks
 import useResponsive from '../../../hooks/useResponsive';
 // config
-import { NAV } from '../../../config-global';
+import { NAV , HEADER } from '../../../config-global';
 // components
 import Logo from '../../../components/logo';
 import Scrollbar from '../../../components/scrollbar';
@@ -16,9 +16,8 @@ import navConfig from './config-navigation';
 import NavDocs from './NavDocs';
 import NavAccount from './NavAccount';
 import NavToggleButton from './NavToggleButton';
-
 // ----------------------------------------------------------------------
-
+const SPACING = 8;
 type Props = {
   openNav: boolean;
   onCloseNav: VoidFunction;
@@ -27,8 +26,8 @@ type Props = {
 export default function NavVertical({ openNav, onCloseNav }: Props) {
   const { pathname } = useRouter();
 
-  const isDesktop = useResponsive('up', 'lg');
-
+  // const isDesktop = useResponsive('up', 'lg');
+  const isDesktop  = true;
   useEffect(() => {
     if (openNav) {
       onCloseNav();
@@ -40,14 +39,19 @@ export default function NavVertical({ openNav, onCloseNav }: Props) {
     <Scrollbar
       sx={{
         height: 1,
+        pt: `${HEADER.H_MOBILE}px`,
         '& .simplebar-content': {
           height: 1,
           display: 'flex',
           flexDirection: 'column',
         },
+        '&:hover':{
+          width:'272px',
+          zIndex:'100'
+        }
       }}
     >
-      <Stack
+      {/* <Stack
         spacing={3}
         sx={{
           pt: 3,
@@ -59,13 +63,13 @@ export default function NavVertical({ openNav, onCloseNav }: Props) {
         <Logo />
 
         <NavAccount />
-      </Stack>
+      </Stack> */}
 
       <NavSectionVertical data={navConfig} />
 
       <Box sx={{ flexGrow: 1 }} />
 
-      <NavDocs />
+      {/* <NavDocs /> */}
     </Scrollbar>
   );
 
@@ -75,9 +79,15 @@ export default function NavVertical({ openNav, onCloseNav }: Props) {
       sx={{
         flexShrink: { lg: 0 },
         width: { lg: NAV.W_DASHBOARD },
+        paddingTop : '80px',
+
+        '&:hover':{
+          width:'272px',
+          zIndex:'100'
+        }
       }}
     >
-      <NavToggleButton />
+      {/* <NavToggleButton /> */}
 
       {isDesktop ? (
         <Drawer
@@ -88,8 +98,14 @@ export default function NavVertical({ openNav, onCloseNav }: Props) {
               zIndex: 0,
               width: NAV.W_DASHBOARD,
               bgcolor: 'transparent',
-              borderRightStyle: 'dashed',
+              border : 'none',
+              // borderRightStyle: 'dashed',
+              '&:hover':{
+                width:'272px',
+                zIndex:'100'
+              }
             },
+            
           }}
         >
           {renderContent}

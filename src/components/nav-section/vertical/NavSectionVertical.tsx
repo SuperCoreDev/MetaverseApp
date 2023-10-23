@@ -13,15 +13,18 @@ export default function NavSectionVertical({ data, sx, ...other }: NavSectionPro
   const { translate } = useLocales();
 
   return (
-    <Stack sx={sx} {...other}>
+    <Stack sx={{...sx , 
+      px:2, py:2}} 
+      {...other}>
       {data.map((group) => {
         const key = group.subheader || group.items[0].title;
 
         return (
-          <List key={key} disablePadding sx={{ px: 2 }}>
-            {group.subheader && (
+          <List key={key} sx={{px: 3 , py:2 ,border:"1px solid #2B2E31" , borderRadius:'12px', 
+          backgroundColor:'#202324', display:'flex', flexDirection:'column', gap:'16px'}}>
+            {/* {group.subheader && (
               <StyledSubheader disableSticky>{`${translate(group.subheader)}`}</StyledSubheader>
-            )}
+            )} */}
 
             {group.items.map((list) => (
               <NavList

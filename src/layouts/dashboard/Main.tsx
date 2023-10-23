@@ -45,12 +45,15 @@ export default function Main({ children, sx, ...other }: BoxProps) {
        sx={{
       //   flexGrow: 1,
           // py: `${HEADER.H_MOBILE + SPACING}px`,
-          pt: `${HEADER.H_MOBILE + SPACING}px`,
+         // pt: `${HEADER.H_MOBILE + SPACING}px`,
+         paddingLeft:'130px',
+         paddingTop:'0px',
          ...(isDesktop && {
       //     px: 2,
             // py: `${HEADER.H_DASHBOARD_DESKTOP + SPACING}px`,
-            pt: `${HEADER.H_DASHBOARD_DESKTOP + SPACING}px`,
-           width: `calc(100% - ${NAV.W_DASHBOARD}px)`,
+            // pt: `${HEADER.H_DASHBOARD_DESKTOP + SPACING}px`,
+          //  width: `calc(100% - ${NAV.W_DASHBOARD}px)`,
+          width:'100%',
           ...(isNavMini && {
             width: `calc(100% - ${NAV.W_DASHBOARD_MINI}px)`,
           }),

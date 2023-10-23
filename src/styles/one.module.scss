@@ -5,11 +5,18 @@ $font-family: 'Neue Haas Grotesk Display Pro';
     width:100%;
     box-shadow: 0px 6px 12px 0px #00000033;
     background: #202324;
+    gap: 20px;
+    @media (max-width:900px) {
+        flex-direction: column;
+    }
     .StatisticWrapper{
         display: flex;
         flex-direction: column;
-    //    width:100%;
-        gap: 40px;
+        width:60%;
+        gap:55px;
+        @media (max-width:900px) {
+            width:100%;
+        }
         .descriptionboard{
             display: flex;
             flex-direction: column;
@@ -28,6 +35,7 @@ $font-family: 'Neue Haas Grotesk Display Pro';
                 font-size: 16px;
                 line-height: 19.2px;
                 color: white;
+                text-wrap:wrap;
             }
         }
         .MarketOverviewWrapper{
@@ -42,6 +50,15 @@ $font-family: 'Neue Haas Grotesk Display Pro';
                     display: flex;
                     flex-direction: row;
                     justify-content: space-between;
+                    gap:20px;
+                    @media (max-width:600px) {
+                        display: grid;
+                        grid-template-columns: 50% 50%;
+                    }
+                    @media (max-width:570px) {
+                        display: flex;
+                        flex-direction: column;
+                    }
                     .mcbtn{
                         border: 1px solid #2B2E31;
                         border-radius: 32px;
@@ -64,6 +81,9 @@ $font-family: 'Neue Haas Grotesk Display Pro';
                             background-color: #D96BFF;
                             border-color: transparent;
                             color:black;
+                        }
+                        @media (max-width:570px) {
+                            width:100%;
                         }
                     }
                 }
@@ -89,22 +109,29 @@ $font-family: 'Neue Haas Grotesk Display Pro';
                 border-width: 1px;
                 height: 92px;
                 display: flex;
-                flex-direction: row;
+                flex-direction: column;
                 align-items: center;
-                padding: 24px;
+                justify-content: center;
                 width: 33%;
+                @media (max-width: 1455px) {
+                    width: 100%;
+                }
                 .Content{
                     display: flex;
                     flex-direction: column;
                     align-items: center;
                     gap: 7px;
-                    font-family: neue haas grotesk;
+                    font-family: 'neue haas grotesk';
                     font-weight: 500;
                     font-size: 16px;
                     line-height: 19.2px;
                     text-wrap: nowrap;
                     color: white;
                 }
+            }
+            @media (max-width: 1455px) {
+                flex-direction: column;
+                width: 100%;
             }
         }
         .Walletbalance {
@@ -137,6 +164,10 @@ $font-family: 'Neue Haas Grotesk Display Pro';
                 display: flex;
                 flex-direction: row;
                 gap: 20px;
+                @media (max-width: 1070px) {
+                    flex-direction: column;
+                    width:100%;
+                }
                 .InInfo {
                     display: flex;
                     flex-direction: column;
@@ -155,6 +186,10 @@ $font-family: 'Neue Haas Grotesk Display Pro';
                         padding-top: 8px;
                         padding-bottom: 8px;
                         gap: 6px;
+                        @media (max-width: 1070px) {
+                            width:100%;
+                            justify-content: center;
+                        }
                     }
                     .InflowValue {
                         display: flex;
@@ -192,6 +227,10 @@ $font-family: 'Neue Haas Grotesk Display Pro';
                         padding-top: 8px;
                         padding-bottom: 8px;
                         gap: 6px;
+                        @media (max-width: 1070px) {
+                            width:100%;
+                            justify-content: center;
+                        }
                     }
                     .OutflowValue {
                         display: flex;
@@ -237,9 +276,15 @@ $font-family: 'Neue Haas Grotesk Display Pro';
                 line-height: 16px;
                 letter-spacing: 0.25px;
                 color: #1FDD00;
+                @media (max-width:540px){
+                    flex-direction: column;
+                }
                 .Search {
                     width: 40%;
                     min-width: 120px;
+                    @media (max-width:540px){
+                        width: 100%;
+                    }
                 }
             }
             .RecentTx {

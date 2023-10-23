@@ -3,7 +3,7 @@ $font-family: 'Neue Haas Grotesk Display Pro';
     display: flex;
     flex-direction: column;
     padding-top:24px;
-    gap: 24px;
+    gap: 16px;
     width: 100%;
     &__header{
         font-family: $font-family;
@@ -17,6 +17,11 @@ $font-family: 'Neue Haas Grotesk Display Pro';
         display: flex;
         flex-direction: row;
         justify-content: space-between;
+        @media (max-width: 1455px) {
+            flex-direction: column;
+            gap:10px;
+            width: 100%;
+        }
         .circumInfo_BoxContainer{
             border: 1px solid #2B2E31;
             border-radius: 16px;
@@ -28,6 +33,9 @@ $font-family: 'Neue Haas Grotesk Display Pro';
             background-color: #1E2121;
             width:241.33px;
             padding:24px;
+            @media (max-width: 1455px) {
+                width: 100%;
+            }
             &__circumdesc{
                 font-family: $font-family;
                 font-size: 16px;
@@ -68,6 +76,9 @@ $font-family: 'Neue Haas Grotesk Display Pro';
         display: flex;
         flex-direction: row;
         width:100%;
+        @media (max-width:570px){
+            flex-direction: column;
+        }
         .chartoptionlist{
             padding-top: 11px;
             display: flex;
@@ -91,6 +102,9 @@ $font-family: 'Neue Haas Grotesk Display Pro';
         display: flex;
         flex-direction: column;
         gap:24px;
+        @media (max-width: 1435px) {
+            overflow-x: scroll;
+        }
         .galleryHeaderBoard{
             display: flex;
             flex-direction: row;
@@ -129,6 +143,7 @@ $font-family: 'Neue Haas Grotesk Display Pro';
             display: flex;
             flex-direction: row;
             justify-content: space-between;
+            min-width: 736px;
             &__galleryBox{
                 width: 240px;
                 height: 281px;

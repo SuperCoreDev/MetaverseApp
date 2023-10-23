@@ -1,12 +1,9 @@
-import styles from "../../styles/one.module.scss";
-
-import { MenuItem, Select, TextField, InputAdornment } from "@mui/material";
+import { MenuItem, Select, TextField, InputAdornment,SelectChangeEvent } from "@mui/material";
 import {FilterList, Search} from "@mui/icons-material"
 import { Autocomplete } from "@mui/lab";
+import { useState , ReactNode } from "react";
 
-import { useEffect, useState } from "react";
-import { SelectChangeEvent } from "@mui/material";
-import { ReactNode } from "react";
+import styles from "../../styles/one.module.scss";
 
 const filters=["asdf", "bbb", "ccc"];
 const txs=[
@@ -23,7 +20,6 @@ export default function Walletpanel() {
     const [token, setToken] = useState(10 as ReactNode);
 
     const handleChange = (event: SelectChangeEvent) => {
-        console.log(event.target.value);
         setToken(event.target.value as ReactNode);
     };
     return(
@@ -51,32 +47,37 @@ export default function Walletpanel() {
                 </div>
                 <div className={styles.Walletbalance}>
                     <div>Wallet Balance</div>
-                    <Select
-                        labelId="demo-simple-select-label"
-                        id="demo-simple-select"
-                        onChange={handleChange}
-                        value={token}
-                        style={{border:"none", color:"white"}}
-                    >
-                        <MenuItem value={10}>
-                            <div style={{display: "flex", gap: "16px", flexDirection: "row", alignItems: "center", paddingRight: "60px"}}>
-                                <img src="../../assets/icons/dashboard/ETHw.png" />
-                                Ethereum ETH
-                            </div>
-                        </MenuItem>
-                        <MenuItem value={20}>
-                            <div style={{display: "flex", gap: "16px", flexDirection: "row", alignItems: "center", paddingRight: "60px"}}>
-                                <img src="../../assets/icons/dashboard/PLG.png" />
-                                Polygon PLG
-                            </div>
-                        </MenuItem>
-                        <MenuItem value={30}>
-                            <div style={{display: "flex", gap: "16px", flexDirection: "row", alignItems: "center", paddingRight: "60px"}}>
-                                <img src="../../assets/icons/dashboard/SOL.png" />
-                                Solana SOL
-                            </div>
-                        </MenuItem>
-                    </Select>
+                        <Select
+                            sx={{
+                                '.MuiOutlinedInput-notchedOutline': {
+                                borderColor: '#2B2E31',
+                              },}}
+                            labelId="demo-simple-select-label"
+                            id="demo-simple-select"
+                            onChange={handleChange}
+                            value={token}
+                            style={{border:"none", color:"white"}}
+                        >
+                            <MenuItem value={10}>
+                                <div style={{display: "flex", gap: "16px", flexDirection: "row", alignItems: "center", paddingRight: "60px"}}>
+                                    <img src="../../assets/icons/dashboard/ETHw.png" />
+                                    Ethereum ETH
+                                </div>
+                            </MenuItem>
+                            <MenuItem value={20}>
+                                <div style={{display: "flex", gap: "16px", flexDirection: "row", alignItems: "center", paddingRight: "60px"}}>
+                                    <img src="../../assets/icons/dashboard/PLG.png" />
+                                    Polygon PLG
+                                </div>
+                            </MenuItem>
+                            <MenuItem value={30}>
+                                <div style={{display: "flex", gap: "16px", flexDirection: "row", alignItems: "center", paddingRight: "60px"}}>
+                                    <img src="../../assets/icons/dashboard/SOL.png" />
+                                    Solana SOL
+                                </div>
+                            </MenuItem>
+                        </Select>
+                    
                     <div className={styles.BalanceText}>
                         <div className={styles.Symbol}>ETH</div>
                         <div className={styles.Amount}>51.76845</div>
@@ -116,6 +117,7 @@ export default function Walletpanel() {
                         <TextField
                             id="input-with-icon-textfield"
                             placeholder="Search..."
+                            inputProps={{style: {color:'white'}}}
                             InputProps={{
                             endAdornment: (
                                 <InputAdornment position="start">

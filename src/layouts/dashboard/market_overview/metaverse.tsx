@@ -1,29 +1,17 @@
 import { Icon } from '@iconify/react';
-import Autocomplete from '@mui/material/Autocomplete';
-import TextField from '@mui/material/TextField';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
+import {MenuItem, Select,SelectChangeEvent } from '@mui/material';
+import { useState , ReactNode } from "react";
 import Image from 'next/image'
 import Chart from '../../../components/marketChartView';
 
 import styles from './style.module.scss';
 
-const combo_box_theme = createTheme({
-    components: {
-      MuiAutocomplete: {
-        styleOverrides: {
-          inputRoot: {
-            fontColor: 'Aeonik',
-            fontSize: '14px',
-            fontWeight: '400',
-            lineHeight: '16px',
-            backgroundColor: '#4A4A4A',
-            color: 'white'
-          },
-        },
-      },
-    },
-  });
+
 export default function Metaverse() {
+    const [chartViewoption, setOptionChart] = useState(10 as ReactNode);
+    const handleChange = (event: SelectChangeEvent) => {
+        setOptionChart(event.target.value as ReactNode);
+    };
     return (
         <div className={styles.MarketOverview}>
             <span className={styles.MarketOverview__header}> Metaverse Market Overview </span>
@@ -66,21 +54,38 @@ export default function Metaverse() {
                 </div>
             </div>
             <div className={styles.MarketOverview__chartoptionboard}>
-                <ThemeProvider theme={combo_box_theme}>
-                    <Autocomplete
-                        
-                        id="combo-box-demo"
-                        options={['Last 7days']}
-                        sx={{width: 180,height: 40 }}
-                        defaultValue='Last 7days'
-                        renderInput={(params) => <TextField {...params} label="" />}
-                    />
-                </ThemeProvider>
+                <Select
+                    sx={{
+                        '.MuiOutlinedInput-notchedOutline': {
+                        borderColor: '#2B2E31',
+                    },}}
+                    labelId="demo-simple-select-label"
+                    id="demo-simple-select"
+                    onChange={handleChange}
+                    value={chartViewoption}
+                    style={{ color:"white" }}
+                >
+                    <MenuItem value={10}>
+                        <div style={{ display: "flex", gap: "16px", flexDirection: "row", alignItems: "center", paddingRight: "60px" }}>
+                            Last 7 days
+                        </div>
+                    </MenuItem>
+                    <MenuItem value={20}>
+                        <div style={{ display: "flex", gap: "16px", flexDirection: "row", alignItems: "center", paddingRight: "60px" }}>
+                            Last 1 month
+                        </div>
+                    </MenuItem>
+                    <MenuItem value={30}>
+                        <div style={{ display: "flex", gap: "16px", flexDirection: "row", alignItems: "center", paddingRight: "60px" }}>
+                            Last 1 year
+                        </div>
+                    </MenuItem>
+                </Select>
                 <div className={styles.chartoptionlist}>
-                    <div className={styles.chartoptionlist__chartcolor} style={{backgroundColor :'#D100BC'}}><></></div>
-                    <span className={styles.fontPercent} style={{color:'white'}}>Volume</span>
-                    <div className={styles.chartoptionlist__chartcolor} style={{backgroundColor :'#08A0D8'}}><></></div>
-                    <span className={styles.fontPercent}  style={{color:'white'}}>UAW</span>
+                    <div className={styles.chartoptionlist__chartcolor} style={{ backgroundColor: '#D100BC' }}><></></div>
+                    <span className={styles.fontPercent} style={{ color: 'white' }}>Volume</span>
+                    <div className={styles.chartoptionlist__chartcolor} style={{ backgroundColor: '#08A0D8' }}><></></div>
+                    <span className={styles.fontPercent} style={{ color: 'white' }}>UAW</span>
                     <Icon icon="uil:focus" color="gray" width="24" height="24" />
                 </div>
             </div>
@@ -93,45 +98,45 @@ export default function Metaverse() {
                 <div className={styles.galleryContainer}>
                     <div className={styles.galleryContainer__galleryBox}>
                         <div className={styles.gallery}>
-                            <Image alt="Illuvium_content" src="/assets/images/metaverse_gallery/illuvium_photo.png"  width={230} height={200} />
+                            <Image alt="Illuvium_content" src="/assets/images/metaverse_gallery/illuvium_photo.png" width={230} height={200} />
                         </div>
                         <div className={styles.galleryDescContentBoard}>
                             <div className={styles.galleryDescContentBoard__galleryDesc}>
-                                <Image alt="Illuvium" src="/assets/images/metaverse_gallery/Illuvium.png" width={32} height={32}/>
-                                <span style={{color:"white"}} className={styles.MarketOverview__header}>Illuvium</span>
+                                <Image alt="Illuvium" src="/assets/images/metaverse_gallery/Illuvium.png" width={32} height={32} />
+                                <span style={{ color: "white" }} className={styles.MarketOverview__header}>Illuvium</span>
                             </div>
                             <div className={styles.galleryDescContentBoard__galleryContent}>
-                                <Image alt="Illuvium" src="/assets/images/metaverse_gallery/Illuvium.png" width={24.79} height={24}/>
-                                <Image alt="Ethereum" src="/assets/images/metaverse_gallery/ethereum.png" width={24} height={24}/>
+                                <Image alt="Illuvium" src="/assets/images/metaverse_gallery/Illuvium.png" width={24.79} height={24} />
+                                <Image alt="Ethereum" src="/assets/images/metaverse_gallery/ethereum.png" width={24} height={24} />
                             </div>
                         </div>
                     </div>
                     <div className={styles.galleryContainer__galleryBox}>
                         <div className={styles.gallery}>
-                        <Image alt="Lalaverse_content" src="/assets/images/metaverse_gallery/Lalaverse_photo.png" width={230} height={200} />    
+                            <Image alt="Lalaverse_content" src="/assets/images/metaverse_gallery/Lalaverse_photo.png" width={230} height={200} />
                         </div>
                         <div className={styles.galleryDescContentBoard}>
                             <div className={styles.galleryDescContentBoard__galleryDesc}>
-                                <Image alt="Lalaverse" src="/assets/images/metaverse_gallery/Lalaverse.png" width={32} height={32}/>
-                                <span style={{color:"white"}} className={styles.MarketOverview__header}>Lalaverse</span>
+                                <Image alt="Lalaverse" src="/assets/images/metaverse_gallery/Lalaverse.png" width={32} height={32} />
+                                <span style={{ color: "white" }} className={styles.MarketOverview__header}>Lalaverse</span>
                             </div>
                             <div className={styles.galleryDescContentBoard__galleryContent}>
-                                <Image alt="Ethereum" src="/assets/images/metaverse_gallery/ethereum.png" width={24} height={24}/>
+                                <Image alt="Ethereum" src="/assets/images/metaverse_gallery/ethereum.png" width={24} height={24} />
                             </div>
                         </div>
                     </div>
                     <div className={styles.galleryContainer__galleryBox}>
                         <div className={styles.gallery}>
-                            <Image alt="SandBox_content" src="/assets/images/metaverse_gallery/SandBox_photo.png"  width={230} height={200}/>    
+                            <Image alt="SandBox_content" src="/assets/images/metaverse_gallery/SandBox_photo.png" width={230} height={200} />
                         </div>
                         <div className={styles.galleryDescContentBoard}>
                             <div className={styles.galleryDescContentBoard__galleryDesc}>
-                                <Image alt="Sandbox" src="/assets/images/metaverse_gallery/Sandbox.png" width={32} height={32}/>
-                                <span style={{color:"white"}} className={styles.MarketOverview__header}>Sandbox</span>
+                                <Image alt="Sandbox" src="/assets/images/metaverse_gallery/Sandbox.png" width={32} height={32} />
+                                <span style={{ color: "white" }} className={styles.MarketOverview__header}>Sandbox</span>
                             </div>
                             <div className={styles.galleryDescContentBoard__galleryContent}>
-                                <Image alt="Sandbox" src="/assets/images/metaverse_gallery/Sandbox.png" width={24.79} height={24}/>
-                                <Image alt="Ethereum" src="/assets/images/metaverse_gallery/ethereum.png" width={24} height={24}/>
+                                <Image alt="Sandbox" src="/assets/images/metaverse_gallery/Sandbox.png" width={24.79} height={24} />
+                                <Image alt="Ethereum" src="/assets/images/metaverse_gallery/ethereum.png" width={24} height={24} />
                             </div>
                         </div>
                     </div>

@@ -30,7 +30,7 @@ export default function NavItem({
 
   const renderContent = (
     <StyledItem depth={depth} active={active} disabled={disabled} caption={!!caption} {...other}>
-      {icon && <StyledIcon>{icon}</StyledIcon>}
+      {icon && <StyledIcon sx={{marginRight:'0px'}}>{icon}</StyledIcon>}
 
       {subItem && (
         <StyledIcon>
@@ -39,6 +39,7 @@ export default function NavItem({
       )}
 
       <ListItemText
+        sx={{color:'white',paddingLeft:'5px'}}
         primary={`${translate(title)}`}
         secondary={
           caption && (
@@ -59,7 +60,7 @@ export default function NavItem({
       />
 
       {info && (
-        <Box component="span" sx={{ lineHeight: 0 }}>
+        <Box component="span" sx={{ lineHeight: 0}}>
           {info}
         </Box>
       )}
