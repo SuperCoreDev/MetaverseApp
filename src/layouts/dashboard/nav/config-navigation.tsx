@@ -18,7 +18,7 @@ const ICONS = {
   marketplace: icon('ic_marketplace'),
   avatar: icon('ic_avatar'),
   staking: icon('ic_staking'),
-  academy : icon('ic_academy')
+  academy: icon('ic_academy')
 };
 
 const navConfig = [
@@ -28,7 +28,7 @@ const navConfig = [
     subheader: 'general v4.3.0',
     items: [
       { title: 'Dashboard', path: PATH_DASHBOARD.one, icon: ICONS.dashboard },
-      { title: 'Metaverse', path: PATH_DASHBOARD.one, icon: ICONS.metaverse },
+      { title: 'Metaverse', path: PATH_DASHBOARD.two, icon: ICONS.metaverse },
       { title: 'NFTs', path: PATH_DASHBOARD.one, icon: ICONS.nfts },
       { title: 'Hire Talent', path: PATH_DASHBOARD.one, icon: ICONS.hiretalent },
       { title: 'Work as Talent', path: PATH_DASHBOARD.one, icon: ICONS.workastalent },
