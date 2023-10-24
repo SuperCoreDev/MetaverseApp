@@ -93,7 +93,7 @@ export default function PageTwo() {
               <Typography color='white' fontFamily='Termina Test' fontSize={56} fontWeight={900}>Decentraland</Typography>
               <Icon icon="ph:seal-check-fill" color="#8bf8ff" width="32" height="32" />
             </Stack>
-            <Stack direction='row' style={{width:'90%'}} spacing={4}>
+            <Stack direction='row' style={{width:isDesktop?'90%':''}} sx={{flexDirection: isDesktop ? 'row' : 'column' , gap: isDesktop ? '0' : '16px'}} spacing={4}>
               <Typography color='white' fontFamily='Neue Haas Grotesk Display Pro' fontSize={20} fontWeight={500}>
                 Decentraland is a decentralized virtual reality platform powered by blockchain technology. Within the Decentraland platform, users can create, experience, and monetize their content and applications.
               </Typography>
@@ -101,7 +101,7 @@ export default function PageTwo() {
               <CButton fontSize={20} bgColor='black' color='#D96BFF' style={{alignSelf:'center' , width:'50%' }}>Buy Metaverse</CButton>
               
             </Stack>
-            <TopBar>
+            <TopBar sx={{flexWrap:isDesktop?'':'wrap'}}>
               <TopButton>Overview</TopButton>
               <TopButton>Collectibles</TopButton>
               <TopButton>Land</TopButton>
@@ -111,13 +111,13 @@ export default function PageTwo() {
               <TopButton>Comments</TopButton>
             </TopBar>
           </Stack>
-          <Stack direction='column'>
+          <Stack direction='column' sx={{width:isDesktop?'392px':'100%'}}>
             <Stack direction='row' sx={{paddingLeft:'180px' , paddingRight:'19px'}} gap={4}>
               <Icon icon="mdi:instagram" color="white" width="24" height="24" />
               <Icon icon="mdi:twitter" color="white" width="24" height="24" />
               <Icon icon="ic:baseline-discord" color="white" width="24" height="24" />
             </Stack>
-            <Stack direction='column' sx={{width : !isDesktop ? '100%' : '392px'}} padding='24px'  gap='16px'>
+            <Stack direction='column' sx={{width : '392px'}} padding='24px'  gap='16px'>
               <Stack direction='row'>
                 <Typography fontFamily='Neue Haas Grotesk Display Pro' fontSize={20} fontWeight={500} color='#8D8E8D'>Blockchain</Typography>
                 <Grid container rowGap={1} columnGap={2}>
