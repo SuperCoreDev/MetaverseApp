@@ -1,5 +1,5 @@
 // @mui
-import { List, Stack } from '@mui/material';
+import { List, Stack, Box } from '@mui/material';
 // locales
 import { useLocales } from '../../../locales';
 //
@@ -14,27 +14,27 @@ export default function NavSectionVertical({ data, sx, ...other }: NavSectionPro
 
   return (
     <Stack sx={{...sx , 
-      px:2, py:2}} 
+      px:2, py:2 , display:'flex', flexDirection:'column', gap:'15px'}} 
       {...other}>
       {data.map((group) => {
         const key = group.subheader || group.items[0].title;
 
         return (
-          <List key={key} sx={{px: 3 , py:2 ,border:"1px solid #2B2E31" , borderRadius:'12px', 
-          backgroundColor:'#202324', display:'flex', flexDirection:'column', gap:'16px'}}>
-            {/* {group.subheader && (
-              <StyledSubheader disableSticky>{`${translate(group.subheader)}`}</StyledSubheader>
-            )} */}
+            <List key={key} sx={{px: 3 , py:2 ,border:"1px solid #2B2E31" , borderRadius:'12px', 
+            backgroundColor:'#202324', display:'flex', flexDirection:'column', gap:'2px'}}>
+              {/* {group.subheader && (
+                <StyledSubheader disableSticky>{`${translate(group.subheader)}`}</StyledSubheader>
+              )} */}
 
-            {group.items.map((list) => (
-              <NavList
-                key={list.title + list.path}
-                data={list}
-                depth={1}
-                hasChild={!!list.children}
-              />
-            ))}
-          </List>
+              {group.items.map((list) => (
+                <NavList
+                  key={list.title + list.path}
+                  data={list}
+                  depth={1}
+                  hasChild={!!list.children}
+                />
+              ))}
+            </List>
         );
       })}
     </Stack>

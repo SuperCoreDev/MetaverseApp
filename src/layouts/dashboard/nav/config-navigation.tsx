@@ -6,7 +6,7 @@ import SvgColor from '../../../components/svg-color';
 // ----------------------------------------------------------------------
 
 const icon = (name: string) => (
-  <SvgColor src={`/assets/icons/navbar/${name}.svg`} sx={{ width: 1, height: 1 }} />
+  <SvgColor src={`/assets/icons/navbar/${name}.svg`} sx={{width: 1, height: 1, backgroundColor: name==="ic_logout" ? "red" : "white"  }} />
 );
 
 const ICONS = {
@@ -18,7 +18,11 @@ const ICONS = {
   marketplace: icon('ic_marketplace'),
   avatar: icon('ic_avatar'),
   staking: icon('ic_staking'),
-  academy : icon('ic_academy')
+  academy : icon('ic_academy'),
+  addwallet : icon('ic_addwallet'),
+  ethereum : icon('ic_ethereum'),
+  settings: icon('ic_setting'),
+  logout:icon('ic_logout')
 };
 
 const navConfig = [
@@ -28,7 +32,7 @@ const navConfig = [
     subheader: 'general v4.3.0',
     items: [
       { title: 'Dashboard', path: PATH_DASHBOARD.one, icon: ICONS.dashboard },
-      { title: 'Metaverse', path: PATH_DASHBOARD.one, icon: ICONS.metaverse },
+      { title: 'Metaverse', path: PATH_DASHBOARD.two, icon: ICONS.metaverse },
       { title: 'NFTs', path: PATH_DASHBOARD.one, icon: ICONS.nfts },
       { title: 'Hire Talent', path: PATH_DASHBOARD.one, icon: ICONS.hiretalent },
       { title: 'Work as Talent', path: PATH_DASHBOARD.one, icon: ICONS.workastalent },
@@ -39,6 +43,29 @@ const navConfig = [
     ],
   },
 
+  // Add Wallet
+  {
+    subheader: 'Add Wallet',
+    items: [
+      {
+        title: 'Add Wallet',
+        path: PATH_DASHBOARD.one,
+        // icon: ICONS.addwallet,
+        children: [
+          { title: 'Ethereum', path: PATH_DASHBOARD.one},
+        ],
+      },
+    ],
+  },
+
+   // Setting & Log Out
+   {
+    subheader: 'Setting & Log Out',
+    items: [
+      { title: 'Setting', path: PATH_DASHBOARD.one, icon: ICONS.settings },
+      { title: 'Log Out', path: PATH_DASHBOARD.one, icon: ICONS.logout },
+    ]
+  }
   // MANAGEMENT
   // ----------------------------------------------------------------------
   // {

@@ -1,5 +1,6 @@
 // next
 import NextLink from 'next/link';
+import Image from 'next/image';
 // @mui
 import { Box, Tooltip, Link, ListItemText } from '@mui/material';
 // locales
@@ -27,16 +28,38 @@ export default function NavItem({
   const { title, path, icon, info, children, disabled, caption, roles } = item;
 
   const subItem = depth !== 1;
+  const renderIcon = () => {
+    if (icon && !subItem) {
+      return (
+        <>  {icon} </>
+      );
+    } 
+    if (title === "Add Wallet") {
+      return (
+        <Image src="/assets/icons/navbar/ic_addwallet_png.png" alt='AddWallet' width={24} height={24} />
+      );
+    } 
+    if (title === "Ethereum") {
+      return (
+        <Image src="/assets/icons/navbar/ic_ethereum_png.png" alt='Ethereum' width={24} height={24} />
+      );
+    }
+
+    return null;
+  };
 
   const renderContent = (
     <StyledItem depth={depth} active={active} disabled={disabled} caption={!!caption} {...other}>
-      {icon && <StyledIcon sx={{marginRight:'0px'}}>{icon}</StyledIcon>}
-
-      {subItem && (
+      <Box sx={{paddingLeft: subItem ? '10px' : ''}}>
+        <StyledIcon sx={{ marginRight: subItem ? '10px' : '0px' }}>
+         {renderIcon()}
+        </StyledIcon>
+      </Box>
+      {/* {subItem && (
         <StyledIcon>
           <StyledDotIcon active={active && subItem} />
         </StyledIcon>
-      )}
+      )} */}
 
       <ListItemText
         sx={{color:'white',paddingLeft:'5px'}}

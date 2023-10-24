@@ -1,74 +1,87 @@
 $font-family: 'Neue Haas Grotesk Display Pro';
-.OneWrapper{
+
+.OneWrapper {
     display: flex;
     flex-direction: row;
-    width:100%;
+    width: 100%;
     box-shadow: 0px 6px 12px 0px #00000033;
     background: #202324;
     gap: 20px;
+
     @media (max-width:900px) {
         flex-direction: column;
     }
-    .StatisticWrapper{
+
+    .StatisticWrapper {
         display: flex;
         flex-direction: column;
-        width:60%;
-        gap:55px;
+        width: 60%;
+        gap: 55px;
+
         @media (max-width:900px) {
-            width:100%;
+            width: 100%;
         }
-        .descriptionboard{
+
+        .descriptionboard {
             display: flex;
             flex-direction: column;
-            width:100%;
+            width: 100%;
             align-items: flex-start;
-            .subject{
+
+            .subject {
                 font-family: $font-family;
                 font-weight: 600;
                 font-size: 32px;
                 line-height: 38.4px;
                 color: white;
             }
-            .description{
+
+            .description {
                 font-family: $font-family;
                 font-weight: 500;
                 font-size: 16px;
                 line-height: 19.2px;
                 color: white;
-                text-wrap:wrap;
+                text-wrap: wrap;
             }
         }
-        .MarketOverviewWrapper{
+
+        .MarketOverviewWrapper {
             padding-top: 30px;
-            border-radius:12px;
+            border-radius: 12px;
             border: 1px solid #2B2E31;
-            .MarketOverviewContainer{
+
+            .MarketOverviewContainer {
                 display: flex;
                 flex-direction: column;
-                padding:24px;
-                .ClassifyButtons{
+                padding: 24px;
+
+                .ClassifyButtons {
                     display: flex;
                     flex-direction: row;
                     justify-content: space-between;
-                    gap:20px;
+                    gap: 20px;
+
                     @media (max-width:600px) {
                         display: grid;
                         grid-template-columns: 50% 50%;
                     }
+
                     @media (max-width:570px) {
                         display: flex;
                         flex-direction: column;
                     }
-                    .mcbtn{
+
+                    .mcbtn {
                         border: 1px solid #2B2E31;
                         border-radius: 32px;
                         -webkit-border-radius: 32px;
                         -moz-border-radius: 32px;
                         -ms-border-radius: 32px;
                         -o-border-radius: 32px;
-                        height:40px;
+                        height: 40px;
                         background-color: #1E2121;
-                        width:177px;
+                        width: 177px;
                         display: flex;
                         align-items: center;
                         justify-content: center;
@@ -76,21 +89,143 @@ $font-family: 'Neue Haas Grotesk Display Pro';
                         font-size: 14px;
                         font-weight: 600;
                         line-height: 17px;
-                        color:white;
+                        color: white;
+
                         &:active {
                             background-color: #D96BFF;
                             border-color: transparent;
-                            color:black;
+                            color: black;
                         }
+
                         @media (max-width:570px) {
-                            width:100%;
+                            width: 100%;
+                        }
+                    }
+
+                    .selected {
+                        background-color: #D96BFF;
+                    }
+                }
+            }
+
+            .MarketOverview {
+                display: flex;
+                flex-direction: column;
+                padding-top: 24px;
+                gap: 16px;
+                width: 100%;
+
+                &__header {
+                    font-family: $font-family;
+                    font-weight: 600;
+                    font-size: 20px;
+                    line-height: 24px;
+                    align-self: left;
+                    color: white;
+                }
+
+                &__circumInfo {
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: space-between;
+
+                    @media (max-width: 1455px) {
+                        flex-direction: column;
+                        gap: 10px;
+                        width: 100%;
+                    }
+
+                    .circumInfo_BoxContainer {
+                        border: 1px solid #2B2E31;
+                        border-radius: 16px;
+                        -webkit-border-radius: 16px;
+                        -moz-border-radius: 16px;
+                        -ms-border-radius: 16px;
+                        -o-border-radius: 16px;
+                        height: 97px;
+                        background-color: #1E2121;
+                        width: 241.33px;
+                        padding: 24px;
+
+                        @media (max-width: 1455px) {
+                            width: 100%;
+                        }
+
+                        &__circumdesc {
+                            font-family: $font-family;
+                            font-size: 16px;
+                            font-weight: 500;
+                            line-height: 19px;
+                            color: #8D8E8D;
+
+                        }
+
+                        &__curcuminfoblock {
+                            display: flex;
+                            flex-direction: row;
+                            justify-content: space-between;
+                            width: 100%;
+                        }
+
+                        &__curcumvalblock {
+                            display: flex;
+                            flex-direction: row;
+                            justify-content: space-between;
+                            width: 100%;
+                            font-family: $font-family;
+
+                            .fontPercent {
+                                font-family: $font-family;
+                                font-size: 14px;
+                                font-weight: 500;
+                                line-height: 17px;
+                                text-align: left;
+                                color: green
+                            }
+                        }
+
+                        &__BOX {
+                            display: flex;
+                            flex-direction: column;
+                            gap: 10px;
+                        }
+                    }
+                }
+
+                &__chartoptionboard {
+                    display: flex;
+                    flex-direction: row;
+                    width: 100%;
+
+                    @media (max-width:570px) {
+                        flex-direction: column;
+                    }
+
+                    .chartoptionlist {
+                        padding-top: 11px;
+                        display: flex;
+                        flex-direction: row;
+                        gap: 7px;
+                        align-items: center;
+                        justify-content: flex-end;
+                        width: 100%;
+
+                        &__chartcolor {
+                            width: 14px;
+                            height: 14px;
+                            border-radius: 50%;
+                            -webkit-border-radius: 50%;
+                            -moz-border-radius: 50%;
+                            -ms-border-radius: 50%;
+                            -o-border-radius: 50%;
                         }
                     }
                 }
             }
-            
         }
+
     }
+
     .Walletpanel {
         display: flex;
         flex-direction: column;
@@ -99,10 +234,12 @@ $font-family: 'Neue Haas Grotesk Display Pro';
         background-color: #1E2121;
         border-color: #2B2E31;
         height: 100%;
+
         .Buttongroup {
             display: flex;
             flex-direction: row;
             gap: 20px;
+
             .Button {
                 border-radius: 12px;
                 border: solid;
@@ -113,10 +250,12 @@ $font-family: 'Neue Haas Grotesk Display Pro';
                 align-items: center;
                 justify-content: center;
                 width: 33%;
+
                 @media (max-width: 1455px) {
                     width: 100%;
                 }
-                .Content{
+
+                .Content {
                     display: flex;
                     flex-direction: column;
                     align-items: center;
@@ -129,11 +268,13 @@ $font-family: 'Neue Haas Grotesk Display Pro';
                     color: white;
                 }
             }
+
             @media (max-width: 1455px) {
                 flex-direction: column;
                 width: 100%;
             }
         }
+
         .Walletbalance {
             border-radius: 12px;
             border: solid;
@@ -144,35 +285,42 @@ $font-family: 'Neue Haas Grotesk Display Pro';
             display: flex;
             flex-direction: column;
             align-items: center;
+
             .BalanceText {
                 display: flex;
                 flex-direction: row;
                 gap: 8px;
                 align-items: flex-end;
+
                 .Symbol {
                     font-weight: 600;
                     font-size: 20px;
                     line-height: 24px;
                 }
+
                 .Amount {
                     font-weight: 600;
                     font-size: 32px;
                     line-height: 38.4px;
                 }
             }
+
             .InOutInfo {
                 display: flex;
                 flex-direction: row;
                 gap: 20px;
+
                 @media (max-width: 1070px) {
                     flex-direction: column;
-                    width:100%;
+                    width: 100%;
                 }
+
                 .InInfo {
                     display: flex;
                     flex-direction: column;
                     align-items: center;
                     gap: 32px;
+
                     .Label {
                         display: flex;
                         flex-direction: row;
@@ -186,22 +334,26 @@ $font-family: 'Neue Haas Grotesk Display Pro';
                         padding-top: 8px;
                         padding-bottom: 8px;
                         gap: 6px;
+
                         @media (max-width: 1070px) {
-                            width:100%;
+                            width: 100%;
                             justify-content: center;
                         }
                     }
+
                     .InflowValue {
                         display: flex;
                         flex-direction: row;
                         align-items: flex-end;
                         gap: 8px;
+
                         .Amount {
                             color: green;
                             font-weight: 700;
                             font-size: 20px;
                             line-height: 24px;
                         }
+
                         .Symbol {
                             font-weight: 500;
                             font-size: 14px;
@@ -209,11 +361,13 @@ $font-family: 'Neue Haas Grotesk Display Pro';
                         }
                     }
                 }
+
                 .OutInfo {
                     display: flex;
                     flex-direction: column;
                     align-items: center;
                     gap: 32px;
+
                     .Label {
                         display: flex;
                         flex-direction: row;
@@ -227,22 +381,26 @@ $font-family: 'Neue Haas Grotesk Display Pro';
                         padding-top: 8px;
                         padding-bottom: 8px;
                         gap: 6px;
+
                         @media (max-width: 1070px) {
-                            width:100%;
+                            width: 100%;
                             justify-content: center;
                         }
                     }
+
                     .OutflowValue {
                         display: flex;
                         flex-direction: row;
                         align-items: flex-end;
                         gap: 8px;
+
                         .Amount {
                             color: red;
                             font-weight: 700;
                             font-size: 20px;
                             line-height: 24px;
                         }
+
                         .Symbol {
                             font-weight: 500;
                             font-size: 14px;
@@ -252,6 +410,7 @@ $font-family: 'Neue Haas Grotesk Display Pro';
                 }
             }
         }
+
         .Transactions {
             border: solid;
             border-radius: 12px;
@@ -261,12 +420,14 @@ $font-family: 'Neue Haas Grotesk Display Pro';
             gap: 15px;
             display: flex;
             flex-direction: column;
+
             .Label {
                 font-weight: 400;
                 font-size: 24px;
                 line-height: 32px;
                 color: #C5BEC8;
             }
+
             .Lookingfor {
                 display: flex;
                 flex-direction: row;
@@ -276,21 +437,26 @@ $font-family: 'Neue Haas Grotesk Display Pro';
                 line-height: 16px;
                 letter-spacing: 0.25px;
                 color: #1FDD00;
-                @media (max-width:540px){
+
+                @media (max-width:540px) {
                     flex-direction: column;
                 }
+
                 .Search {
                     width: 40%;
                     min-width: 120px;
-                    @media (max-width:540px){
+
+                    @media (max-width:540px) {
                         width: 100%;
                     }
                 }
             }
+
             .RecentTx {
                 display: flex;
                 flex-direction: column;
                 gap: 4px;
+
                 .Headbar {
                     display: flex;
                     flex-direction: row;
@@ -303,26 +469,31 @@ $font-family: 'Neue Haas Grotesk Display Pro';
                     line-height: 16px;
                     letter-spacing: 0.25px;
                 }
-                .Col{
+
+                .Col {
                     border-bottom: solid;
                     border-color: #2B2E31;
                     border-width: 1px;
                     display: flex;
                     flex-direction: row;
                     justify-content: space-between;
+
                     .TokenAmount {
                         padding-left: 0px;
                         padding-right: 24px;
                         padding-top: 8px;
                         padding-bottom: 8px;
+
                         .Amount {
                             display: flex;
                             flex-direction: row;
                             gap: 16px;
+
                             .AmountText {
                                 display: flex;
                                 flex-direction: column;
                                 gap: 4px;
+
                                 .Balance {
                                     font-weight: 600;
                                     font-size: 16px;
@@ -330,6 +501,7 @@ $font-family: 'Neue Haas Grotesk Display Pro';
                                     text-align: center;
                                     color: #A4A7AF;
                                 }
+
                                 .Type {
                                     font-weight: 500;
                                     font-size: 14px;
@@ -339,6 +511,7 @@ $font-family: 'Neue Haas Grotesk Display Pro';
                             }
                         }
                     }
+
                     .UsdAmount {
                         color: #1FDD00;
                         font-weight: 700;

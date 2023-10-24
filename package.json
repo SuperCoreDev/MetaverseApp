@@ -27,6 +27,8 @@
     "@mui/icons-material": "^5.14.14",
     "@mui/lab": "^5.0.0-alpha.120",
     "@mui/material": "^5.11.10",
+    "@mui/x-data-grid": "^6.16.3",
+    "@mui/x-data-grid-generator": "^6.16.3",
     "@next/font": "^13.1.6",
     "apexcharts": "^3.44.0",
     "autosuggest-highlight": "^3.3.4",

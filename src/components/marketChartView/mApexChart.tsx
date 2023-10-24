@@ -7,7 +7,7 @@ const ApexChart = dynamic(() => import("react-apexcharts"), { ssr: false });
 
 //import '../Style/ChartCard.css'
 
-const ChartComponent = () => {
+const ChartComponent = (props : any) => {
     const chartOptions = {
         chart: {
             id: 'area-spline-chart',
@@ -77,7 +77,7 @@ const ChartComponent = () => {
 
     return (
         <>
-            <ApexChart options={chartOptions} series={chartOptions.series} type="area" height="220" />
+            <ApexChart options={chartOptions} series={chartOptions.series} type="area" height={props.height === undefined ? '220px' : props.height} />
         </>
     );
 };

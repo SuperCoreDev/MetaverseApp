@@ -22,7 +22,7 @@ export default function NavList({ data, depth, hasChild }: NavListRootProps) {
 
   const { active, isExternalLink } = useActiveLink(data.path);
 
-  const [open, setOpen] = useState(active);  
+  const [open, setOpen] = useState(!active);  
 
   useEffect(() => {
     if (!active) {

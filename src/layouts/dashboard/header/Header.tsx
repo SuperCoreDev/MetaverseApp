@@ -21,8 +21,6 @@ import AccountPopover from './AccountPopover';
 import LanguagePopover from './LanguagePopover';
 import ContactsPopover from './ContactsPopover';
 import NotificationsPopover from './NotificationsPopover';
-import { ImageError } from 'next/dist/server/image-optimizer';
-import { Padding } from '@mui/icons-material';
 // ----------------------------------------------------------------------
 
 type Props = {
