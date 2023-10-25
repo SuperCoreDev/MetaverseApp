@@ -47,7 +47,7 @@ export default function DashboardLayout({ children }: Props) {
         <div style={{backgroundColor:'#202324'}}>
           <Header onOpenNav={handleOpen} />
 
-          {/* {isDesktop ? <NavHorizontal /> : renderNavVertical} */}
+          {isDesktop ? <NavHorizontal /> : renderNavVertical}
 
           <Main>{children}</Main>
         </div>

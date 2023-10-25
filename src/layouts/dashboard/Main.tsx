@@ -18,7 +18,7 @@ export default function Main({ children, sx, ...other }: BoxProps) {
 
   const isNavMini = themeLayout === 'mini';
 
-  const isDesktop = useResponsive('up', 'lg');
+  const isDesktop = useResponsive('up', 'sm');
 
   if (isNavHorizontal) {
     return (
@@ -46,7 +46,7 @@ export default function Main({ children, sx, ...other }: BoxProps) {
       //   flexGrow: 1,
           // py: `${HEADER.H_MOBILE + SPACING}px`,
          // pt: `${HEADER.H_MOBILE + SPACING}px`,
-         paddingLeft:'130px',
+         paddingLeft:isDesktop?'130px':'10px',
          paddingTop:'0px',
          ...(isDesktop && {
       //     px: 2,

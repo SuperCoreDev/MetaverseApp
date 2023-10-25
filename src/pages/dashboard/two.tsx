@@ -63,8 +63,8 @@ export default function PageTwo() {
       <Head>
         <title> Page Two | Minimal UI</title>
       </Head>
-
-      <Container sx={{ paddingLeft: '100px'}} maxWidth={themeStretch ? false : 'xl'}>
+      {/* sx={{ paddingLeft: '100px'}} */}
+      <Container  maxWidth={themeStretch ? false : 'xl'}>
         <Typography color="white">Metaverse / Decentraland</Typography>
         <Box sx={{ height: "20px" }} />
         <Box style={{ position: 'relative' }}>

@@ -2,7 +2,7 @@ import Image from 'next/image';
 import NextLink from 'next/link';
 // @mui
 import { useTheme } from '@mui/material/styles';
-import { Stack, AppBar, Toolbar, Link , Box } from '@mui/material';
+import { Stack, AppBar, Toolbar, Link , Box , IconButton } from '@mui/material';
 // utils
 import { bgBlur } from '../../../utils/cssStyles';
 // hooks
@@ -36,7 +36,7 @@ export default function Header({ onOpenNav }: Props) {
 
   const isNavMini = themeLayout === 'mini';
 
-  const isDesktop = useResponsive('up', 'lg');
+  const isDesktop = useResponsive('up', 'sm');
 
   const isOffset = useOffSetTop(HEADER.H_DASHBOARD_DESKTOP) && !isNavHorizontal;
 
@@ -44,11 +44,11 @@ export default function Header({ onOpenNav }: Props) {
     <>
       {/* {isDesktop && isNavHorizontal && <Logo sx={{ mr: 2.5 }} />} */}
 
-      {/* {!isDesktop && (
+      {!isDesktop && (
         <IconButton onClick={onOpenNav} sx={{ mr: 1, color: 'text.primary' }}>
           <Iconify icon="eva:menu-2-fill" />
         </IconButton>
-      )} */}
+      )}
 
       {/* <Searchbar /> */}
       <Link href='/dashboard/one' rel="noopener" underline="none">

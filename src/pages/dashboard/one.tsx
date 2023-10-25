@@ -8,6 +8,7 @@ import { Icon } from '@iconify/react';
 import { Container, Typography,SelectChangeEvent,Select,MenuItem } from '@mui/material';
 import NftOverView from 'src/layouts/dashboard/market_overview/nftOverview';
 import Walletpanel from 'src/layouts/dashboard/Walletpanel';
+import DappsView from 'src/layouts/dashboard/market_overview/dappsview';
 import Chart from '../../components/marketChartView'
 // layouts
 import DashboardLayout from '../../layouts/dashboard';
@@ -16,7 +17,7 @@ import { useSettingsContext } from '../../components/settings';
 import Metaverse from '../../layouts/dashboard/market_overview/metaverse';
 // ----------------------------------------------------------------------
 import styles from '../../styles/one.module.scss';
-import DappsView from 'src/layouts/dashboard/market_overview/dappsview';
+
 
 
 

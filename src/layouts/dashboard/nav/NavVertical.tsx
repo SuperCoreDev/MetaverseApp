@@ -26,8 +26,8 @@ type Props = {
 export default function NavVertical({ openNav, onCloseNav }: Props) {
   const { pathname } = useRouter();
 
-  // const isDesktop = useResponsive('up', 'lg');
-  const isDesktop  = true;
+  const isDesktop = useResponsive('up', 'sm');
+  // const isDesktop  = true;
   useEffect(() => {
     if (openNav) {
       onCloseNav();
@@ -39,7 +39,7 @@ export default function NavVertical({ openNav, onCloseNav }: Props) {
     <Scrollbar
       sx={{
         height: 1,
-        pt: `${HEADER.H_MOBILE}px`,
+        pt: isDesktop ? `${HEADER.H_MOBILE}px` : '0px',
         '& .simplebar-content': {
           height: 1,
           display: 'flex',
@@ -119,7 +119,12 @@ export default function NavVertical({ openNav, onCloseNav }: Props) {
           }}
           PaperProps={{
             sx: {
-              width: NAV.W_DASHBOARD,
+              width: isDesktop ? NAV.W_DASHBOARD : '272px',
+              bgcolor : '#202324',
+              // '&:hover':{
+              //   width:'272px',
+              //   zIndex:'100'
+              // }
             },
           }}
         >
