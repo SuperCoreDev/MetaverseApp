@@ -32,7 +32,7 @@ export default function NftItem({ item }: NftItemProps) {
 
     return (
         <Stack direction='column' sx={{
-            padding: '14px', width: '100%',
+            padding: '14px',
             background: 'linear-gradient(0deg, rgba(198, 224, 255, 0.5), rgba(198, 224, 255, 0.5))',
             borderRadius: '18px',
             backdropFilter: 'blur(10px)'

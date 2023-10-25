@@ -6,7 +6,7 @@ $font-family: 'Neue Haas Grotesk Display Pro';
     gap: 24px;
 
     @media (max-width: 1435px) {
-        overflow-x: scroll;
+        // overflow-x: scroll;
     }
 
     .galleryHeaderBoard {
@@ -51,7 +51,6 @@ $font-family: 'Neue Haas Grotesk Display Pro';
         flex-direction: row;
         justify-content: space-between;
         min-width: 736px;
-
         &__galleryBox {
             width: 240px;
             height: 281px;

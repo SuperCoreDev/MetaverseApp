@@ -46,7 +46,7 @@ export default function Header({ onOpenNav }: Props) {
 
       {!isDesktop && (
         <IconButton onClick={onOpenNav} sx={{ mr: 1, color: 'text.primary' }}>
-          <Iconify icon="eva:menu-2-fill" />
+          <Iconify icon="ei:navicon" width={30} color='lightgrey' />
         </IconButton>
       )}
 

@@ -2,12 +2,11 @@ import { Container, Box, TextField, Typography, Switch , Stack } from '@mui/mate
 import { Icon } from '@iconify/react'
 import { styled } from '@mui/material/styles';
 import dynamic from "next/dynamic";
-
+import ChartComponent from 'src/components/marketChartView/mApexChart';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import InputAdornment from '@mui/material/InputAdornment';
 import Grid from '@mui/material/Grid';
-import ChartComponent from 'src/components/marketChartView/mApexChart';
-import { ReactNode } from 'react';
+
 const ApexChart = dynamic(() => import("react-apexcharts"), { ssr: false });
 
   const LeftComp = styled('div')({

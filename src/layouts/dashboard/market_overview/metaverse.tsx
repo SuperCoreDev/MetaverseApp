@@ -1,9 +1,11 @@
+import Scrollbar from 'src/components/scrollbar/Scrollbar';
 import { Icon } from '@iconify/react';
 import {MenuItem, Select,SelectChangeEvent } from '@mui/material';
 import { useState , ReactNode } from "react";
 import Image from 'next/image'
 
 import styles from './style.module.scss';
+
 
 
 export default function Metaverse() {
@@ -15,6 +17,7 @@ export default function Metaverse() {
                     <span className={styles.galleryHeaderBoard__headerTitle}>Top 3 Metaverses</span>
                     <div className={styles.galleryHeaderBoard__viewmorebtn}><span>View More</span></div>
                 </div>
+                <Scrollbar sx={{height:1}}>
                 <div className={styles.galleryContainer}>
                     <div className={styles.galleryContainer__galleryBox}>
                         <div className={styles.gallery}>
@@ -61,6 +64,7 @@ export default function Metaverse() {
                         </div>
                     </div>
                 </div>
+                </Scrollbar>
             </div>
     )
 }
