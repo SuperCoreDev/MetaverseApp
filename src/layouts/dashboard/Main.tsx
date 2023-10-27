@@ -47,7 +47,7 @@ export default function Main({ children, sx, ...other }: BoxProps) {
           // py: `${HEADER.H_MOBILE + SPACING}px`,
          // pt: `${HEADER.H_MOBILE + SPACING}px`,
          paddingLeft:isDesktop?'130px':'10px',
-         paddingTop:'0px',
+         paddingTop:'30px',
          ...(isDesktop && {
       //     px: 2,
             // py: `${HEADER.H_DASHBOARD_DESKTOP + SPACING}px`,

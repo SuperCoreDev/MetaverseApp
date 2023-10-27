@@ -1,3 +1,4 @@
+import { useState } from 'react';
 // @mui
 import { List, Stack, Box } from '@mui/material';
 // locales
@@ -7,15 +8,17 @@ import { NavSectionProps } from '../types';
 import { StyledSubheader } from './styles';
 import NavList from './NavList';
 
+
 // ----------------------------------------------------------------------
 
 export default function NavSectionVertical({ data, sx, ...other }: NavSectionProps) {
   const { translate } = useLocales();
-
+  
   return (
     <Stack sx={{...sx , 
-      px:2, py:2 , display:'flex', flexDirection:'column', gap:'15px'}} 
+      px:2, display:'flex', flexDirection:'column', gap:'15px'}} 
       {...other}>
+        
       {data.map((group) => {
         const key = group.subheader || group.items[0].title;
 

@@ -1,8 +1,8 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 // next
 import { useRouter } from 'next/router';
 // @mui
-import { Box, Stack, Drawer } from '@mui/material';
+import { Box, Stack, Drawer, Button } from '@mui/material';
 // hooks
 import useResponsive from '../../../hooks/useResponsive';
 // config
@@ -25,8 +25,8 @@ type Props = {
 
 export default function NavVertical({ openNav, onCloseNav }: Props) {
   const { pathname } = useRouter();
-
   const isDesktop = useResponsive('up', 'sm');
+  const [toggle,setNavToggle] = useState(false)
   // const isDesktop  = true;
   useEffect(() => {
     if (openNav) {
@@ -39,16 +39,18 @@ export default function NavVertical({ openNav, onCloseNav }: Props) {
     <Scrollbar
       sx={{
         height: 1,
+        
         pt: isDesktop ? `${HEADER.H_MOBILE}px` : '0px',
         '& .simplebar-content': {
           height: 1,
           display: 'flex',
           flexDirection: 'column',
+          width: toggle ? '272px' : '100%',
         },
-        '&:hover':{
-          width:'272px',
-          zIndex:'100'
-        }
+        // '&:hover':{
+        //   width:'272px',
+        //   zIndex:'100'
+        // }
       }}
     >
       {/* <Stack
@@ -64,7 +66,9 @@ export default function NavVertical({ openNav, onCloseNav }: Props) {
 
         <NavAccount />
       </Stack> */}
-
+      <Stack sx={{width:'100%',alignItems:'flex-end',paddingRight:'20px'}} onClick={()=>setNavToggle(!toggle)}> 
+          <img alt="navtoggle" src="/assets/icons/navbar/navtoggle.png" width={20} height={20}/>
+      </Stack>
       <NavSectionVertical data={navConfig} />
 
       <Box sx={{ flexGrow: 1 }} />
@@ -78,32 +82,31 @@ export default function NavVertical({ openNav, onCloseNav }: Props) {
       component="nav"
       sx={{
         flexShrink: { lg: 0 },
-        width: { lg: NAV.W_DASHBOARD },
+        width: { lg: NAV.W_DASHBOARD},
         paddingTop : '80px',
 
-        '&:hover':{
-          width:'272px',
-          zIndex:'100'
-        }
+        // '&:hover':{
+        //   width:'272px',
+        //   zIndex:'100'
+        // }
       }}
     >
       {/* <NavToggleButton /> */}
-
       {isDesktop ? (
         <Drawer
           open
           variant="permanent"
           PaperProps={{
             sx: {
-              zIndex: 0,
-              width: NAV.W_DASHBOARD,
+              zIndex: 100,
+              width: toggle ? '272px' : NAV.W_DASHBOARD,
               bgcolor: 'transparent',
               border : 'none',
               // borderRightStyle: 'dashed',
-              '&:hover':{
-                width:'272px',
-                zIndex:'100'
-              }
+              // '&:hover':{
+              //   width:'272px',
+              //   zIndex:'100'
+              // }
             },
             
           }}
@@ -119,7 +122,7 @@ export default function NavVertical({ openNav, onCloseNav }: Props) {
           }}
           PaperProps={{
             sx: {
-              width: isDesktop ? NAV.W_DASHBOARD : '272px',
+              width: '272px',
               bgcolor : '#202324',
               // '&:hover':{
               //   width:'272px',

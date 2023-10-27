@@ -50,17 +50,68 @@ const ApexChart = dynamic(() => import("react-apexcharts"), { ssr: false });
           type: 'donut',
         },
         // labels: ['Team A', 'Team B', 'Team C', 'Team D', 'Team E'],
-        responsive: [{
-          breakpoint: 480,
-          options: {
-            chart: {
-              width: 200
+        // responsive: [{
+        //   breakpoint: 480,
+        //   options: {
+        //     chart: {
+        //       width: 200
+        //     },
+        //     legend: {
+        //       position: 'bottom'
+        //     }
+        //   }
+        // }],
+        plotOptions: {
+            bar: {
+                borderRadius: 10,
+                borderRadiusApplication: 'end',
+                borderRadiusWhenStacked: 'last',
+                hideZeroBarsWhenGrouped: false,
+                isDumbbell: false,
+                isFunnel: false,
+                isFunnel3d: true,
+                dataLabels: {
+                    total: {
+                        enabled: false,
+                        offsetX: 0,
+                        offsetY: 0,
+                        style: {
+                            color: '#373d3f',
+                            fontSize: '12px',
+                            fontWeight: 600,
+                        }
+                    }
+                }
             },
-            legend: {
-              position: 'bottom'
+            bubble: {
+                zScaling: true
+            },
+            treemap: {
+                dataLabels: {
+                    format: 'scale'
+                }
+            },
+            radialBar: {
+                hollow: {
+                    background: '#fff',
+                },
+                dataLabels: {
+                    name: {},
+                    value: {},
+                    total: {}
+                }
+            },
+            pie: {
+                donut: {
+                    size: '34%',
+                    labels: {
+                        name: {},
+                        value: {},
+                        total: {}
+                    }
+                }
             }
-          }
-        }]
+        },
       }
     };
   
