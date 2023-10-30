@@ -10,10 +10,15 @@ import { useState  , useRef, useEffect} from 'react';
 import Grid from '@mui/material/Grid';
 import Overview from 'src/layouts/dashboard/metaverse/Overview';
 import Collectible from 'src/layouts/dashboard/metaverse/Collectible';
+import Land from 'src/layouts/dashboard/metaverse/Land';
+import About from 'src/layouts/dashboard/metaverse/About';
+import News from 'src/layouts/dashboard/metaverse/News';
 import useResponsive from 'src/hooks/useResponsive';
 import { useSettingsContext } from '../../components/settings';
 // layouts
 import DashboardLayout from '../../layouts/dashboard';
+
+
 
 
 
@@ -92,6 +97,12 @@ export default function PageTwo() {
           return <Overview/>;
         case 1:
           return <Collectible/>;
+        case 2:
+          return <Land/>;
+        case 4:
+          return <News/>;
+        case 5:
+          return <About/>; 
         default:
           return null;
       }
