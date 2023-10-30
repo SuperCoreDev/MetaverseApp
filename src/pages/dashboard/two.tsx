@@ -6,12 +6,16 @@ import { Container, Box, TextField, Typography, Switch , Stack } from '@mui/mate
 // components
 import { Icon } from '@iconify/react'
 import { styled } from '@mui/material/styles';
+import { useState  , useRef, useEffect} from 'react';
 import Grid from '@mui/material/Grid';
-import Collectibles from 'src/layouts/dashboard/metaverse/Collectibles';
+import Overview from 'src/layouts/dashboard/metaverse/Overview';
+import Collectible from 'src/layouts/dashboard/metaverse/Collectible';
 import useResponsive from 'src/hooks/useResponsive';
 import { useSettingsContext } from '../../components/settings';
 // layouts
 import DashboardLayout from '../../layouts/dashboard';
+
+
 
 
 // ----------------------------------------------------------------------
@@ -55,16 +59,50 @@ const CButton = styled('button')<ButtonProps>`
   border-color: transparent;
   color: ${(props) => props.color};
 `;
+const classifyButtonsList = ['Overview','Collectibles','Land','MarketPlace','News','About','Comment'];
+
 export default function PageTwo() {
   const { themeStretch } = useSettingsContext();
   const isDesktop = useResponsive("up" , 1420);
+  const [currentClassifySelected , setClassifySelect] = useState(0);
+  const ref = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    handleClassify(currentClassifySelected)
+  } , [])
+  const handleClassify = (currentIndex : number) => {
+    setClassifySelect(currentIndex);
+    if(ref.current){
+      const children = ref.current.children;
+      Array.from(children).forEach((child) => {
+        child.classList.remove('highlight');
+        child.removeAttribute('style');
+      })
+      
+      const child = children.item(currentIndex) as HTMLElement;
+      if (child !== null && child !== undefined) {
+        child.classList.add('highlight');
+        child.style.backgroundColor = '#D96BFF';
+        child.style.color = 'black';
+      }
+    }
+  }
+  const renderByClassify = () => {
+      switch(currentClassifySelected) {
+        case 0:
+          return <Overview/>;
+        case 1:
+          return <Collectible/>;
+        default:
+          return null;
+      }
+  }
   return (
     <>
       <Head>
         <title> Page Two | Minimal UI</title>
       </Head>
       {/* sx={{ paddingLeft: '100px'}} */}
-      <Container  maxWidth={themeStretch ? false : 'xl'}>
+      <Container  maxWidth={themeStretch ? false : 'xl'} sx={{paddingBottom:'36px'}}>
         <Typography color="white">Metaverse / Decentraland</Typography>
         <Box sx={{ height: "20px" }} />
         <Box style={{ position: 'relative' }}>
@@ -101,23 +139,22 @@ export default function PageTwo() {
               <CButton fontSize={20} bgColor='black' color='#D96BFF' style={{alignSelf:'center' , width:'50%' }}>Buy Metaverse</CButton>
               
             </Stack>
-            <TopBar sx={{flexWrap:isDesktop?'':'wrap'}}>
-              <TopButton>Overview</TopButton>
-              <TopButton>Collectibles</TopButton>
-              <TopButton>Land</TopButton>
-              <TopButton>Marketplace</TopButton>
-              <TopButton>News</TopButton>
-              <TopButton>About</TopButton>
-              <TopButton>Comments</TopButton>
+            <TopBar ref={ref} sx={{flexWrap:isDesktop?'':'wrap'}}>
+              {
+                classifyButtonsList.map((item , key) => (
+                  <TopButton onClick={() => handleClassify(key)}>{item}</TopButton>
+                ))
+              }
             </TopBar>
           </Stack>
-          <Stack direction='column' sx={{width:isDesktop?'392px':'100%'}}>
+          <Stack direction='column' sx={{width:isDesktop?'392px':'100%'}} gap="29px">
             <Stack direction='row' sx={{paddingLeft:'180px' , paddingRight:'19px'}} gap={4}>
               <Icon icon="mdi:instagram" color="white" width="24" height="24" />
               <Icon icon="mdi:twitter" color="white" width="24" height="24" />
               <Icon icon="ic:baseline-discord" color="white" width="24" height="24" />
             </Stack>
-            <Stack direction='column' sx={{width : '392px'}} padding='24px'  gap='16px'>
+            <Stack direction='column' sx={{width : '392px' , borderRadius: '16px',border: '1px solid #2B2E31',backgroundColor: '#1E2121'}}
+             padding='24px'  gap='16px'>
               <Stack direction='row'>
                 <Typography fontFamily='Neue Haas Grotesk Display Pro' fontSize={20} fontWeight={500} color='#8D8E8D'>Blockchain</Typography>
                 <Grid container rowGap={1} columnGap={2}>
@@ -163,7 +200,8 @@ export default function PageTwo() {
             </Stack>
           </Stack>
         </Stack>
-        <Collectibles/>
+        <Box sx={{ height: "32px" }} />
+        {renderByClassify()}
       </Container>
     </>
   );

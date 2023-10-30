@@ -1,5 +1,5 @@
-import { MenuItem, Select, TextField, InputAdornment,SelectChangeEvent } from "@mui/material";
-import {FilterList, Search} from "@mui/icons-material"
+import {Box, Stack, MenuItem, Select, TextField, InputAdornment,SelectChangeEvent } from "@mui/material";
+import {FilterList ,Search} from "@mui/icons-material"
 import { Autocomplete } from "@mui/lab";
 import { useState , ReactNode } from "react";
 
@@ -18,7 +18,7 @@ const txs=[
 
 export default function Walletpanel() {
     const [token, setToken] = useState(10 as ReactNode);
-
+    const [isConnected , setStatus] = useState(false);
     const handleChange = (event: SelectChangeEvent) => {
         setToken(event.target.value as ReactNode);
     };
@@ -47,7 +47,7 @@ export default function Walletpanel() {
                 </div>
                 <div className={styles.Walletbalance}>
                     <div>Wallet Balance</div>
-                        <Select
+                        {isConnected ? (<Select
                             sx={{
                                 '.MuiOutlinedInput-notchedOutline': {
                                 borderColor: '#2B2E31',
@@ -76,11 +76,16 @@ export default function Walletpanel() {
                                     Solana SOL
                                 </div>
                             </MenuItem>
-                        </Select>
+                        </Select>):(<Box sx={{width:'100%', display:'flex' , alignItems:'center' , justifyContent:'center' , background: "linear-gradient(264.4deg, #F75BB1 -6.74%, #C392DC 43.26%, #008782 103.97%)" , height:'40px',
+                            border:'1px solid transparent', borderRadius:'24px'}} onClick={()=>setStatus(true)}>
+                                + Add Wallet
+                        </Box>)}
                     
                     <div className={styles.BalanceText}>
+                        {isConnected ? (<>
                         <div className={styles.Symbol}>ETH</div>
-                        <div className={styles.Amount}>51.76845</div>
+                        <div className={styles.Amount}>51.76845</div></>) :
+                        (<div className={styles.Amount}>0</div>)}
                     </div>
                     <div className={styles.InOutInfo}>
                         <div className={styles.InInfo}>
@@ -89,11 +94,13 @@ export default function Walletpanel() {
                                 <div>Inflow</div>
                             </div>
                             <div className={styles.InflowValue}>
-                                <div className={styles.Amount}>+8.564</div>
-                                <div className={styles.Symbol}>ETH</div>
+                                {isConnected ? (<>
+                                    <div className={styles.Amount}>+8.564</div>
+                                    <div className={styles.Symbol}>ETH</div>
+                                </>) : (<div className={styles.Amount}>0</div>)}
                             </div>
                             <div>
-                                <img src="../../assets/icons/dashboard/inflow_graph.png"></img>
+                                <img src={`${isConnected ? "../../assets/icons/dashboard/inflow_graph.png" : "../../assets/icons/dashboard/inflow_graph_zero.png"}`}></img>
                             </div>
                         </div>
                         <div className={styles.OutInfo}>
@@ -102,16 +109,19 @@ export default function Walletpanel() {
                                 <div>Outflow</div>
                             </div>
                             <div className={styles.OutflowValue}>
-                                <div className={styles.Amount}>-8.564</div>
-                                <div className={styles.Symbol}>ETH</div>
+                                {isConnected ? (<>
+                                    <div className={styles.Amount}>-8.564</div>
+                                    <div className={styles.Symbol}>ETH</div>
+                                </>) : (<div className={styles.Amount}>0</div>)}
                             </div>
                             <div>
-                                <img src="../../assets/icons/dashboard/outflow_graph.png"></img>
+                                <img src={`${isConnected ? "../../assets/icons/dashboard/outflow_graph.png" : "../../assets/icons/dashboard/outflow_graph_zero.png"}`}></img>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div className={styles.Transactions}>
+                    {isConnected? (<>
                     <div className={styles.Label}>Recent Transactions</div>
                     <div className={styles.Lookingfor}>
                         <TextField
@@ -203,6 +213,13 @@ export default function Walletpanel() {
                             <div className={styles.UsdAmount}>+$350</div>
                         </div>
                     </div>
+                    </>) : (
+                        <Stack direction='column' alignItems='center' justifyContent='center' gap='40px' paddingTop={21} paddingBottom={21}>
+                            <img src="/assets/icons/dashboard/transaction_pending.png"/>
+                            <Box sx={{padding:'0 200px' , textAlign:'center'}}>Your recent transactions will appear here.</Box>
+                        </Stack>
+                    )
+                    }
                 </div>
             </div>   
         </>

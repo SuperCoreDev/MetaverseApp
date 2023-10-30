@@ -66,7 +66,7 @@ export default function NavVertical({ openNav, onCloseNav }: Props) {
 
         <NavAccount />
       </Stack> */}
-      <Stack sx={{width:'100%',alignItems:'flex-end',paddingRight:'20px'}} onClick={()=>setNavToggle(!toggle)}> 
+      <Stack visibility={`${!isDesktop ? 'hidden' : 'visible'}`} sx={{width:'100%',alignItems:'flex-end',paddingRight:'20px'}} onClick={()=>setNavToggle(!toggle)}> 
           <img alt="navtoggle" src="/assets/icons/navbar/navtoggle.png" width={20} height={20}/>
       </Stack>
       <NavSectionVertical data={navConfig} />
