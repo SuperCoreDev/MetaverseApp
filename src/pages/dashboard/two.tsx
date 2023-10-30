@@ -10,6 +10,7 @@ import { useState  , useRef, useEffect} from 'react';
 import Grid from '@mui/material/Grid';
 import Overview from 'src/layouts/dashboard/metaverse/Overview';
 import Collectible from 'src/layouts/dashboard/metaverse/Collectible';
+import Comment from 'src/layouts/dashboard/metaverse/Comment';
 import Land from 'src/layouts/dashboard/metaverse/Land';
 import About from 'src/layouts/dashboard/metaverse/About';
 import News from 'src/layouts/dashboard/metaverse/News';
@@ -97,6 +98,8 @@ export default function PageTwo() {
           return <Overview/>;
         case 1:
           return <Collectible/>;
+        case 6:
+          return <Comment/>;
         case 2:
           return <Land/>;
         case 4:
