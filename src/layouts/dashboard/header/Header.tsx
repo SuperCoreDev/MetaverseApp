@@ -2,7 +2,7 @@ import Image from 'next/image';
 import NextLink from 'next/link';
 // @mui
 import { useTheme } from '@mui/material/styles';
-import { Stack, AppBar, Toolbar, Link, Box, IconButton } from '@mui/material';
+import { Stack, AppBar, Toolbar, Link, Box, IconButton, Typography } from '@mui/material';
 // utils
 import { bgBlur } from '../../../utils/cssStyles';
 // hooks
@@ -23,6 +23,8 @@ import ContactsPopover from './ContactsPopover';
 import NotificationsPopover from './NotificationsPopover';
 import { usePathname } from 'next/navigation';
 import { useEffect, useState } from 'react';
+import { useRouter } from 'next/router';
+import useActiveLink from 'src/hooks/useActiveLink';
 
 // ----------------------------------------------------------------------
 
@@ -31,14 +33,15 @@ type Props = {
 };
 
 export default function Header({ onOpenNav }: Props) {
+  const {pathname} = useRouter();
   const theme = useTheme();
-
+  console.log(pathname);
   const currentUrlPath = usePathname();
   const [isMetaverseOpened, setMetaverseOpened] = useState(false);
   useEffect(() => {
-    if (currentUrlPath.endsWith('/two/') || currentUrlPath.indexOf('metaverse')) setMetaverseOpened(true);
+    if (pathname.endsWith('/two') || pathname.indexOf('metaverse') !== -1) setMetaverseOpened(true);
     else setMetaverseOpened(false);
-  }, [currentUrlPath])
+  }, [pathname])
   const { themeLayout } = useSettingsContext();
 
   const isNavHorizontal = themeLayout === 'horizontal';
@@ -62,15 +65,23 @@ export default function Header({ onOpenNav }: Props) {
         {/* <Searchbar /> */}
         {isDesktop && (
           <Link href='/dashboard/one' rel="noopener" underline="none">
-            <Image alt="logo" src="/assets/logo.png" width={44.4} height={40} />
+            <Box sx={{display:'flex' , justifyContent:'center' , 
+            backgroundColor:`${isMetaverseOpened ? '#111' : 'transparent'}` , 
+            border:`${isMetaverseOpened ? '1px solid #1C1C1C' : 'none'}`,
+            borderRadius: '8px',
+            alignItems:'center'}} width={100} height={50}>
+            <Image alt="logo" src="/assets/logo.png" width={44.4} height={40}/>
+            </Box>
           </Link>)}
         <Box sx={{ padding: '10px' }} />
-        <Image alt="logoCaption" src="/assets/logoCaption.png" width={108} height={22} />
+        {isMetaverseOpened && <Typography fontFamily='Neue Haas Grotesk Display Pro' fontSize={32} fontWeight={600}>Metaverse</Typography>}
+        {!isMetaverseOpened && <Image alt="logoCaption" src="/assets/logoCaption.png" width={108} height={22} />}
+
       </Stack>
       {isMetaverseOpened && (<Stack gap="24px" direction='row' alignItems='center' fontFamily='Aeonik' fontSize={14} fontWeight={400}>
-        <Link href='/metaverse/overview'>Overview</Link>
-        <Link href='/metaverse/marketplace'>Marketplace</Link>
-        <Link href='/metaverse/buildmetaverse'>Build Metaverse</Link>
+        <Link component={NextLink} href='/metaverse/overview' underline="none">Overview</Link>
+        <Link component={NextLink} href='/metaverse/marketplace' underline="none">Marketplace</Link>
+        <Link component={NextLink} href='/metaverse/buildmetaverse' underline="none">Build Metaverse</Link>
       </Stack>)}
       <Stack
         // flexGrow={1}
