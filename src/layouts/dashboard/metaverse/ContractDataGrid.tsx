@@ -270,7 +270,8 @@ export default function ContractDataGrid() {
         <Box sx={{
             width: '100%', '& .super-app-theme--header': {
                 backgroundColor: '#1E2121', color: '#3DFFF3'
-            }
+            },
+            minWidth:'850px'
         }}>
             <StyledDataGrid
                 autoHeight

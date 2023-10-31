@@ -6,6 +6,8 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import InputAdornment from '@mui/material/InputAdornment';
 import Grid from '@mui/material/Grid';
 import ContractDataGrid from './ContractDataGrid';
+import useResponsive from 'src/hooks/useResponsive';
+import Scrollbar from 'src/components/scrollbar/Scrollbar';
 
 
 const LeftComp = styled('div')({
@@ -76,9 +78,10 @@ const Pad = styled('div')({
 });
 
 export default function About() {
+  const isdesktop = useResponsive('up',1380);
   return (
-    <div style={{ display: 'flex', gap: '20px' }}>
-      <LeftComp>
+    <div style={{ display: 'flex', gap: '20px' , flexDirection:`${isdesktop?'row':'column'}`}}>
+      <LeftComp sx={{width:`${isdesktop?'70%':'100%'}`}}>
         <Typography color='white' fontFamily='Neue Haas Grotesk Display Pro' fontSize={32} fontWeight={600}>Smart Contracts (5432)</Typography>
         <Search>
           <SearchIconWrapper>
@@ -89,13 +92,16 @@ export default function About() {
             inputProps={{ 'aria-label': 'search' }}
           />
         </Search>
-        <ContractDataGrid />
+        <Scrollbar>
+          <ContractDataGrid />
+        </Scrollbar>
       </LeftComp>
       <RightComp sx={{
-        color: 'white', fontFamily: 'Neue Haas Grotesk Display Pro'
+        color: 'white', fontFamily: 'Neue Haas Grotesk Display Pro',
+        width:`${isdesktop?'30%':'100%'}`
       }}>
         <Box sx={{display:'flex',flexDirection:'column',gap:'32px', borderRadius: '16px',
-        padding:'24px', border: '1px solid #2B2E31', backgroundColor: '#202324' }}>
+        padding:'24px', border: '1px solid #2B2E31', backgroundColor: '#202324' , flexWrap:'wrap'}}>
           <div style={{ fontSize: '25px' }}>Decentraland Details</div>
           <div
             style={{ display: 'flex', width: '100%', gap: '5px', justifyContent: 'space-between' }}

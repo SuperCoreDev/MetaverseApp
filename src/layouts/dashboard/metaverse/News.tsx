@@ -6,6 +6,7 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import InputAdornment from '@mui/material/InputAdornment';
 import Grid from '@mui/material/Grid';
 import NewsItem from './NewsItem';
+import useResponsive from 'src/hooks/useResponsive';
 
 
 const LeftComp = styled('div')({
@@ -98,13 +99,15 @@ const decentralizedNews = [
 
 
 export default function News() {
+    const isdesktop = useResponsive('up',1200)
+    const ismini = useResponsive('down',870);
     return (
         <LeftComp>
             <Typography color='white' fontSize={32} fontWeight={600} textAlign='left'>Decentralized News</Typography>
             <Grid container wrap='wrap' justifyContent='space-evenly' gap='24px'>
                 {
                     decentralizedNews.map(d => (
-                        <Grid item sx={{width:'30%'}}>
+                        <Grid item sx={{width:`${isdesktop? '30%' : ismini? '90%' : '45%'}`}}>
                             <NewsItem imageSrc={d.imageSrc} title={d.title} content={d.content} readingTime={d.readingTime} 
                             voteCount={d.voteCount} shareCount={d.shareCount}/>
                         </Grid>

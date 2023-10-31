@@ -8,6 +8,8 @@ import Grid from '@mui/material/Grid';
 import NftCard from './NftCard';
 import nftItems from '../market_overview/nftItemsConfig';
 import MarketPlaceGrid from './MarketPlaceGrid';
+import useResponsive from 'src/hooks/useResponsive';
+import Scrollbar from 'src/components/scrollbar';
 
 
 const LeftComp = styled('div')({
@@ -197,9 +199,10 @@ export default function MarketPlace() {
     const [visible, setVisible] = useState(true)
     const [status, setStatus] = useState(1);
     const [checkIndex, setCheckIndex] = useState(0);
+    const isDesktop = useResponsive('up', 1000);
     return (
-        <div style={{ display: 'flex', gap: '20px' }}>
-            <LeftComp>
+        <div style={{ display: 'flex', gap: '20px', flexDirection: `${isDesktop ? 'row' : 'column'}` }}>
+            <LeftComp sx={{ width: `${isDesktop ? '70%' : '100%'}` }}>
                 <div style={{
                     display: 'flex', flexDirection: 'column', gap: '32px', borderRadius: '18px',
                     border: '1px solid #2B2E31', backgroundColor: '#1E2121', padding: '24px'
@@ -252,8 +255,8 @@ export default function MarketPlace() {
                             <CustomText>30d</CustomText>
                         </div>
                     </div>
-                    <Grid container spacing={2} style={{ color: 'white' }}>
-                        <Grid item xs={4}>
+                    <Grid wrap='wrap' container spacing={2} style={{ color: 'white' }}>
+                        <Grid item xs={12} sm={6} md={4}>
                             <Panel>
                                 <div style={{ display: 'flex', justifyContent: 'space-between' }}>
                                     <div style={{ color: 'gray' }}>Volume</div>
@@ -262,7 +265,7 @@ export default function MarketPlace() {
                                 <div>$2.57M</div>
                             </Panel>
                         </Grid>
-                        <Grid item xs={4}>
+                        <Grid item xs={12} sm={6} md={4}>
                             <Panel>
                                 <div style={{ display: 'flex', justifyContent: 'space-between' }}>
                                     <div style={{ color: 'gray' }}>Traders</div>
@@ -274,7 +277,7 @@ export default function MarketPlace() {
                                 </div>
                             </Panel>
                         </Grid>
-                        <Grid item xs={4}>
+                        <Grid item xs={12} sm={6} md={4}>
                             <Panel>
                                 <div style={{ display: 'flex', justifyContent: 'space-between' }}>
                                     <div style={{ color: 'gray' }}>Floor Price</div>
@@ -286,7 +289,7 @@ export default function MarketPlace() {
                                 </div>
                             </Panel>
                         </Grid>
-                        <Grid item xs={4}>
+                        <Grid item xs={12} sm={6} md={4}>
                             <Panel>
                                 <div style={{ display: 'flex', justifyContent: 'space-between' }}>
                                     <div style={{ color: 'gray' }}>Avg.Price</div>
@@ -295,7 +298,7 @@ export default function MarketPlace() {
                                 <div>$23.57K</div>
                             </Panel>
                         </Grid>
-                        <Grid item xs={4}>
+                        <Grid item xs={12} sm={6} md={4}>
                             <Panel>
                                 <div style={{ display: 'flex', justifyContent: 'space-between' }}>
                                     <div style={{ color: 'gray' }}>Sales</div>
@@ -307,7 +310,7 @@ export default function MarketPlace() {
                                 </div>
                             </Panel>
                         </Grid>
-                        <Grid item xs={4}>
+                        <Grid item xs={12} sm={6} md={4}>
                             <Panel>
                                 <div style={{ display: 'flex', justifyContent: 'space-between' }}>
                                     <div style={{ color: 'gray' }}>Market Cap</div>
@@ -342,12 +345,15 @@ export default function MarketPlace() {
                             <CustomText>30d</CustomText>
                         </div>
                     </div>
-                    <MarketPlaceGrid />
+                    <Scrollbar>
+                        <MarketPlaceGrid />
+                    </Scrollbar>
                 </div>
             </LeftComp>
             <RightComp sx={{
                 color: 'white', fontFamily: 'Neue Haas Grotesk Display Pro', padding: '32px 24px 32px 24px',
-                borderRadius: '16px', border: '1px solid #2B2E31', backgroundColor: '#1E2121'
+                borderRadius: '16px', border: '1px solid #2B2E31', backgroundColor: '#1E2121',
+                width: `${isDesktop ? '30%' : '100%'}`
             }}>
                 <TextField
                     variant="standard"
@@ -372,7 +378,7 @@ export default function MarketPlace() {
                     <div>Status</div>
                     <Icon icon="ic:sharp-navigate-next" color="gray" />
                 </StatusText>
-                <div style={{ display: 'flex', gap: '10px' }}>
+                <div style={{ display: 'flex', gap: '10px', flexWrap: 'wrap' }}>
                     <StyledButton
                         bg={status == 1 ? '#D96BFF' : '#212121'}
                         color={status == 1 ? 'black' : 'white'}
@@ -388,7 +394,7 @@ export default function MarketPlace() {
                         Live Auction
                     </StyledButton>
                 </div>
-                <div style={{ display: 'flex', gap: '10px' }}>
+                <div style={{ display: 'flex', gap: '10px', flexWrap: 'wrap' }}>
                     <StyledButton
                         bg={status == 3 ? '#D96BFF' : '#212121'}
                         color={status == 3 ? 'black' : 'white'}

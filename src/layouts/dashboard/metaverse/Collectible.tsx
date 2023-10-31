@@ -348,10 +348,10 @@ export default function Collectible() {
                     border: '1px solid #2B2E31',
                     backgroundColor: '#1E2121',
                     width:`${isDesktop ? '30%' : '100%'}`,
-                    flexDirection:`${isDesktop ? 'column' : 'row'}`,
+                    // flexDirection:`${isDesktop ? 'column' : 'row'}`,
                 }}
             >
-                <Stack direction='column' gap="32px" sx={{width:`${!isDesktop?'40%':'100%'}` , minWidth:'220px'}}>
+                <Stack direction='column' gap="32px" sx={{minWidth:'220px'}}>
                     <TextField
                         variant="standard"
                         InputProps={{
@@ -411,7 +411,7 @@ export default function Collectible() {
                         <div>Price</div>
                         <Icon icon="ic:sharp-navigate-next" color="gray" />
                     </StatusText>
-                    <div style={{ display: 'flex', gap: '10px' , alignItems:'center' , flexDirection:`${isDesktop ? 'row' : 'column'}` }}>
+                    <div style={{ display: 'flex', gap: '10px'}}>
                         <TextField
                             variant="standard"
                             InputProps={{
@@ -426,7 +426,7 @@ export default function Collectible() {
                                 padding: '5px 10px 5px 10px',
                             }}
                         />
-                        <Icon icon="ooui:arrow-next-ltr" color="gray" fontSize={40} rotate={isDesktop ? 0 : 1}/>
+                        <Icon icon="ooui:arrow-next-ltr" color="gray" fontSize={40} />
                         <TextField
                             variant="standard"
                             InputProps={{

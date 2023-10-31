@@ -264,7 +264,8 @@ export default function MarketPlaceGrid() {
         <Box sx={{
             width: '100%', '& .super-app-theme--header': {
                 backgroundColor: '#1E2121', color: '#3DFFF3'
-            }
+            },
+            minWidth:'900px'
         }}>
             <StyledDataGrid
                 autoHeight

@@ -1,4 +1,4 @@
-import { Container, Box, TextField, Typography,Checkbox, Switch, Stack, Button } from '@mui/material';
+import { Container, Box, TextField, Typography, Checkbox, Switch, Stack, Button } from '@mui/material';
 import { Icon } from '@iconify/react'
 import { styled } from '@mui/material/styles';
 import { useState } from 'react';
@@ -7,6 +7,7 @@ import InputAdornment from '@mui/material/InputAdornment';
 import Grid from '@mui/material/Grid';
 import NftCard from './NftCard';
 import nftItems from '../market_overview/nftItemsConfig';
+import useResponsive from 'src/hooks/useResponsive';
 
 
 const LeftComp = styled('div')({
@@ -34,13 +35,13 @@ const CustomText = styled('div')({
 })
 const StyledButton = styled('div')(({ ...props }) => {
     return {
-      background: props.bg,
-      color: props.color,
-      borderRadius: '50px',
-      padding: '5px 10px 5px 10px',
-      border: 'solid 1px gray',
+        background: props.bg,
+        color: props.color,
+        borderRadius: '50px',
+        padding: '5px 10px 5px 10px',
+        border: 'solid 1px gray',
     };
-  });
+});
 const Panel = styled('div')({
     backgroundColor: '#2b2b2b',
     border: 'solid 1px gray',
@@ -54,7 +55,7 @@ const StatusText = styled('div')({
     justifyContent: 'space-between',
     alignItems: 'center',
     fontSize: '20px',
-  });
+});
 const Submit = styled('div')({
     background: 'linear-gradient(45deg, #11636f, #F75BB1)',
     textAlign: 'center',
@@ -188,13 +189,14 @@ const NftItems = [
     }
 ]
 export default function Land() {
-    const [visible ,setVisible] = useState(true)
+    const [visible, setVisible] = useState(true)
     const [status, setStatus] = useState(1);
     const [status1, setStatus1] = useState(1);
     const [checkIndex, setCheckIndex] = useState(0);
+    const isDesktop = useResponsive('up',900);
     return (
-        <div style={{ display: 'flex', gap: '20px' }}>
-            <LeftComp>
+        <div style={{ display: 'flex', gap: '20px' , flexDirection: `${isDesktop?'row':'column'}` }}>
+            <LeftComp style={{width: `${isDesktop?'70%':'100%'}`}}>
                 <div style={{ display: 'flex', gap: '10px' }}>
                     <FormControlLabel control={<Switch defaultChecked />} label="Live data" style={{ color: 'white' }} />
                     <TextField
@@ -243,8 +245,8 @@ export default function Land() {
                         <CustomText>30d</CustomText>
                     </div>
                 </div>
-                <Grid container spacing={2} style={{ color: 'white' }}>
-                    <Grid item xs={4}>
+                <Grid wrap='wrap' container spacing={2} style={{ color: 'white' }}>
+                    <Grid item xs={12} sm={6} md={4}>
                         <Panel>
                             <div style={{ display: 'flex', justifyContent: 'space-between' }}>
                                 <div style={{ color: 'gray' }}>Volume</div>
@@ -253,7 +255,7 @@ export default function Land() {
                             <div>$2.57M</div>
                         </Panel>
                     </Grid>
-                    <Grid item xs={4}>
+                    <Grid item xs={12} sm={6} md={4}>
                         <Panel>
                             <div style={{ display: 'flex', justifyContent: 'space-between' }}>
                                 <div style={{ color: 'gray' }}>Traders</div>
@@ -265,7 +267,7 @@ export default function Land() {
                             </div>
                         </Panel>
                     </Grid>
-                    <Grid item xs={4}>
+                    <Grid item xs={12} sm={6} md={4}>
                         <Panel>
                             <div style={{ display: 'flex', justifyContent: 'space-between' }}>
                                 <div style={{ color: 'gray' }}>Floor Price</div>
@@ -277,7 +279,7 @@ export default function Land() {
                             </div>
                         </Panel>
                     </Grid>
-                    <Grid item xs={4}>
+                    <Grid item xs={12} sm={6} md={4}>
                         <Panel>
                             <div style={{ display: 'flex', justifyContent: 'space-between' }}>
                                 <div style={{ color: 'gray' }}>Avg.Price</div>
@@ -286,7 +288,7 @@ export default function Land() {
                             <div>$23.57K</div>
                         </Panel>
                     </Grid>
-                    <Grid item xs={4}>
+                    <Grid item xs={12} sm={6} md={4}>
                         <Panel>
                             <div style={{ display: 'flex', justifyContent: 'space-between' }}>
                                 <div style={{ color: 'gray' }}>Sales</div>
@@ -298,7 +300,7 @@ export default function Land() {
                             </div>
                         </Panel>
                     </Grid>
-                    <Grid item xs={4}>
+                    <Grid item xs={12} sm={6} md={4}>
                         <Panel>
                             <div style={{ display: 'flex', justifyContent: 'space-between' }}>
                                 <div style={{ color: 'gray' }}>Market Cap</div>
@@ -324,96 +326,22 @@ export default function Land() {
             </LeftComp>
             <RightComp sx={{
                 color: 'white', fontFamily: 'Neue Haas Grotesk Display Pro', padding: '32px 24px 32px 24px',
-                borderRadius: '16px', border: '1px solid #2B2E31', backgroundColor: '#1E2121'
+                borderRadius: '16px', border: '1px solid #2B2E31', backgroundColor: '#1E2121',
+                width: `${isDesktop?'30%':'100%'}`
             }}>
-
-                <TextField
-                    variant="standard"
-                    InputProps={{
-                        disableUnderline: true,
-                        endAdornment: (
-                            <InputAdornment position="end">
-                                <Icon icon="ion:filter" color="gray" />
-                            </InputAdornment>
-                        ),
-                        style: { color: 'white' },
-                    }}
-                    placeholder="Filter"
-                    style={{
-                        color: 'white',
-                        borderRadius: '15px',
-                        border: 'solid 1px gray',
-                        padding: '5px 10px 5px 10px',
-                    }}
-                />
-                <StatusText>
-                    <div>Categories</div>
-                    <Icon icon="ic:sharp-navigate-next" color="gray" />
-                </StatusText>
-                <div style={{ display: 'flex', gap: '10px' }}>
-                    <StyledButton
-                        bg={status == 1 ? '#D96BFF' : '#212121'}
-                        color={status == 1 ? 'black' : 'white'}
-                        onClick={() => setStatus(1)}
-                    >
-                        Land
-                    </StyledButton>
-                    <StyledButton
-                        bg={status == 2 ? '#D96BFF' : '#212121'}
-                        color={status == 2 ? 'black' : 'white'}
-                        onClick={() => setStatus(2)}
-                    >
-                        Parcels
-                    </StyledButton>
-                    <StyledButton
-                        bg={status == 3 ? '#D96BFF' : '#212121'}
-                        color={status == 3 ? 'black' : 'white'}
-                        onClick={() => setStatus(3)}
-                    >
-                        Estate
-                    </StyledButton>
-                </div>
-
-                <StatusText>
-                    <div>Status</div>
-                    <Icon icon="ic:sharp-navigate-next" color="gray" />
-                </StatusText>
-                <div style={{ display: 'flex', gap: '10px' }}>
-                    <StyledButton
-                        bg={status1 == 1 ? '#D96BFF' : '#212121'}
-                        color={status1 == 1 ? 'black' : 'white'}
-                        onClick={() => setStatus1(1)}
-                    >
-                        All land
-                    </StyledButton>
-                    <StyledButton
-                        bg={status1 == 2 ? '#D96BFF' : '#212121'}
-                        color={status1 == 2 ? 'black' : 'white'}
-                        onClick={() => setStatus1(2)}
-                    >
-                        For sale
-                    </StyledButton>
-                    <StyledButton
-                        bg={status1 == 3 ? '#D96BFF' : '#212121'}
-                        color={status1 == 3 ? 'black' : 'white'}
-                        onClick={() => setStatus1(3)}
-                    >
-                        For rent
-                    </StyledButton>
-                </div>
-
-                <StatusText>
-                    <div>Price</div>
-                    <Icon icon="ic:sharp-navigate-next" color="gray" />
-                </StatusText>
-                <div style={{ display: 'flex', gap: '10px' }}>
+                <Stack gap="32px">
                     <TextField
                         variant="standard"
                         InputProps={{
                             disableUnderline: true,
+                            endAdornment: (
+                                <InputAdornment position="end">
+                                    <Icon icon="ion:filter" color="gray" />
+                                </InputAdornment>
+                            ),
                             style: { color: 'white' },
                         }}
-                        placeholder="Min"
+                        placeholder="Filter"
                         style={{
                             color: 'white',
                             borderRadius: '15px',
@@ -421,76 +349,154 @@ export default function Land() {
                             padding: '5px 10px 5px 10px',
                         }}
                     />
-                    <Icon icon="ooui:arrow-next-ltr" color="gray" fontSize={40} />
-                    <TextField
-                        variant="standard"
-                        InputProps={{
-                            disableUnderline: true,
-                            style: { color: 'white' },
-                        }}
-                        placeholder="Max"
-                        style={{
-                            color: 'white',
-                            borderRadius: '15px',
-                            border: 'solid 1px gray',
-                            padding: '5px 10px 5px 10px',
-                        }}
-                    />
-                </div>
-                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                    <SubmitText style={{ position: 'absolute' }}>Submit</SubmitText>
-                    <Submit>Submit</Submit>
-                </div>
-                <StatusText onClick={() => setVisible(!visible)} style={{cursor:'pointer'}}>
-                    <div>Properties</div>
-                    <Icon icon="ic:sharp-navigate-next" color="gray" />
-                </StatusText>
-                {visible && <>
-                <TextField
-                    variant="standard"
-                    InputProps={{
-                        disableUnderline: true,
-                        endAdornment: (
-                            <InputAdornment position="end">
-                                <Icon icon="iconamoon:search-light" color="gray" />
-                            </InputAdornment>
-                        ),
-                        style: { color: 'white' },
-                    }}
-                    placeholder="Search properties"
-                    style={{
-                        color: 'white',
-                        borderRadius: '15px',
-                        border: 'solid 1px gray',
-                        padding: '5px 10px 5px 10px',
-                    }}
-                />
-                {Items.map((x, ind) => (
-                    <div>
-                        <StatusText style={{ cursor: 'pointer' }} onClick={() => checkIndex == ind ? setCheckIndex(-1) : setCheckIndex(ind)}>
-                            <div>{x}</div>
-                            <Icon icon="ic:sharp-navigate-next" color="gray" />
-                        </StatusText>
-                        <div style={{ display: `${checkIndex == ind ? 'block' : 'none'}` }}>
-                            {Clothes.map((x) => (
-                                <FormControlLabel
-                                    label={
-                                        <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                                            <div>{x}</div>
-                                            <div>45</div>
-                                        </div>
-                                    }
-                                    control={<Checkbox />}
-                                    style={{ width: '100%' }}
-                                    sx={{
-                                        '.MuiFormControlLabel-label': { width: '100%' },
-                                    }}
-                                />
-                            ))}
-                        </div>
+                    <StatusText>
+                        <div>Categories</div>
+                        <Icon icon="ic:sharp-navigate-next" color="gray" />
+                    </StatusText>
+                    <div style={{ display: 'flex',flexWrap:'wrap', gap: '10px' }}>
+                        <StyledButton
+                            bg={status == 1 ? '#D96BFF' : '#212121'}
+                            color={status == 1 ? 'black' : 'white'}
+                            onClick={() => setStatus(1)}
+                        >
+                            Land
+                        </StyledButton>
+                        <StyledButton
+                            bg={status == 2 ? '#D96BFF' : '#212121'}
+                            color={status == 2 ? 'black' : 'white'}
+                            onClick={() => setStatus(2)}
+                        >
+                            Parcels
+                        </StyledButton>
+                        <StyledButton
+                            bg={status == 3 ? '#D96BFF' : '#212121'}
+                            color={status == 3 ? 'black' : 'white'}
+                            onClick={() => setStatus(3)}
+                        >
+                            Estate
+                        </StyledButton>
                     </div>
-                ))}
-                </>}
+
+                    <StatusText>
+                        <div>Status</div>
+                        <Icon icon="ic:sharp-navigate-next" color="gray" />
+                    </StatusText>
+                    <div style={{ display: 'flex',flexWrap:'wrap', gap: '10px' }}>
+                        <StyledButton
+                            bg={status1 == 1 ? '#D96BFF' : '#212121'}
+                            color={status1 == 1 ? 'black' : 'white'}
+                            onClick={() => setStatus1(1)}
+                        >
+                            All land
+                        </StyledButton>
+                        <StyledButton
+                            bg={status1 == 2 ? '#D96BFF' : '#212121'}
+                            color={status1 == 2 ? 'black' : 'white'}
+                            onClick={() => setStatus1(2)}
+                        >
+                            For sale
+                        </StyledButton>
+                        <StyledButton
+                            bg={status1 == 3 ? '#D96BFF' : '#212121'}
+                            color={status1 == 3 ? 'black' : 'white'}
+                            onClick={() => setStatus1(3)}
+                        >
+                            For rent
+                        </StyledButton>
+                    </div>
+
+                    <StatusText>
+                        <div>Price</div>
+                        <Icon icon="ic:sharp-navigate-next" color="gray" />
+                    </StatusText>
+                    <div style={{ display: 'flex', gap: '10px' }}>
+                        <TextField
+                            variant="standard"
+                            InputProps={{
+                                disableUnderline: true,
+                                style: { color: 'white' },
+                            }}
+                            placeholder="Min"
+                            style={{
+                                color: 'white',
+                                borderRadius: '15px',
+                                border: 'solid 1px gray',
+                                padding: '5px 10px 5px 10px',
+                            }}
+                        />
+                        <Icon icon="ooui:arrow-next-ltr" color="gray" fontSize={40} />
+                        <TextField
+                            variant="standard"
+                            InputProps={{
+                                disableUnderline: true,
+                                style: { color: 'white' },
+                            }}
+                            placeholder="Max"
+                            style={{
+                                color: 'white',
+                                borderRadius: '15px',
+                                border: 'solid 1px gray',
+                                padding: '5px 10px 5px 10px',
+                            }}
+                        />
+                    </div>
+                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                        <SubmitText style={{ position: 'absolute' }}>Submit</SubmitText>
+                        <Submit>Submit</Submit>
+                    </div>
+                </Stack>
+                <Stack gap="32px">
+                    <StatusText onClick={() => setVisible(!visible)} style={{ cursor: 'pointer' }}>
+                        <div>Properties</div>
+                        <Icon icon="ic:sharp-navigate-next" color="gray" />
+                    </StatusText>
+                    {visible && <>
+                        <TextField
+                            variant="standard"
+                            InputProps={{
+                                disableUnderline: true,
+                                endAdornment: (
+                                    <InputAdornment position="end">
+                                        <Icon icon="iconamoon:search-light" color="gray" />
+                                    </InputAdornment>
+                                ),
+                                style: { color: 'white' },
+                            }}
+                            placeholder="Search properties"
+                            style={{
+                                color: 'white',
+                                borderRadius: '15px',
+                                border: 'solid 1px gray',
+                                padding: '5px 10px 5px 10px',
+                            }}
+                        />
+                        {Items.map((x, ind) => (
+                            <div>
+                                <StatusText style={{ cursor: 'pointer' }} onClick={() => checkIndex == ind ? setCheckIndex(-1) : setCheckIndex(ind)}>
+                                    <div>{x}</div>
+                                    <Icon icon="ic:sharp-navigate-next" color="gray" />
+                                </StatusText>
+                                <div style={{ display: `${checkIndex == ind ? 'block' : 'none'}` }}>
+                                    {Clothes.map((x) => (
+                                        <FormControlLabel
+                                            label={
+                                                <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                                                    <div>{x}</div>
+                                                    <div>45</div>
+                                                </div>
+                                            }
+                                            control={<Checkbox />}
+                                            style={{ width: '100%' }}
+                                            sx={{
+                                                '.MuiFormControlLabel-label': { width: '100%' },
+                                            }}
+                                        />
+                                    ))}
+                                </div>
+                            </div>
+                        ))}
+                    </>}
+                </Stack>
             </RightComp>
         </div>)
         ;
