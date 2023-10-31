@@ -2,6 +2,7 @@ import { Container, Box, TextField, Typography, Switch, Stack, Button, Checkbox 
 import { Icon } from '@iconify/react'
 import { styled } from '@mui/material/styles';
 import { useState } from 'react';
+import useResponsive from 'src/hooks/useResponsive';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import InputAdornment from '@mui/material/InputAdornment';
 import Grid from '@mui/material/Grid';
@@ -68,8 +69,13 @@ const StyledButton = styled('div')(({ ...props }) => {
         background: props.bg,
         color: props.color,
         borderRadius: '50px',
-        padding: '5px 10px 5px 10px',
+        padding:'2px 8px',
+        textAlign: 'center',
         border: 'solid 1px gray',
+        fontSize:'18px',
+        '@media (max-width:700px)' :{
+            fontSize:'13px'
+        }
     };
 });
 
@@ -202,9 +208,10 @@ export default function Collectible() {
     const [visible, setVisible] = useState(true)
     const [status, setStatus] = useState(1);
     const [checkIndex, setCheckIndex] = useState(0);
+    const isDesktop = useResponsive('up', 1200);
     return (
-        <div style={{ display: 'flex', gap: '20px' }}>
-            <LeftComp>
+        <div style={{ display: 'flex', gap: '20px' , flexDirection:`${isDesktop ? 'row' : 'column'}`}}>
+            <LeftComp style={{width:`${isDesktop ? '70%' : '100%'}`}}>
                 <div style={{ display: 'flex', gap: '10px' }}>
                     <FormControlLabel control={<Switch defaultChecked />} label="Live data" style={{ color: 'white' }} />
                     <TextField
@@ -253,8 +260,8 @@ export default function Collectible() {
                         <CustomText>30d</CustomText>
                     </div>
                 </div>
-                <Grid container spacing={2} style={{ color: 'white' }}>
-                    <Grid item xs={4}>
+                <Grid wrap='wrap' container spacing={2} style={{ color: 'white' }}>
+                    <Grid item xs={12} sm={6} md={4}>
                         <Panel>
                             <div style={{ display: 'flex', justifyContent: 'space-between' }}>
                                 <div style={{ color: 'gray' }}>Volume</div>
@@ -263,7 +270,7 @@ export default function Collectible() {
                             <div>$2.57M</div>
                         </Panel>
                     </Grid>
-                    <Grid item xs={4}>
+                    <Grid item xs={12} sm={6} md={4}>
                         <Panel>
                             <div style={{ display: 'flex', justifyContent: 'space-between' }}>
                                 <div style={{ color: 'gray' }}>Traders</div>
@@ -275,7 +282,7 @@ export default function Collectible() {
                             </div>
                         </Panel>
                     </Grid>
-                    <Grid item xs={4}>
+                    <Grid item xs={12} sm={6} md={4}>
                         <Panel>
                             <div style={{ display: 'flex', justifyContent: 'space-between' }}>
                                 <div style={{ color: 'gray' }}>Floor Price</div>
@@ -287,7 +294,7 @@ export default function Collectible() {
                             </div>
                         </Panel>
                     </Grid>
-                    <Grid item xs={4}>
+                    <Grid item xs={12} sm={6} md={4}>
                         <Panel>
                             <div style={{ display: 'flex', justifyContent: 'space-between' }}>
                                 <div style={{ color: 'gray' }}>Avg.Price</div>
@@ -296,7 +303,7 @@ export default function Collectible() {
                             <div>$23.57K</div>
                         </Panel>
                     </Grid>
-                    <Grid item xs={4}>
+                    <Grid item xs={12} sm={6} md={4}>
                         <Panel>
                             <div style={{ display: 'flex', justifyContent: 'space-between' }}>
                                 <div style={{ color: 'gray' }}>Sales</div>
@@ -308,7 +315,7 @@ export default function Collectible() {
                             </div>
                         </Panel>
                     </Grid>
-                    <Grid item xs={4}>
+                    <Grid item xs={12} sm={6} md={4}>
                         <Panel>
                             <div style={{ display: 'flex', justifyContent: 'space-between' }}>
                                 <div style={{ color: 'gray' }}>Market Cap</div>
@@ -340,119 +347,23 @@ export default function Collectible() {
                     borderRadius: '16px',
                     border: '1px solid #2B2E31',
                     backgroundColor: '#1E2121',
+                    width:`${isDesktop ? '30%' : '100%'}`,
+                    flexDirection:`${isDesktop ? 'column' : 'row'}`,
                 }}
             >
-                <TextField
-                    variant="standard"
-                    InputProps={{
-                        disableUnderline: true,
-                        endAdornment: (
-                            <InputAdornment position="end">
-                                <Icon icon="ion:filter" color="gray" />
-                            </InputAdornment>
-                        ),
-                        style: { color: 'white' },
-                    }}
-                    placeholder="Filter"
-                    style={{
-                        color: 'white',
-                        borderRadius: '15px',
-                        border: 'solid 1px gray',
-                        padding: '5px 10px 5px 10px',
-                    }}
-                />
-                <StatusText>
-                    <div>Status</div>
-                    <Icon icon="ic:sharp-navigate-next" color="gray" />
-                </StatusText>
-                <div style={{ display: 'flex', gap: '10px' }}>
-                    <StyledButton
-                        bg={status == 1 ? '#D96BFF' : '#212121'}
-                        color={status == 1 ? 'black' : 'white'}
-                        onClick={() => setStatus(1)}
-                    >
-                        All Collections
-                    </StyledButton>
-                    <StyledButton
-                        bg={status == 2 ? '#D96BFF' : '#212121'}
-                        color={status == 2 ? 'black' : 'white'}
-                        onClick={() => setStatus(2)}
-                    >
-                        Live Auction
-                    </StyledButton>
-                </div>
-                <div style={{ display: 'flex', gap: '10px' }}>
-                    <StyledButton
-                        bg={status == 3 ? '#D96BFF' : '#212121'}
-                        color={status == 3 ? 'black' : 'white'}
-                        onClick={() => setStatus(3)}
-                    >
-                        NotForSale
-                    </StyledButton>
-                    <StyledButton
-                        bg={status == 4 ? '#D96BFF' : '#212121'}
-                        color={status == 4 ? 'black' : 'white'}
-                        onClick={() => setStatus(4)}
-                    >
-                        Buy Now
-                    </StyledButton>
-                </div>
-                <StatusText>
-                    <div>Price</div>
-                    <Icon icon="ic:sharp-navigate-next" color="gray" />
-                </StatusText>
-                <div style={{ display: 'flex', gap: '10px' }}>
-                    <TextField
-                        variant="standard"
-                        InputProps={{
-                            disableUnderline: true,
-                            style: { color: 'white' },
-                        }}
-                        placeholder="Min"
-                        style={{
-                            color: 'white',
-                            borderRadius: '15px',
-                            border: 'solid 1px gray',
-                            padding: '5px 10px 5px 10px',
-                        }}
-                    />
-                    <Icon icon="ooui:arrow-next-ltr" color="gray" fontSize={40} />
-                    <TextField
-                        variant="standard"
-                        InputProps={{
-                            disableUnderline: true,
-                            style: { color: 'white' },
-                        }}
-                        placeholder="Max"
-                        style={{
-                            color: 'white',
-                            borderRadius: '15px',
-                            border: 'solid 1px gray',
-                            padding: '5px 10px 5px 10px',
-                        }}
-                    />
-                </div>
-                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                    <SubmitText style={{ position: 'absolute' }}>Submit</SubmitText>
-                    <Submit>Submit</Submit>
-                </div>
-                <StatusText onClick={() => setVisible(!visible)} style={{cursor:'pointer'}}>
-                    <div>Properties</div>
-                    <Icon icon="ic:sharp-navigate-next" color="gray" />
-                </StatusText>
-                {visible && <>
+                <Stack direction='column' gap="32px" sx={{width:`${!isDesktop?'40%':'100%'}` , minWidth:'220px'}}>
                     <TextField
                         variant="standard"
                         InputProps={{
                             disableUnderline: true,
                             endAdornment: (
                                 <InputAdornment position="end">
-                                    <Icon icon="iconamoon:search-light" color="gray" />
+                                    <Icon icon="ion:filter" color="gray" />
                                 </InputAdornment>
                             ),
                             style: { color: 'white' },
                         }}
-                        placeholder="Search properties"
+                        placeholder="Filter"
                         style={{
                             color: 'white',
                             borderRadius: '15px',
@@ -460,33 +371,135 @@ export default function Collectible() {
                             padding: '5px 10px 5px 10px',
                         }}
                     />
+                    <StatusText>
+                        <div>Status</div>
+                        <Icon icon="ic:sharp-navigate-next" color="gray" />
+                    </StatusText>
+                    <div style={{ display: 'flex', flexWrap:'wrap', gap: '10px' }}>
+                        <StyledButton
+                            bg={status == 1 ? '#D96BFF' : '#212121'}
+                            color={status == 1 ? 'black' : 'white'}
+                            onClick={() => setStatus(1)}
+                        >
+                            All Collections
+                        </StyledButton>
+                        <StyledButton
+                            bg={status == 2 ? '#D96BFF' : '#212121'}
+                            color={status == 2 ? 'black' : 'white'}
+                            onClick={() => setStatus(2)}
+                        >
+                            Live Auction
+                        </StyledButton>
+                    </div>
+                    <div style={{ display: 'flex',flexWrap:'wrap', gap: '10px' }}>
+                        <StyledButton
+                            bg={status == 3 ? '#D96BFF' : '#212121'}
+                            color={status == 3 ? 'black' : 'white'}
+                            onClick={() => setStatus(3)}
+                        >
+                            NotForSale
+                        </StyledButton>
+                        <StyledButton
+                            bg={status == 4 ? '#D96BFF' : '#212121'}
+                            color={status == 4 ? 'black' : 'white'}
+                            onClick={() => setStatus(4)}
+                        >
+                            Buy Now
+                        </StyledButton>
+                    </div>
+                    <StatusText>
+                        <div>Price</div>
+                        <Icon icon="ic:sharp-navigate-next" color="gray" />
+                    </StatusText>
+                    <div style={{ display: 'flex', gap: '10px' , alignItems:'center' , flexDirection:`${isDesktop ? 'row' : 'column'}` }}>
+                        <TextField
+                            variant="standard"
+                            InputProps={{
+                                disableUnderline: true,
+                                style: { color: 'white' },
+                            }}
+                            placeholder="Min"
+                            style={{
+                                color: 'white',
+                                borderRadius: '15px',
+                                border: 'solid 1px gray',
+                                padding: '5px 10px 5px 10px',
+                            }}
+                        />
+                        <Icon icon="ooui:arrow-next-ltr" color="gray" fontSize={40} rotate={isDesktop ? 0 : 1}/>
+                        <TextField
+                            variant="standard"
+                            InputProps={{
+                                disableUnderline: true,
+                                style: { color: 'white' },
+                            }}
+                            placeholder="Max"
+                            style={{
+                                color: 'white',
+                                borderRadius: '15px',
+                                border: 'solid 1px gray',
+                                padding: '5px 10px 5px 10px',
+                            }}
+                        />
+                    </div>
+                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                        <SubmitText style={{ position: 'absolute' }}>Submit</SubmitText>
+                        <Submit>Submit</Submit>
+                    </div>
+                </Stack>
+                <Stack direction='column' gap="32px" sx={{minWidth:'220px'}}>
+                    <StatusText onClick={() => setVisible(!visible)} style={{ cursor: 'pointer' }}>
+                        <div>Properties</div>
+                        <Icon icon="ic:sharp-navigate-next" color="gray" />
+                    </StatusText>
+                    {visible && <>
+                        <TextField
+                            variant="standard"
+                            InputProps={{
+                                disableUnderline: true,
+                                endAdornment: (
+                                    <InputAdornment position="end">
+                                        <Icon icon="iconamoon:search-light" color="gray" />
+                                    </InputAdornment>
+                                ),
+                                style: { color: 'white' },
+                            }}
+                            placeholder="Search properties"
+                            style={{
+                                color: 'white',
+                                borderRadius: '15px',
+                                border: 'solid 1px gray',
+                                padding: '5px 10px 5px 10px',
+                            }}
+                        />
 
-                    {Items.map((x, ind) => (
-                        <div>
-                            <StatusText style={{ cursor: 'pointer' }} onClick={() => checkIndex == ind ? setCheckIndex(-1) : setCheckIndex(ind)}>
-                                <div>{x}</div>
-                                <Icon icon="ic:sharp-navigate-next" color="gray" />
-                            </StatusText>
-                            <div style={{ display: `${checkIndex == ind ? 'block' : 'none'}` }}>
-                                {Clothes.map((x) => (
-                                    <FormControlLabel
-                                        label={
-                                            <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                                                <div>{x}</div>
-                                                <div>45</div>
-                                            </div>
-                                        }
-                                        control={<Checkbox />}
-                                        style={{ width: '100%' }}
-                                        sx={{
-                                            '.MuiFormControlLabel-label': { width: '100%' },
-                                        }}
-                                    />
-                                ))}
+                        {Items.map((x, ind) => (
+                            <div>
+                                <StatusText style={{ cursor: 'pointer' }} onClick={() => checkIndex == ind ? setCheckIndex(-1) : setCheckIndex(ind)}>
+                                    <div>{x}</div>
+                                    <Icon icon="ic:sharp-navigate-next" color="gray" />
+                                </StatusText>
+                                <div style={{ display: `${checkIndex == ind ? 'block' : 'none'}` }}>
+                                    {Clothes.map((x) => (
+                                        <FormControlLabel
+                                            label={
+                                                <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                                                    <div>{x}</div>
+                                                    <div>45</div>
+                                                </div>
+                                            }
+                                            control={<Checkbox />}
+                                            style={{ width: '100%' }}
+                                            sx={{
+                                                '.MuiFormControlLabel-label': { width: '100%' },
+                                            }}
+                                        />
+                                    ))}
+                                </div>
                             </div>
-                        </div>
-                    ))}
-                </>}
+                        ))}
+                    </>}
+                </Stack>
             </RightComp>
         </div>)
         ;
