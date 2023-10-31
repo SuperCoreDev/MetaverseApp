@@ -50,8 +50,8 @@ export default function NftCard({nftImage,nftName,nftNetwork,manaVal,usdVal,isla
                                 <Typography fontSize={10} fontWeight={500} color="#F75BB1">USD </Typography>
                             </InfoBox>
                             {island && (
-                                <Box sx={{textAlign:'center' , backgroundColor:'#2B2B2B' , padding:'0px 8px' , borderRadius:'6px'}}>
-                                    <Typography fontSize={14} fontWeight={500}>8 Land(s)</Typography>
+                                <Box sx={{display:'flex',justifyContent:'center',alignItems:'center' , backgroundColor:'#2B2B2B' , padding:'0px 8px' , borderRadius:'6px'}}>
+                                    <Typography color='white' fontSize={14} fontWeight={500}>8 Land(s)</Typography>
                                 </Box>
                             )}
                         </Stack>

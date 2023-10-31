@@ -2,7 +2,7 @@
 import Image from 'next/image';
 import { Icon } from '@iconify/react';
 import Box from '@mui/material/Box';
-import { DataGrid, GridColDef, GridRenderCellParams,gridClasses } from '@mui/x-data-grid';
+import { DataGrid, GridColDef, GridRenderCellParams } from '@mui/x-data-grid';
 // import { useDemoData } from '@mui/x-data-grid-generator';
 import { styled, darken, lighten } from '@mui/material/styles';
 import { ReactNode } from 'react';
@@ -21,11 +21,7 @@ import { Stack, Typography } from '@mui/material';
 //   mode === 'dark' ? darken(color, 0.4) : lighten(color, 0.4);
 
 const StyledDataGrid = styled(DataGrid)(({ theme }) => ({
-    
     '& .super-app-theme--Open': {
-        [`& .${gridClasses.row}.even`]: {
-            backgroundColor : 'black'
-        },
         backgroundColor: '#2B2E31',
         border: '4px solid',
         borderColor: 'transparent transparent #000 transparent',
@@ -40,9 +36,6 @@ const StyledDataGrid = styled(DataGrid)(({ theme }) => ({
             },
         },
     },
-    '&.MuiPagination-root':{
-        color:'white'
-    }
     
     //   '& .super-app-theme--Filled': {
     //     backgroundColor: 'white',
@@ -111,157 +104,158 @@ const StyledDataGrid = styled(DataGrid)(({ theme }) => ({
 const rows = [
     {
         id: 1,
-        address: '0x0baBda04f62C549A09EF3313Fe187f29c099FF3C',
-        blockchain: '7 Hours ago',
-        uaw: '$567.99k',
-        status: 'Open'
+        nftName: 'Light Jacket',
+        imageSrc : '/assets/nfts/landnfts/1.png',
+        lasttime: '7 Hours ago',
+        price: [{'price': '$567.99k'}, {'manacost':'196.87MANA'}],
+        manacost: '196.87MANA',
+        from:'oxafer...bbbde',
+        to:'oxrfh...cbdte'
     },
     {
         id: 2,
-        address: '0x0baBda04f62C549A09EF3313Fe187f29c099FF3C',
-        blockchain: '7 Hours ago',
-        uaw: '$567.99k',
-        status: 'Open'
+        nftName: 'Shiba Stock',
+        imageSrc : '/assets/nfts/shibastock.png',
+        lasttime: '7 Hours ago',
+        price: [{'price': '$567.99k'}, {'manacost':'196.87MANA'}],
+        manacost: '196.87MANA',
+        from:'oxafer...bbbde',
+        to:'oxrfh...cbdte'
     },
     {
         id: 3,
-        address: '0x0baBda04f62C549A09EF3313Fe187f29c099FF3C',
-        blockchain: '7 Hours ago',
-        uaw: '$567.99k',
-        status: 'Open'
+        nftName: 'Southam Li...',
+        imageSrc : '/assets/nfts/southamli1.png',
+        lasttime: '7 Hours ago',
+        price: [{'price': '$567.99k'}, {'manacost':'196.87MANA'}],
+        manacost: '196.87MANA',
+        from:'oxafer...bbbde',
+        to:'oxrfh...cbdte'
     },
     {
         id: 4,
-        address: '0x0baBda04f62C549A09EF3313Fe187f29c099FF3C',
-        blockchain: '7 Hours ago',
-        uaw: '$567.99k',
-        status: 'Open'
+        nftName: 'Southam Li..',
+        imageSrc : '/assets/nfts/southamli4.png',
+        lasttime: '7 Hours ago',
+        price: [{'price': '$567.99k'}, {'manacost':'196.87MANA'}],
+        from:'oxafer...bbbde',
+        to:'oxrfh...cbdte'
     },
     {
         id: 5,
-        address: '0x0baBda04f62C549A09EF3313Fe187f29c099FF3C',
-        blockchain: '7 Hours ago',
-        uaw: '$567.99k',
-        status: 'Open'
+        nftName: 'Land2',
+        imageSrc : '/assets/nfts/landnfts/2.png',
+        lasttime: '7 Hours ago',
+        price: [{'price': '$567.99k'}, {'manacost':'196.87MANA'}],
+        from:'oxafer...bbbde',
+        to:'oxrfh...cbdte'
     },
     {
         id: 6,
-        address: '0x0baBda04f62C549A09EF3313Fe187f29c099FF3C',
-        blockchain: '7 Hours ago',
-        uaw: '$567.99k',
-        status: 'Open'
-    },
-    {
-        id: 7,
-        address: '0x0baBda04f62C549A09EF3313Fe187f29c099FF3C',
-        blockchain: '7 Hours ago',
-        uaw: '$567.99k',
-        status: 'Open'
-    },
-    {
-        id: 8,
-        address: '0x0baBda04f62C549A09EF3313Fe187f29c099FF3C',
-        blockchain: '7 Hours ago',
-        uaw: '$567.99k',
-        status: 'Open'
-    },
-    {
-        id: 9,
-        address: '0x0baBda04f62C549A09EF3313Fe187f29c099FF3C',
-        blockchain: '7 Hours ago',
-        uaw: '$567.99k',
-        status: 'Open'
-    },
-    {
-        id: 10,
-        address: '0x0baBda04f62C549A09EF3313Fe187f29c099FF3C',
-        blockchain: '7 Hours ago',
-        uaw: '$567.99k',
-        status: 'Open'
-    },
-    {
-        id: 11,
-        address: '0x0baBda04f62C549A09EF3313Fe187f29c099FF3C',
-        blockchain: '7 Hours ago',
-        uaw: '$567.99k',
-        status: 'Open'
-    },
-    {
-        id: 12,
-        address: '0x0baBda04f62C549A09EF3313Fe187f29c099FF3C',
-        blockchain: '7 Hours ago',
-        uaw: '$567.99k',
-        status: 'Open'
-    },
-    {
-        id: 13,
-        address: '0x0baBda04f62C549A09EF3313Fe187f29c099FF3C',
-        blockchain: '7 Hours ago',
-        uaw: '$567.99k',
-        status: 'Open'
-    },
-    {
-        id: 14,
-        address: '0x0baBda04f62C549A09EF3313Fe187f29c099FF3C',
-        blockchain: '7 Hours ago',
-        uaw: '$567.99k',
-        status: 'Open'
-    },
-    {
-        id: 15,
-        address: '0x0baBda04f62C549A09EF3313Fe187f29c099FF3C',
-        blockchain: '7 Hours ago',
-        uaw: '$567.99k',
-        status: 'Open'
+        nftName: 'Hallowe Mas',
+        imageSrc : '/assets/nfts/hallowemas.png',
+        lasttime: '7 Hours ago',
+        price: [{'price': '$567.99k'}, {'manacost':'196.87MANA'}],
+        from:'oxafer...bbbde',
+        to:'oxrfh...cbdte'
     },
 ];
-type AddressRowProps = {
-    address: string
+type NFTProps = {
+    name : string;
+    imagesrc : string;
 }
-const AddressRowContainer = ({ address }: AddressRowProps): React.ReactNode => (
-    <Stack direction='row' justifyContent='space-between' gap={3} >
-        <Typography>{address}</Typography>
-        <Icon icon="ph:copy" color="gray" width="24" height="24" />
+const NftColContainer = ({ name , imagesrc }: NFTProps): React.ReactNode => (
+    <Stack direction='row' gap={3} >
+        <img src={imagesrc} alt="nft" width={80} height={80}/>
+        <Typography>{name}</Typography>
     </Stack>
 )
-const getValbyName = (address: string) => rows.filter((row) => row.address === address)
+type NftPriceProps = {
+    price : string,
+    manacost:string
+}
+const fontfamily = "Neue Haas Grotesk Display Pro"
+const NftPriceBox = ({price,manacost}:NftPriceProps): React.ReactNode => (
+    <Stack direction='row' gap="8px" sx={{padding:"16px 0px",alignItems:'flex-start',alignSelf:'stretch'}}>
+        <img src="/assets/nfts/marketplace_price.png" alt="pricenft" width={24} height={24}/>
+        <Stack direction='column' gap="2px" flex='1 0 0' justifyContent='center' alignItems='flex-start'>
+            <Typography color="white" fontFamily={fontfamily} fontSize={16} fontWeight={700}>{price}</Typography>
+            <Stack direction='row' gap="4px" alignItems='center'>
+                <img src="/assets/nfts/marketplace_mana_cost.png" alt="manacost" width={12} height={12}/>
+                <Typography color="#1FDD00" fontFamily={fontfamily} fontSize={12} fontWeight={500}>{manacost}</Typography>
+            </Stack>
+        </Stack>
+    </Stack>
+)
+const getValbyName = (name: string) => rows.filter((row) => row.nftName === name)
 const columns: GridColDef[] = [
     {
-        field: 'address',
-        headerName: 'Address',
+        field: 'nftName',
+        headerName: 'NFT',
         headerClassName: 'super-app-theme--header',
         headerAlign: 'left',
-        flex: 6,
+        flex: 3,
         valueGetter: (params) => getValbyName(params.value),
         renderCell: (params: GridRenderCellParams<any>) => (
             <Box sx={{ width: '100%' }}>
-                <AddressRowContainer address={params.value[0].address} />
+                <NftColContainer name={params.value[0]?.nftName} imagesrc={params.value[0]?.imageSrc} />
             </Box>
         ),
     },
     {
-        field: 'blockchain',
-        headerName: 'Blockchain',
+        field: 'lasttime',
+        headerName: 'Time',
         headerClassName: 'super-app-theme--header',
         headerAlign: 'left',
-        flex: 2
+        flex: 1
     },
     {
-        field: 'uaw',
-        headerName: 'UAW',
+        field: 'price',
+        headerName: 'Price',
+        headerClassName: 'super-app-theme--header',
+        headerAlign: 'left',
+        flex: 2,
+        valueGetter: ({row}) => ({
+                price: row.price[0].price,
+                manacost: row.price[1].manacost,
+        }),
+        renderCell: (params: GridRenderCellParams<any>) => (
+            <Box sx={{ width: '100%' }}>
+                <NftPriceBox price={params.value?.price} manacost={params.value?.manacost} />
+            </Box>
+        ),
+    },
+    {
+        field: 'from',
+        headerName: 'TRANSFER FROM',
+        headerClassName: 'super-app-theme--header',
+        headerAlign: 'left',
+        flex: 2,
+        valueGetter : (params) => params.value,
+        renderCell: (params: GridRenderCellParams<any>) => (
+            <Stack direction='row' gap={6} sx={{ width: '100%' }}>
+                <Typography fontFamily={fontfamily}>{params.value}</Typography>
+                <Icon icon="ph:arrow-right-bold" color="#3dfff3" width="24" height="24" />
+            </Stack>
+        ),
+    },
+    {
+        field: 'to',
+        headerName: 'TRANSFER TO',
         headerClassName: 'super-app-theme--header',
         headerAlign: 'left',
         flex: 2,
     },
+
 ];
 
 const getRowHeight = (params: any) => {
-    const height = 80;
+    const height = 112;
     return height;
 };
 
 
-export default function ContractDataGrid() {
+export default function MarketPlaceGrid() {
     //   const { data } = useDemoData({
     //     dataSet: 'Commodity',
     //     rowLength: 100,
@@ -275,7 +269,7 @@ export default function ContractDataGrid() {
             <StyledDataGrid
                 autoHeight
                 rows={rows} columns={columns}
-                getRowClassName={(params) => `super-app-theme--${params.row.status} , ${params.indexRelativeToCurrentPage % 2 === 0 ? 'even' : 'odd'} `}
+                getRowClassName={(params) => `super-app-theme--${params.row.status}`}
                 disableColumnMenu
                 disableColumnFilter
                 disableColumnSelector
@@ -288,6 +282,9 @@ export default function ContractDataGrid() {
                 paginationMode='server'
                 pagination
                 sx={{
+                    "& .MuiDataGrid-virtualScroller":{
+                        color:'white',
+                    },
                     "& .MuiDataGrid-footerContainer": {
                     //    backgroundColor: "#000000",
                         color: "white",

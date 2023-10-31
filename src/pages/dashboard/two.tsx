@@ -18,6 +18,7 @@ import useResponsive from 'src/hooks/useResponsive';
 import { useSettingsContext } from '../../components/settings';
 // layouts
 import DashboardLayout from '../../layouts/dashboard';
+import MarketPlace from 'src/layouts/dashboard/metaverse/Martketplace';
 
 
 
@@ -106,6 +107,8 @@ export default function PageTwo() {
           return <News/>;
         case 5:
           return <About/>; 
+        case 3:
+          return <MarketPlace/>;
         default:
           return null;
       }

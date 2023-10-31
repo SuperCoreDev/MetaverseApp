@@ -1,7 +1,7 @@
-import { Container, Box, TextField, Typography, Switch, Stack, Button } from '@mui/material';
+import { Container, Box, TextField, Typography,Checkbox, Switch, Stack, Button } from '@mui/material';
 import { Icon } from '@iconify/react'
 import { styled } from '@mui/material/styles';
-
+import { useState } from 'react';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import InputAdornment from '@mui/material/InputAdornment';
 import Grid from '@mui/material/Grid';
@@ -22,17 +22,25 @@ const LeftComp = styled('div')({
 
 const RightComp = styled('div')({
     width: '30%',
-    display:'flex',
+    display: 'flex',
     flexDirection: 'column',
-    gap:'32px',
-    paddingTop:'32px 24px 32px 24px'
+    gap: '32px',
+    paddingTop: '32px 24px 32px 24px'
 })
 
 const CustomText = styled('div')({
     color: 'white',
     fontSize: '12px'
 })
-
+const StyledButton = styled('div')(({ ...props }) => {
+    return {
+      background: props.bg,
+      color: props.color,
+      borderRadius: '50px',
+      padding: '5px 10px 5px 10px',
+      border: 'solid 1px gray',
+    };
+  });
 const Panel = styled('div')({
     backgroundColor: '#2b2b2b',
     border: 'solid 1px gray',
@@ -41,108 +49,149 @@ const Panel = styled('div')({
 })
 
 const fontName = 'Neue Haas Grotesk Display Pro'
+const StatusText = styled('div')({
+    display: 'flex',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    fontSize: '20px',
+  });
+const Submit = styled('div')({
+    background: 'linear-gradient(45deg, #11636f, #F75BB1)',
+    textAlign: 'center',
+    padding: '1px',
+    height: '50px',
+    width: '100%',
+    borderRadius: '10px',
+    inset: '0',
+    WebkitMask: 'linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)',
+    WebkitMaskComposite: 'xor',
+    maskComposite: 'exclude',
+});
 
+const SubmitText = styled('div')({
+    background:
+        'var(--Gradient, linear-gradient(264deg, #F75BB1 -6.74%, #C392DC 43.26%, #008782 103.97%))',
+    backgroundClip: 'text',
+    WebkitBackgroundClip: 'text',
+    WebkitTextFillColor: 'transparent',
+});
+const Items = ['Clothes', 'Hat', 'Mouth', 'Eyes', 'Fur', 'Background', 'Glasses', 'Earring'];
 
+const Clothes = [
+    'Blue Dress',
+    'Blue Dress',
+    'Blue Dress',
+    'Blue Dress',
+    'Blue Dress',
+    'Blue Suit',
+    'Blue Jean',
+    'Blue Dress',
+    'Blue Dress',
+];
 
 const NftItems = [
     {
-        'nftImage' : '/assets/nfts/landnfts/1.png',
-        'nftName' : 'Southam Lir...',
-        'nftNetwork' : ['polygon','ethereum'],
-        'manaVal' : 4.45,
-        'usdVal' : 1500,
-        'island' : true
+        'nftImage': '/assets/nfts/landnfts/1.png',
+        'nftName': 'Southam Lir...',
+        'nftNetwork': ['polygon', 'ethereum'],
+        'manaVal': 4.45,
+        'usdVal': 1500,
+        'island': true
     },
     {
-        'nftImage' : '/assets/nfts/landnfts/2.png',
-        'nftName' : 'Southam Lir...',
-        'nftNetwork' : ['polygon','ethereum'],
-        'manaVal' : 4.45,
-        'usdVal' : 1500,
-        'island' : true
+        'nftImage': '/assets/nfts/landnfts/2.png',
+        'nftName': 'Southam Lir...',
+        'nftNetwork': ['polygon', 'ethereum'],
+        'manaVal': 4.45,
+        'usdVal': 1500,
+        'island': true
     },
     {
-        'nftImage' : '/assets/nfts/landnfts/3.png',
-        'nftName' : 'Southam Lir...',
-        'nftNetwork' : ['polygon','ethereum'],
-        'manaVal' : 4.45,
-        'usdVal' : 1500,
-        'island' : true
+        'nftImage': '/assets/nfts/landnfts/3.png',
+        'nftName': 'Southam Lir...',
+        'nftNetwork': ['polygon', 'ethereum'],
+        'manaVal': 4.45,
+        'usdVal': 1500,
+        'island': true
     },
     {
-        'nftImage' : '/assets/nfts/landnfts/4.png',
-        'nftName' : 'Southam Lir...',
-        'nftNetwork' : ['polygon','ethereum'],
-        'manaVal' : 4.45,
-        'usdVal' : 1500,
-        'island' : true
+        'nftImage': '/assets/nfts/landnfts/4.png',
+        'nftName': 'Southam Lir...',
+        'nftNetwork': ['polygon', 'ethereum'],
+        'manaVal': 4.45,
+        'usdVal': 1500,
+        'island': true
     },
     {
-        'nftImage' : '/assets/nfts/landnfts/5.png',
-        'nftName' : 'Southam Lir...',
-        'nftNetwork' : ['polygon','ethereum'],
-        'manaVal' : 4.45,
-        'usdVal' : 1500,
-        'island' : true
+        'nftImage': '/assets/nfts/landnfts/5.png',
+        'nftName': 'Southam Lir...',
+        'nftNetwork': ['polygon', 'ethereum'],
+        'manaVal': 4.45,
+        'usdVal': 1500,
+        'island': true
     },
     {
-        'nftImage' : '/assets/nfts/landnfts/6.png',
-        'nftName' : 'Southam Lir...',
-        'nftNetwork' : ['polygon','ethereum'],
-        'manaVal' : 4.45,
-        'usdVal' : 1500,
-        'island' : true
+        'nftImage': '/assets/nfts/landnfts/6.png',
+        'nftName': 'Southam Lir...',
+        'nftNetwork': ['polygon', 'ethereum'],
+        'manaVal': 4.45,
+        'usdVal': 1500,
+        'island': true
     },
     {
-        'nftImage' : '/assets/nfts/landnfts/7.png',
-        'nftName' : 'Southam Lir...',
-        'nftNetwork' : ['polygon','ethereum'],
-        'manaVal' : 4.45,
-        'usdVal' : 1500,
-        'island' : true
+        'nftImage': '/assets/nfts/landnfts/7.png',
+        'nftName': 'Southam Lir...',
+        'nftNetwork': ['polygon', 'ethereum'],
+        'manaVal': 4.45,
+        'usdVal': 1500,
+        'island': true
     },
     {
-        'nftImage' : '/assets/nfts/landnfts/8.png',
-        'nftName' : 'Southam Lir...',
-        'nftNetwork' : ['polygon','ethereum'],
-        'manaVal' : 4.45,
-        'usdVal' : 1500,
-        'island' : true
+        'nftImage': '/assets/nfts/landnfts/8.png',
+        'nftName': 'Southam Lir...',
+        'nftNetwork': ['polygon', 'ethereum'],
+        'manaVal': 4.45,
+        'usdVal': 1500,
+        'island': true
     },
     {
-        'nftImage' : '/assets/nfts/landnfts/9.png',
-        'nftName' : 'Southam Lir...',
-        'nftNetwork' : ['polygon','ethereum'],
-        'manaVal' : 4.45,
-        'usdVal' : 1500,
-        'island' : true
+        'nftImage': '/assets/nfts/landnfts/9.png',
+        'nftName': 'Southam Lir...',
+        'nftNetwork': ['polygon', 'ethereum'],
+        'manaVal': 4.45,
+        'usdVal': 1500,
+        'island': true
     },
     {
-        'nftImage' : '/assets/nfts/landnfts/10.png',
-        'nftName' : 'Southam Lir...',
-        'nftNetwork' : ['polygon','ethereum'],
-        'manaVal' : 4.45,
-        'usdVal' : 1500,
-        'island' : true
+        'nftImage': '/assets/nfts/landnfts/10.png',
+        'nftName': 'Southam Lir...',
+        'nftNetwork': ['polygon', 'ethereum'],
+        'manaVal': 4.45,
+        'usdVal': 1500,
+        'island': true
     },
     {
-        'nftImage' : '/assets/nfts/landnfts/11.png',
-        'nftName' : 'Southam Lir...',
-        'nftNetwork' : ['polygon','ethereum'],
-        'manaVal' : 4.45,
-        'usdVal' : 1500,
-        'island' : true
+        'nftImage': '/assets/nfts/landnfts/11.png',
+        'nftName': 'Southam Lir...',
+        'nftNetwork': ['polygon', 'ethereum'],
+        'manaVal': 4.45,
+        'usdVal': 1500,
+        'island': true
     },
     {
-        'nftImage' : '/assets/nfts/landnfts/12.png',
-        'nftName' : 'Southam Lir...',
-        'nftNetwork' : ['polygon','ethereum'],
-        'manaVal' : 4.45,
-        'usdVal' : 1500,
-        'island' : true
+        'nftImage': '/assets/nfts/landnfts/12.png',
+        'nftName': 'Southam Lir...',
+        'nftNetwork': ['polygon', 'ethereum'],
+        'manaVal': 4.45,
+        'usdVal': 1500,
+        'island': true
     }
 ]
 export default function Land() {
+    const [visible ,setVisible] = useState(true)
+    const [status, setStatus] = useState(1);
+    const [status1, setStatus1] = useState(1);
+    const [checkIndex, setCheckIndex] = useState(0);
     return (
         <div style={{ display: 'flex', gap: '20px' }}>
             <LeftComp>
@@ -266,16 +315,182 @@ export default function Land() {
                     {
                         NftItems.map(item => (
                             <Grid item>
-                                <NftCard nftImage={item.nftImage} nftName={item.nftName} nftNetwork={item.nftNetwork} 
-                                manaVal={item.manaVal} usdVal={item.usdVal} island={item.island}/>
+                                <NftCard nftImage={item.nftImage} nftName={item.nftName} nftNetwork={item.nftNetwork}
+                                    manaVal={item.manaVal} usdVal={item.usdVal} island={item.island} />
                             </Grid>
                         ))
                     }
                 </Grid>
             </LeftComp>
-            <RightComp sx={{color:'white' , fontFamily:'Neue Haas Grotesk Display Pro' , padding:'32px 24px 32px 24px',
-        borderRadius: '16px',border: '1px solid #2B2E31',backgroundColor: '#1E2121'}}>
-               
+            <RightComp sx={{
+                color: 'white', fontFamily: 'Neue Haas Grotesk Display Pro', padding: '32px 24px 32px 24px',
+                borderRadius: '16px', border: '1px solid #2B2E31', backgroundColor: '#1E2121'
+            }}>
+
+                <TextField
+                    variant="standard"
+                    InputProps={{
+                        disableUnderline: true,
+                        endAdornment: (
+                            <InputAdornment position="end">
+                                <Icon icon="ion:filter" color="gray" />
+                            </InputAdornment>
+                        ),
+                        style: { color: 'white' },
+                    }}
+                    placeholder="Filter"
+                    style={{
+                        color: 'white',
+                        borderRadius: '15px',
+                        border: 'solid 1px gray',
+                        padding: '5px 10px 5px 10px',
+                    }}
+                />
+                <StatusText>
+                    <div>Categories</div>
+                    <Icon icon="ic:sharp-navigate-next" color="gray" />
+                </StatusText>
+                <div style={{ display: 'flex', gap: '10px' }}>
+                    <StyledButton
+                        bg={status == 1 ? '#D96BFF' : '#212121'}
+                        color={status == 1 ? 'black' : 'white'}
+                        onClick={() => setStatus(1)}
+                    >
+                        Land
+                    </StyledButton>
+                    <StyledButton
+                        bg={status == 2 ? '#D96BFF' : '#212121'}
+                        color={status == 2 ? 'black' : 'white'}
+                        onClick={() => setStatus(2)}
+                    >
+                        Parcels
+                    </StyledButton>
+                    <StyledButton
+                        bg={status == 3 ? '#D96BFF' : '#212121'}
+                        color={status == 3 ? 'black' : 'white'}
+                        onClick={() => setStatus(3)}
+                    >
+                        Estate
+                    </StyledButton>
+                </div>
+
+                <StatusText>
+                    <div>Status</div>
+                    <Icon icon="ic:sharp-navigate-next" color="gray" />
+                </StatusText>
+                <div style={{ display: 'flex', gap: '10px' }}>
+                    <StyledButton
+                        bg={status1 == 1 ? '#D96BFF' : '#212121'}
+                        color={status1 == 1 ? 'black' : 'white'}
+                        onClick={() => setStatus1(1)}
+                    >
+                        All land
+                    </StyledButton>
+                    <StyledButton
+                        bg={status1 == 2 ? '#D96BFF' : '#212121'}
+                        color={status1 == 2 ? 'black' : 'white'}
+                        onClick={() => setStatus1(2)}
+                    >
+                        For sale
+                    </StyledButton>
+                    <StyledButton
+                        bg={status1 == 3 ? '#D96BFF' : '#212121'}
+                        color={status1 == 3 ? 'black' : 'white'}
+                        onClick={() => setStatus1(3)}
+                    >
+                        For rent
+                    </StyledButton>
+                </div>
+
+                <StatusText>
+                    <div>Price</div>
+                    <Icon icon="ic:sharp-navigate-next" color="gray" />
+                </StatusText>
+                <div style={{ display: 'flex', gap: '10px' }}>
+                    <TextField
+                        variant="standard"
+                        InputProps={{
+                            disableUnderline: true,
+                            style: { color: 'white' },
+                        }}
+                        placeholder="Min"
+                        style={{
+                            color: 'white',
+                            borderRadius: '15px',
+                            border: 'solid 1px gray',
+                            padding: '5px 10px 5px 10px',
+                        }}
+                    />
+                    <Icon icon="ooui:arrow-next-ltr" color="gray" fontSize={40} />
+                    <TextField
+                        variant="standard"
+                        InputProps={{
+                            disableUnderline: true,
+                            style: { color: 'white' },
+                        }}
+                        placeholder="Max"
+                        style={{
+                            color: 'white',
+                            borderRadius: '15px',
+                            border: 'solid 1px gray',
+                            padding: '5px 10px 5px 10px',
+                        }}
+                    />
+                </div>
+                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                    <SubmitText style={{ position: 'absolute' }}>Submit</SubmitText>
+                    <Submit>Submit</Submit>
+                </div>
+                <StatusText onClick={() => setVisible(!visible)} style={{cursor:'pointer'}}>
+                    <div>Properties</div>
+                    <Icon icon="ic:sharp-navigate-next" color="gray" />
+                </StatusText>
+                {visible && <>
+                <TextField
+                    variant="standard"
+                    InputProps={{
+                        disableUnderline: true,
+                        endAdornment: (
+                            <InputAdornment position="end">
+                                <Icon icon="iconamoon:search-light" color="gray" />
+                            </InputAdornment>
+                        ),
+                        style: { color: 'white' },
+                    }}
+                    placeholder="Search properties"
+                    style={{
+                        color: 'white',
+                        borderRadius: '15px',
+                        border: 'solid 1px gray',
+                        padding: '5px 10px 5px 10px',
+                    }}
+                />
+                {Items.map((x, ind) => (
+                    <div>
+                        <StatusText style={{ cursor: 'pointer' }} onClick={() => checkIndex == ind ? setCheckIndex(-1) : setCheckIndex(ind)}>
+                            <div>{x}</div>
+                            <Icon icon="ic:sharp-navigate-next" color="gray" />
+                        </StatusText>
+                        <div style={{ display: `${checkIndex == ind ? 'block' : 'none'}` }}>
+                            {Clothes.map((x) => (
+                                <FormControlLabel
+                                    label={
+                                        <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                                            <div>{x}</div>
+                                            <div>45</div>
+                                        </div>
+                                    }
+                                    control={<Checkbox />}
+                                    style={{ width: '100%' }}
+                                    sx={{
+                                        '.MuiFormControlLabel-label': { width: '100%' },
+                                    }}
+                                />
+                            ))}
+                        </div>
+                    </div>
+                ))}
+                </>}
             </RightComp>
         </div>)
         ;
