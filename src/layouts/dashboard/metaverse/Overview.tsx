@@ -1,8 +1,10 @@
 import { Container, Box, TextField, Typography, Switch, Stack, Button } from '@mui/material';
 import { Icon } from '@iconify/react'
 import { styled } from '@mui/material/styles';
+import useResponsive from 'src/hooks/useResponsive';
 import dynamic from "next/dynamic";
 import ChartComponent from 'src/components/marketChartView/mApexChart';
+import Scrollbar from 'src/components/scrollbar/Scrollbar';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import InputAdornment from '@mui/material/InputAdornment';
 import Grid from '@mui/material/Grid';
@@ -25,10 +27,10 @@ const LeftComp = styled('div')({
 
 const RightComp = styled('div')({
     width: '30%',
-    display:'flex',
+    display: 'flex',
     flexDirection: 'column',
-    gap:'32px',
-    paddingTop:'32px 24px 32px 24px'
+    gap: '32px',
+    paddingTop: '32px 24px 32px 24px'
 })
 
 const CustomText = styled('div')({
@@ -153,7 +155,7 @@ const PieChart = () => {
                 "horizontal": 8,
                 "vertical": 10
             },
-            "show":false
+            "show": false
         },
         "series": [
             22,
@@ -185,71 +187,73 @@ const PieChart = () => {
             }
         },
     };
-    
+
     // Use the 'PieChartOption' object as your ApexCharts options.
-    
+
 
     return <ApexChart options={PieChartOption} series={PieChartOption?.series} type='donut' />;
 };
 
 const decentralizedNews = [
     {
-        'imageSrc' : '/assets/images/metaverse/decentralized_news/bbc.png',
-        'title' : 'BBC host Asia verse on Decentraland th...',
-        'content' : 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eu turpis molestie, dictum est a, entum tellus...',
-        'readingTime' : 2,
-        'voteCount' : 28,
-        'shareCount' : 72
+        'imageSrc': '/assets/images/metaverse/decentralized_news/bbc.png',
+        'title': 'BBC host Asia verse on Decentraland th...',
+        'content': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eu turpis molestie, dictum est a, entum tellus...',
+        'readingTime': 2,
+        'voteCount': 28,
+        'shareCount': 72
     },
     {
-        'imageSrc' : '/assets/images/metaverse/decentralized_news/expensiveland.png',
-        'title' : 'Macron Shows Up on Decentraland Firs...',
-        'content' : 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eu turpis molestie, dictum est a, entum tellus...',
-        'readingTime' : 2,
-        'voteCount' : 28,
-        'shareCount' : 72
+        'imageSrc': '/assets/images/metaverse/decentralized_news/expensiveland.png',
+        'title': 'Macron Shows Up on Decentraland Firs...',
+        'content': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eu turpis molestie, dictum est a, entum tellus...',
+        'readingTime': 2,
+        'voteCount': 28,
+        'shareCount': 72
     },
     {
-        'imageSrc' : '/assets/images/metaverse/decentralized_news/macron.png',
-        'title' : 'Most Expensive Land in the metaverse...',
-        'content' : 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eu turpis molestie, dictum est a, entum tellus...',
-        'readingTime' : 2,
-        'voteCount' : 28,
-        'shareCount' : 72
+        'imageSrc': '/assets/images/metaverse/decentralized_news/macron.png',
+        'title': 'Most Expensive Land in the metaverse...',
+        'content': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eu turpis molestie, dictum est a, entum tellus...',
+        'readingTime': 2,
+        'voteCount': 28,
+        'shareCount': 72
     },
 ]
 
 
 const topNftSalesItems = [
     {
-        'nftImage' : '/assets/nfts/mallstreet.png',
-        'nftName' : 'Mall Street',
-        'nftNetwork' : ['polygon','ethereum'],
-        'manaVal' : 4.45,
-        'usdVal' : 1500,
-        'island' : true
+        'nftImage': '/assets/nfts/mallstreet.png',
+        'nftName': 'Mall Street',
+        'nftNetwork': ['polygon', 'ethereum'],
+        'manaVal': 4.45,
+        'usdVal': 1500,
+        'island': true
     },
     {
-        'nftImage' : '/assets/nfts/orangeamor.png',
-        'nftName' : 'Orange Amor',
-        'nftNetwork' : ['polygon','ethereum'],
-        'manaVal' : 4.45,
-        'usdVal' : 1500,
-        'island' : false
+        'nftImage': '/assets/nfts/orangeamor.png',
+        'nftName': 'Orange Amor',
+        'nftNetwork': ['polygon', 'ethereum'],
+        'manaVal': 4.45,
+        'usdVal': 1500,
+        'island': false
     },
     {
-        'nftImage' : '/assets/nfts/southamlir.png',
-        'nftName' : 'Southam Lir...',
-        'nftNetwork' : ['polygon','ethereum'],
-        'manaVal' : 4.45,
-        'usdVal' : 1500,
-        'island' : false
+        'nftImage': '/assets/nfts/southamlir.png',
+        'nftName': 'Southam Lir...',
+        'nftNetwork': ['polygon', 'ethereum'],
+        'manaVal': 4.45,
+        'usdVal': 1500,
+        'island': false
     }
 ]
 export default function Overview() {
+    const isDesktop = useResponsive('up', 1430);
+    const isMiniDesktop = useResponsive('down', 1290);
     return (
-        <div style={{ display: 'flex', gap: '20px' }}>
-            <LeftComp>
+        <div style={{ display: 'flex', gap: '20px', flexDirection: `${isDesktop ? 'row' : 'column'}` }}>
+            <LeftComp sx={{ width: `${isDesktop ? '70%' : '100%'}` }}>
                 <Typography color='white' fontFamily='Neue Haas Grotesk Display Pro' fontSize={32} fontWeight={600}>Decentraland Stat</Typography>
                 {/* <div style={{ display: 'flex', gap: '10px' }}>
                     <FormControlLabel control={<Switch defaultChecked />} label="Live data" style={{ color: 'white' }} />
@@ -299,8 +303,8 @@ export default function Overview() {
                         <CustomText>30d</CustomText>
                     </div>
                 </div>
-                <Grid container spacing={2} style={{ color: 'white' }}>
-                    <Grid item xs={4}>
+                <Grid wrap='wrap' container spacing={2} style={{ color: 'white' }}>
+                    <Grid item xs={12} sm={6} md={4}>
                         <Panel>
                             <div style={{ display: 'flex', justifyContent: 'space-between' }}>
                                 <div style={{ color: 'gray' }}>Volume</div>
@@ -309,7 +313,7 @@ export default function Overview() {
                             <div>$2.57M</div>
                         </Panel>
                     </Grid>
-                    <Grid item xs={4}>
+                    <Grid item xs={12} sm={6} md={4}>
                         <Panel>
                             <div style={{ display: 'flex', justifyContent: 'space-between' }}>
                                 <div style={{ color: 'gray' }}>Traders</div>
@@ -321,7 +325,7 @@ export default function Overview() {
                             </div>
                         </Panel>
                     </Grid>
-                    <Grid item xs={4}>
+                    <Grid item xs={12} sm={6} md={4}>
                         <Panel>
                             <div style={{ display: 'flex', justifyContent: 'space-between' }}>
                                 <div style={{ color: 'gray' }}>Floor Price</div>
@@ -333,7 +337,7 @@ export default function Overview() {
                             </div>
                         </Panel>
                     </Grid>
-                    <Grid item xs={4}>
+                    <Grid item xs={12} sm={6} md={4}>
                         <Panel>
                             <div style={{ display: 'flex', justifyContent: 'space-between' }}>
                                 <div style={{ color: 'gray' }}>Avg.Price</div>
@@ -342,7 +346,7 @@ export default function Overview() {
                             <div>$23.57K</div>
                         </Panel>
                     </Grid>
-                    <Grid item xs={4}>
+                    <Grid item xs={12} sm={6} md={4}>
                         <Panel>
                             <div style={{ display: 'flex', justifyContent: 'space-between' }}>
                                 <div style={{ color: 'gray' }}>Sales</div>
@@ -354,7 +358,7 @@ export default function Overview() {
                             </div>
                         </Panel>
                     </Grid>
-                    <Grid item xs={4}>
+                    <Grid item xs={12} sm={6} md={4}>
                         <Panel>
                             <div style={{ display: 'flex', justifyContent: 'space-between' }}>
                                 <div style={{ color: 'gray' }}>Market Cap</div>
@@ -406,29 +410,35 @@ export default function Overview() {
                 <Stack direction='column' padding='24px' gap='24px' sx={{ backgroundColor: '#2B2E31' }} borderRadius='18px'>
                     <Stack direction='row' justifyContent='space-between'>
                         <Typography color='white' fontFamily={fontName} fontSize={32} fontWeight={600}>Top 3 Sales</Typography>
-                        <Button sx={{width:'135px' , height:'40px' , alignSelf:'end'}}>View More News</Button>
+                        <Button sx={{ width: '135px', height: '40px', alignSelf: 'end' }}>View More News</Button>
                     </Stack>
-                    <Stack direction='row' gap="20px">
-                        {
-                            topNftSalesItems.map(item => (
-                                <NftCard nftImage={item.nftImage} nftName={item.nftName} nftNetwork={item.nftNetwork} 
-                                manaVal={item.manaVal} usdVal={item.usdVal} island={item.island}/>
-                            ))
-                        }
-                    </Stack>
+                    <Scrollbar>
+                        <Stack direction='row' gap="20px" minWidth='845px'>
+                            {
+                                topNftSalesItems.map(item => (
+                                    <NftCard nftImage={item.nftImage} nftName={item.nftName} nftNetwork={item.nftNetwork}
+                                        manaVal={item.manaVal} usdVal={item.usdVal} island={item.island} />
+                                ))
+                            }
+                        </Stack>
+                    </Scrollbar>
                 </Stack>
             </LeftComp>
-            <RightComp sx={{color:'white' , fontFamily:'Neue Haas Grotesk Display Pro' , padding:'32px 24px 32px 24px',
-        borderRadius: '16px',border: '1px solid #2B2E31',backgroundColor: '#202324'}}>
+            <RightComp sx={{
+                width: `${isDesktop ? '30%' : '100%'}`, color: 'white', fontFamily: 'Neue Haas Grotesk Display Pro', padding: '32px 24px 32px 24px',
+                borderRadius: '16px', border: '1px solid #2B2E31', backgroundColor: '#202324'
+            }}>
                 <Typography fontSize={32} fontWeight={600} textAlign='left'>Decentralized News</Typography>
-                <Stack direction='column' gap="32px">
-                    {decentralizedNews.map((d) => (
-                            <NewsItem imageSrc={d.imageSrc} title={d.title} content={d.content} readingTime={d.readingTime} 
-                            voteCount={d.voteCount} shareCount={d.shareCount}/>
+                <Scrollbar>
+                    <Stack direction={`${isDesktop ? 'column' : 'row'}`} gap="32px" minWidth={`${isMiniDesktop ? '1185px' : ''}`}>
+                        {decentralizedNews.map((d) => (
+                            <NewsItem imageSrc={d.imageSrc} title={d.title} content={d.content} readingTime={d.readingTime}
+                                voteCount={d.voteCount} shareCount={d.shareCount} />
                         ))
-                    }
-                </Stack>
-                <Button sx={{width:'135px' , height:'40px' , alignSelf:'end'}}>View More News</Button>
+                        }
+                    </Stack>
+                </Scrollbar>
+                <Button sx={{ width: '135px', height: '40px', alignSelf: 'end' }}>View More News</Button>
             </RightComp>
         </div>)
         ;

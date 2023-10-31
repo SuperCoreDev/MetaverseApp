@@ -17,8 +17,8 @@ export default function NewsItem({imageSrc, title , content, readingTime , voteC
         sx={{padding:"18px 16px 18px 16px" , borderRadius:'18px',border: '1px solid #3A3D41',backgroundColor: '#2B2E31'}} 
         direction='column' gap='24px'>
             <img src={imageSrc} width='100%' height='226px' alt='newsImageItem'/>
-            <Typography fontSize={32} fontWeight={900}>{title}</Typography>
-            <Typography fontSize={20} fontWeight={500}>{content}</Typography>
+            <Typography fontSize={28} fontWeight={900}>{title}</Typography>
+            <Typography fontSize={18} fontWeight={500}>{content}</Typography>
             <Stack direction='row' gap='30px' fontFamily='Poppins' fontSize={10} fontWeight={500}>
                 <Typography>{readingTime}mins Read</Typography>
                 <Stack direction='row' gap="4px">

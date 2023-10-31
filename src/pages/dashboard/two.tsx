@@ -66,6 +66,14 @@ const CButton = styled('button')<ButtonProps>`
   border-color: transparent;
   color: ${(props) => props.color};
 `;
+
+const SocialBoxControlBtn = styled('div') ({
+  position:'fixed',
+  top:'300px',
+  right:'0px',
+  width:'36px',
+  height:'36px',
+})
 const classifyButtonsList = ['Overview','Collectibles','Land','MarketPlace','News','About','Comment'];
 
 export default function PageTwo() {
@@ -73,6 +81,7 @@ export default function PageTwo() {
   const isDesktop = useResponsive("up" , 1420);
   const [currentClassifySelected , setClassifySelect] = useState(0);
   const ref = useRef<HTMLDivElement>(null);
+  const [isSocialBoxHidden , setSocialBoxHidden] = useState(false);
   useEffect(() => {
     handleClassify(currentClassifySelected)
   } , [])
@@ -142,18 +151,18 @@ export default function PageTwo() {
           </Grid>
         </Box>
         <Box sx={{ height: "40px" }} />
-        <Stack direction='row' gap={5}>
+        <Stack direction='row' gap={5} justifyContent='space-between'>
           <Stack direction='column' gap={3}>
             <Stack direction='row' alignItems='center'>
               <Typography color='white' fontFamily='Termina Test' fontSize={56} fontWeight={900}>Decentraland</Typography>
               <Icon icon="ph:seal-check-fill" color="#8bf8ff" width="32" height="32" />
             </Stack>
-            <Stack direction='row' style={{width:isDesktop?'90%':''}} sx={{flexDirection: isDesktop ? 'row' : 'column' , gap: isDesktop ? '0' : '16px'}} spacing={4}>
+            <Stack direction='row' style={{width:'90%'}} sx={{flexDirection: isDesktop ? 'row' : 'column' , gap: isDesktop ? '0' : '16px'}} spacing={4}>
               <Typography color='white' fontFamily='Neue Haas Grotesk Display Pro' fontSize={20} fontWeight={500}>
                 Decentraland is a decentralized virtual reality platform powered by blockchain technology. Within the Decentraland platform, users can create, experience, and monetize their content and applications.
               </Typography>
               
-              <CButton fontSize={20} bgColor='black' color='#D96BFF' style={{alignSelf:'center' , width:'50%' }}>Buy Metaverse</CButton>
+              <CButton fontSize={20} bgColor='black' color='#D96BFF' style={{alignSelf:'center' , width:'30%' }}>Buy Metaverse</CButton>
               
             </Stack>
             <TopBar ref={ref} sx={{flexWrap:isDesktop?'':'wrap'}}>
@@ -164,7 +173,15 @@ export default function PageTwo() {
               }
             </TopBar>
           </Stack>
-          <Stack direction='column' sx={{width:isDesktop?'392px':'100%'}} gap="29px">
+        </Stack>
+        <Box sx={{ height: "32px" }} />
+        {renderByClassify()}
+      </Container>
+
+
+      <SocialBoxControlBtn onClick={() => setSocialBoxHidden(!isSocialBoxHidden)}>
+          <Icon icon="emojione-v1:right-arrow" color="#3dfff3" width="36" height="36" />
+          <Stack direction='column' visibility={`${isSocialBoxHidden ? 'visible' : 'hidden'}`} sx={{width:'392px' , translate:'-400px -150px'}} gap="29px">
             <Stack direction='row' sx={{paddingLeft:'180px' , paddingRight:'19px'}} gap={4}>
               <Icon icon="mdi:instagram" color="white" width="24" height="24" />
               <Icon icon="mdi:twitter" color="white" width="24" height="24" />
@@ -216,10 +233,7 @@ export default function PageTwo() {
               </Stack>
             </Stack>
           </Stack>
-        </Stack>
-        <Box sx={{ height: "32px" }} />
-        {renderByClassify()}
-      </Container>
+      </SocialBoxControlBtn>
     </>
   );
 }
