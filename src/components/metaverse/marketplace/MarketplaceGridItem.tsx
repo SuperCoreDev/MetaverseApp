@@ -1,5 +1,6 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import Image from 'next/image';
+
 import { Icon } from '@iconify/react';
 import Box from '@mui/material/Box';
 import { DataGrid, GridColDef,GridRenderCellParams } from '@mui/x-data-grid';
@@ -103,32 +104,114 @@ const StyledDataGrid = styled(DataGrid)(({ theme }) => ({
 const rows = [
     {
       id: 1,
-      name: 'Mutant Ape',
+      name: 'Decentraland',
       balance: '$567.99k',
-      uaw : '4',
-      status : 'Open'
+      uaw : '$567.99k',
+      uawrate: '+0.63%',
+      volume : '$567.99k',
+      volumerate: '+0.63%',
+      dayraw : ''
     },
     {
-        id: 2,
-        name: 'Yacth CLub',
-        balance: '$567.99k',
-        uaw : '4',
-        status : 'Open'
+      id: 2,
+      name: 'Lalaverse',
+      balance: '$567.99k',
+      uaw : '$567.99k',
+      uawrate: '+0.63%',
+      volume : '$567.99k',
+      volumerate: '+0.63%',
+      dayraw : ''
     },
     {
-        id: 3,
-        name: 'Ape Yacth',
-        balance: '$567.99k',
-        uaw : '4',
-        status : 'Open'
+      id: 3,
+      name: 'Illuvim',
+      balance: '$567.99k',
+      uaw : '$567.99k',
+      uawrate: '+0.63%',
+      volume : '$567.99k',
+      volumerate: '+0.63%',
+      dayraw : ''
     },
     {
-        id: 4,
-        name: 'Mutant Yacth',
-        balance: '$567.99k',
-        uaw : '4',
-        status : 'Open'
-    }
+      id: 4,
+      name: 'Geek Metaverse',
+      balance: '$567.99k',
+      uaw : '$567.99k',
+      uawrate: '+0.63%',
+      volume : '$567.99k',
+      volumerate: '+0.63%',
+      dayraw : ''
+    },
+    {
+      id: 5,
+      name: 'Roblox',
+      balance: '$567.99k',
+      uaw : '$567.99k',
+      uawrate: '+0.63%',
+      volume : '$567.99k',
+      volumerate: '+0.63%',
+      dayraw : ''
+    },
+    {
+      id: 6,
+      name: 'Sandbox',
+      balance: '$567.99k',
+      uaw : '$567.99k',
+      uawrate: '+0.63%',
+      volume : '$567.99k',
+      volumerate: '+0.63%',
+      dayraw : ''
+    },
+    {
+      id: 7,
+      name: 'Fortniite',
+      balance: '$567.99k',
+      uaw : '$567.99k',
+      uawrate: '+0.63%',
+      volume : '$567.99k',
+      volumerate: '+0.63%',
+      dayraw : ''
+    },
+    {
+      id: 8,
+      name: 'Somnium',
+      balance: '$567.99k',
+      uaw : '$567.99k',
+      uawrate: '+0.63%',
+      volume : '$567.99k',
+      volumerate: '+0.63%',
+      dayraw : ''
+    },
+    {
+      id: 9,
+      name: 'Vision',
+      balance: '$567.99k',
+      uaw : '$567.99k',
+      uawrate: '+0.63%',
+      volume : '$567.99k',
+      volumerate: '+0.63%',
+      dayraw : ''
+    },
+    {
+      id: 10,
+      name: 'Polkadot',
+      balance: '$567.99k',
+      uaw : '$567.99k',
+      uawrate: '+0.63%',
+      volume : '$567.99k',
+      volumerate: '+0.63%',
+      dayraw : ''
+    },
+    {
+      id: 11,
+      name: 'Hooked',
+      balance: '$567.99k',
+      uaw : '$567.99k',
+      uawrate: '+0.63%',
+      volume : '$567.99k',
+      volumerate: '+0.63%',
+      dayraw : ''
+    },
   ];
   const NameRowContainer = ({rowID , rowImage , name}:NameProps):React.ReactNode => (
     <Stack direction='row' gap={3}>
@@ -160,11 +243,11 @@ const rows = [
       headerName : 'Name',
       headerClassName: 'super-app-theme--header',
       headerAlign: 'left',
-      flex:5,
+      flex:4,
       valueGetter: (params) => getValbyName(params.value),
       renderCell: (params: GridRenderCellParams<any>) => (
         <Box>
-            <NameRowContainer rowID={params.value[0].id} rowImage={`/assets/images/dapps/${params.value[0].name}.png`} name={params.value[0].name}/>
+            <NameRowContainer rowID={params.value[0].id} rowImage={`/assets/images/communities/${params.value[0].name}.png`} name={params.value[0].name}/>
         </Box>
       ),
     },
@@ -173,16 +256,46 @@ const rows = [
       headerName : 'Balance',
       headerClassName: 'super-app-theme--header',
       headerAlign: 'left',
-      flex:2
+      flex:1
     },
     {
         field: 'uaw',
+        headerName : 'UAW',
+        headerClassName: 'super-app-theme--header',
+        headerAlign: 'left',
+        flex:1
+      },
+      {
+        field: 'uawrate',
+        headerName : '%UAW',
+        headerClassName: 'super-app-theme--header',
+        headerAlign: 'left',
+        flex:1
+      },
+      {
+        field: 'volume',
+        headerName : 'Volume',
+        headerClassName: 'super-app-theme--header',
+        headerAlign: 'left',
+        flex:1
+      },
+      {
+        field: 'volumerate',
+        headerName : '%Volume',
+        headerClassName: 'super-app-theme--header',
+        headerAlign: 'left',
+        flex:1
+      },
+      {
+        field: 'dayuaw',
         headerName : '24H UAW',
         headerClassName: 'super-app-theme--header',
         headerAlign: 'left',
-        flex:3,
+        flex:1,
         renderCell: (params: GridRenderCellParams<any>) => (
-            <Image src="/assets/images/dapps/chart.png" alt='chart' width={120} height={40}/>
+          <Box>
+              <Image alt="dayraw" src='/assets/images/dapps/chart.png' width={96} height={40}/>
+          </Box>
         ),
       },
   ];
@@ -198,7 +311,7 @@ const rows = [
     name : string
   }
 
-export default function StylingRowsGrid() {
+export default function MarketPlaceGridItem() {
 //   const { data } = useDemoData({
 //     dataSet: 'Commodity',
 //     rowLength: 100,
@@ -214,6 +327,7 @@ export default function StylingRowsGrid() {
         disableColumnMenu
         hideFooter
         getRowHeight={getRowHeight}
+        sx={{'& .MuiDataGrid-cell' : {background:'#2B2E31' , color:'white'}}}
       />
     </Box>
   );

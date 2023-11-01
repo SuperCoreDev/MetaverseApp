@@ -1,5 +1,8 @@
 import Image from 'next/image';
 import NextLink from 'next/link';
+import { usePathname } from 'next/navigation';
+import { useEffect, useState } from 'react';
+import { useRouter } from 'next/router';
 // @mui
 import { useTheme } from '@mui/material/styles';
 import { Stack, AppBar, Toolbar, Link, Box, IconButton, Typography } from '@mui/material';
@@ -15,16 +18,14 @@ import { HEADER, NAV } from '../../../config-global';
 import Logo from '../../../components/logo';
 import Iconify from '../../../components/iconify';
 import { useSettingsContext } from '../../../components/settings';
+
 //
 import Searchbar from './Searchbar';
 import AccountPopover from './AccountPopover';
 import LanguagePopover from './LanguagePopover';
 import ContactsPopover from './ContactsPopover';
 import NotificationsPopover from './NotificationsPopover';
-import { usePathname } from 'next/navigation';
-import { useEffect, useState } from 'react';
-import { useRouter } from 'next/router';
-import useActiveLink from 'src/hooks/useActiveLink';
+
 
 // ----------------------------------------------------------------------
 
@@ -74,7 +75,8 @@ export default function Header({ onOpenNav }: Props) {
             </Box>
           </Link>)}
         <Box sx={{ padding: '10px' }} />
-        {isMetaverseOpened && <Typography fontFamily='Neue Haas Grotesk Display Pro' fontSize={32} fontWeight={600}>Metaverse</Typography>}
+        
+        {/* {isMetaverseOpened && <Typography fontFamily='Neue Haas Grotesk Display Pro' fontSize={32} fontWeight={600}>Metaverse</Typography>} */}
         {!isMetaverseOpened && <Image alt="logoCaption" src="/assets/logoCaption.png" width={108} height={22} />}
 
       </Stack>
@@ -90,11 +92,11 @@ export default function Header({ onOpenNav }: Props) {
         justifyContent="flex-end"
         spacing={{ xs: 0.5, sm: 1.5 }}
       >
-        <LanguagePopover />
+        {/* <LanguagePopover /> */}
 
         <NotificationsPopover />
 
-        <ContactsPopover />
+        {/* <ContactsPopover /> */}
 
         <AccountPopover />
       </Stack>
