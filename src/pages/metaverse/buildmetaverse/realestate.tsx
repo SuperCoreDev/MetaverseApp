@@ -155,6 +155,7 @@ export default function RealEstate() {
                             // label="Search"
                             // value={searchTerm}
                             // onChange={handleChange}
+                            placeholder='Search...'
                             sx={{ width: 228, borderRadius: '12px', background: '#1E2121', }}
                             InputProps={{
                                 sx: { color: 'white' },

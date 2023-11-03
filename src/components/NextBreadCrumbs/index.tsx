@@ -44,11 +44,13 @@ function Crumb({ text: defaultText, textGenerator, href, last=false } : CrumbPro
 
 type NextBreadcrumbsProps = {
     getTextGenerator : Function,
-    getDefaultTextGenerator : Function
+    getDefaultTextGenerator : Function,
+    breadcrumbCase : boolean
 }
 export default function NextBreadcrumbs({
   getTextGenerator=_defaultGetTextGenerator,
-  getDefaultTextGenerator=_defaultGetDefaultTextGenerator
+  getDefaultTextGenerator=_defaultGetDefaultTextGenerator,
+  breadcrumbCase = true
 } : NextBreadcrumbsProps) {
   const router = useRouter();
 
@@ -74,7 +76,8 @@ export default function NextBreadcrumbs({
   return (
     <Breadcrumbs aria-label="breadcrumb">
       {breadcrumbs.map((crumb, idx) => (
-        idx!==0 && <Crumb {...crumb} key={idx} last={idx === breadcrumbs.length - 1} />
+        breadcrumbCase ? (idx!==0 && <Crumb {...crumb} key={idx} last={idx === breadcrumbs.length - 1} />) : 
+        <Crumb {...crumb} key={idx} last={idx === breadcrumbs.length - 1} />
       ))}
     </Breadcrumbs>
   );

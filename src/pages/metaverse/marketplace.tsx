@@ -8,7 +8,7 @@ import { useRef, ReactNode, useState } from 'react';
 import { styled } from '@mui/material/styles';
 import MarketPlaceGridItem from 'src/components/metaverse/marketplace/MarketplaceGridItem';
 import { Icon } from '@iconify/react';
-import { Container, Typography, Stack, Button } from '@mui/material';
+import { Container, Typography, Stack, Button, Grid, InputAdornment, TextField } from '@mui/material';
 // layouts
 import DashboardLayout from '../../layouts/dashboard';
 
@@ -20,14 +20,36 @@ const CustomText = styled('div')({
     fontSize: '12px'
 })
 
-
+const CategoryButton = styled('div')(({ ...props }) => {
+    return {
+        background: props.bg,
+        color: props.color,
+        borderRadius: '10px',
+        padding: '8px 14px',
+        width: '120px',
+        textAlign: 'center',
+        fontSize: '12px',
+        '@media (max-width:700px)': {
+            fontSize: '13px',
+        },
+    };
+});
 
 MetaverseMarketPlace.getLayout = (page: React.ReactElement) => <DashboardLayout>{page}</DashboardLayout>;
 
 // ----------------------------------------------------------------------
+const labels = [
+    'All Categories',
+    'Games',
+    'Gambling',
+    'Social',
+    'Collectibles',
+    'Marketplace',
+    'Real Estate',
+];
 
 export default function MetaverseMarketPlace() {
-
+    const [category, setCategory] = useState(0);
     return (
         <>
             <Head>
@@ -35,11 +57,122 @@ export default function MetaverseMarketPlace() {
             </Head>
             <Stack sx={{
                 width: '100%', boxShadow: '0px 6px 12px 0px #00000033',
-                background: '#202324', padding: '32px'
+                background: '#202324', padding: '0px 32px 32px 32px'
             }}>
                 <Stack direction="column" gap={4}>
-
-                    <Stack direction='row' justifyContent='space-between' alignItems='center'>
+                    <Grid container spacing={2} style={{ position: 'relative', zIndex: '2', width: 'full' }}>
+                        {labels.map((x, index) => (
+                            <Grid item md={3} lg={1.5}>
+                                <CategoryButton
+                                    bg={`${category === index ? '#d96bff' : 'black'}`}
+                                    color={`${category === index ? '#black' : 'white'}`}
+                                >
+                                    {x}
+                                </CategoryButton>
+                            </Grid>
+                        ))}
+                        <Grid item sm={1.5}>
+                            <CategoryButton
+                                bg={`black`}
+                                color={'white'}
+                                style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+                            >
+                                More
+                                <Icon icon="mingcute:down-line" color="white" />
+                            </CategoryButton>
+                        </Grid>
+                    </Grid>
+                    <Grid container spacing={2}>
+                        <Grid item xs={12} sm={4} md={2}>
+                            <TextField
+                                variant="standard"
+                                InputProps={{
+                                    disableUnderline: true,
+                                    endAdornment: (
+                                        <InputAdornment position="end">
+                                            <Icon icon="ion:filter" color="gray" />
+                                        </InputAdornment>
+                                    ),
+                                    style: { color: 'white' },
+                                }}
+                                placeholder="Filter"
+                                style={{
+                                    color: 'white',
+                                    borderRadius: '15px',
+                                    padding: '5px 10px 5px 10px',
+                                    background: '#191919',
+                                    width: '100%',
+                                }}
+                            />
+                        </Grid>
+                        <Grid item xs={12} sm={8} md={6}>
+                            <TextField
+                                variant="standard"
+                                InputProps={{
+                                    disableUnderline: true,
+                                    endAdornment: (
+                                        <InputAdornment position="end">
+                                            <Icon icon="iconamoon:search-light" color="gray" />
+                                        </InputAdornment>
+                                    ),
+                                    style: { color: 'white' },
+                                }}
+                                placeholder="Search Metaverse"
+                                style={{
+                                    color: 'white',
+                                    borderRadius: '15px',
+                                    padding: '5px 10px 5px 10px',
+                                    background: '#191919',
+                                    width: '100%',
+                                }}
+                            />
+                        </Grid>
+                        <Grid item xs={12} sm={6} md={2}>
+                            <TextField
+                                variant="standard"
+                                InputProps={{
+                                    disableUnderline: true,
+                                    endAdornment: (
+                                        <InputAdornment position="end">
+                                            <Icon icon="mingcute:down-fill" />
+                                        </InputAdornment>
+                                    ),
+                                    style: { color: 'white' },
+                                }}
+                                placeholder="Newly Listed"
+                                style={{
+                                    color: 'white',
+                                    borderRadius: '15px',
+                                    padding: '5px 10px 5px 10px',
+                                    background: '#191919',
+                                    width: '100%',
+                                }}
+                            />
+                        </Grid>
+                        <Grid item xs={12} sm={6} md={2}>
+                            <TextField
+                                variant="standard"
+                                InputProps={{
+                                    disableUnderline: true,
+                                    endAdornment: (
+                                        <InputAdornment position="end">
+                                            <Icon icon="mingcute:down-fill" />
+                                        </InputAdornment>
+                                    ),
+                                    style: { color: 'white' },
+                                }}
+                                placeholder="All Chains"
+                                style={{
+                                    color: 'white',
+                                    borderRadius: '15px',
+                                    padding: '5px 10px 5px 10px',
+                                    background: '#191919',
+                                    width: '100%',
+                                }}
+                            />
+                        </Grid>
+                    </Grid>
+                    <Stack direction='row' flexWrap='wrap' justifyContent='space-between' alignItems='center' gap="36px">
                         <Stack direction='row' alignItems='center'>
                             <Icon icon="noto:fire" color="gray" width="24" height="24" />
                             <Typography color='white' fontSize={32} fontWeight={600}>Metaverse Marketplace</Typography>
