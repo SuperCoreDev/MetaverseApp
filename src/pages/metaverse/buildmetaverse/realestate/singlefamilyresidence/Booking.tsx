@@ -42,7 +42,7 @@ export default function Booking() {
         <Grid container>
             <Grid item md={8} sm={12} xs={12}>
                 <Grid container spacing='32px'>
-                    <Grid item md={6} sm={12} >
+                    <Grid item md={6} sm={12}  xs={12}>
                         <TextField
                             sx={{
                                 width: '100%'
