@@ -48,6 +48,27 @@ const Comp = styled('div')({
     flexDirection: 'row',
   },
 })
+interface ButtonProps {
+  bgColor : string;
+  color : string;
+  fontSize : number | undefined;
+}
+const CButton = styled('button')<ButtonProps>`
+  width: 100%;
+  height: 56px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Neue Haas Grotesk Display Pro';
+  font-size: ${(props) => props.bgColor}px;
+  font-weight: 600;
+  line-height: 17px;
+  text-align: center;
+  background-color: ${(props) => props.bgColor};
+  border-radius: 18px;
+  border-color: transparent;
+  color: ${(props) => props.color};
+`;
 
 SingleFamilyResidence.getLayout = (page: React.ReactElement) => <DashboardLayout>{page}</DashboardLayout>;
 
@@ -164,7 +185,24 @@ export default function SingleFamilyResidence() {
             </Button>
           </Comp>
         </Bar>
-        <img src='/assets/nfts/MetaverseCards/RealEstate/singlefamily.png' alt='img' height={365}/>
+        <Box style={{ position: 'relative' }}>
+          <img src='/assets/nfts/MetaverseCards/RealEstate/singlefamily.png' alt='img' height={365} width='100%'/>
+          <Grid container style={{ position: 'absolute', right: '32px', bottom: '24px', width: '256px' }} spacing={2}>
+              <Grid item xs={12}>
+                <CButton fontSize={14} bgColor='#F75BB1' color='black'>Buy Now</CButton>
+              </Grid>
+              <Grid item xs={6}>
+                <CButton fontSize={14} bgColor='#000' color='white'>
+                  Share <Icon icon="bi:share" color="white" width="12" height="12" />
+                </CButton>
+              </Grid>
+              <Grid item xs={6}>
+                <CButton fontSize={14} bgColor='#000' color='white'>
+                  Save <Icon icon="mdi:report-finance" color="white" width="12" height="12" />
+                </CButton>
+              </Grid>
+          </Grid>
+        </Box>
         <div style={{ display: 'flex', justifyContent: 'space-between', gap: '20px'}}>
           <div style={{ display: 'flex', flexDirection: 'column', gap: '20px', alignItems: 'flex-start', width: `${isLg ? '70%' : '100%'}`}}>
             <div style={{ fontSize: '56px', fontWeight: '700' }}>Single Family Residence</div>
