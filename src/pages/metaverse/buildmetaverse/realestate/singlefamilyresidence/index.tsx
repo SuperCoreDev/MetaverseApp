@@ -22,7 +22,7 @@ import Floorplan from './Floorplan';
 import Images from './Images';
 import Booking from './Booking';
 import { CardWrapper } from '..';
-// import PriceHistory from './PriceHistory';
+import PriceHistory from './PriceHistory';
 import Scrollbar from 'src/components/scrollbar/Scrollbar';
 import useResponsive from 'src/hooks/useResponsive';
 
@@ -129,8 +129,8 @@ export default function SingleFamilyResidence() {
         return <Overview />;
       case 1:
         return <Features />;
-      // case 2:
-      //   return <PriceHistory/>;
+      case 2:
+        return <PriceHistory/>;
       case 3:
         return <MonthlyCost />;
       case 4:
