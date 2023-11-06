@@ -3,17 +3,19 @@
 // next
 import Head from 'next/head';
 import Image from 'next/image';
-import SearchBar from 'material-ui-search-bar';
+import NextLink from 'next/link'
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { useRef, ReactNode, useState, useCallback } from 'react';
 import { styled } from '@mui/material/styles';
 import SearchIcon from "@mui/icons-material/Search";
 import NextBreadcrumbs from 'src/components/NextBreadCrumbs';
 import { Icon } from '@iconify/react';
-import { Container, Typography, Stack, Button, Box, Select, MenuItem, Grid, TextField, InputAdornment } from '@mui/material';
+import { Container, Typography, Link, Stack, Button, Box, Select, MenuItem, Grid, TextField, InputAdornment } from '@mui/material';
 
 // layouts
-import DashboardLayout from '../../../layouts/dashboard';
+import DashboardLayout from '../../../../layouts/dashboard';
+import Scrollbar from 'src/components/scrollbar/Scrollbar';
+import useResponsive from 'src/hooks/useResponsive';
 
 
 
@@ -44,8 +46,8 @@ const Wrapper = styled(Stack)({
     padding: '24px 32px',
     gap: '29px'
 })
-type ListTextProps = { content: string , color: string}
-const ListText = ({ content , color}: ListTextProps) => (
+type ListTextProps = { content: string, color: string }
+const ListText = ({ content, color }: ListTextProps) => (
     (
         <Stack direction='row' alignItems='center' gap="8px">
             <Icon icon="material-symbols-light:circle" color={color} width="8" height="8" />
@@ -58,9 +60,10 @@ const ListText = ({ content , color}: ListTextProps) => (
 type CardWrapperProps = {
     src: string
 }
-const CardWrapper = ({ src }: CardWrapperProps) => (
+export const CardWrapper = ({ src }: CardWrapperProps) => (
+
     <Stack direction='column' padding='14px' gap="17px"
-        sx={{ borderRadius: '16px', border: '1px solid #4A4D52', background: '#202324' }}>
+        sx={{ borderRadius: '16px', border: '1px solid #4A4D52', background: '#202324' , minWidth:'231px'}}>
         <Box position='relative' width='inherit'>
             <Image src={src} alt="SFR" width={393} height={208} />
             <Box position='absolute' top={15} left={19}>
@@ -78,7 +81,7 @@ const CardWrapper = ({ src }: CardWrapperProps) => (
                     // padding: '24px 20px 10px 20px',
                 }}>
                 <Typography color='white' fontSize={20} fontWeight={700}>Single Family Residential</Typography>
-                <Box sx={{ width: '100%', height: '1px', background: '#D03A67' }} />
+                <Box sx={{ width: '100%', height: '1px', background: '#94979E' }} />
                 <Stack direction='column'>
                     <ListText color='#94979E' content="Built in 1989" />
                     <ListText color='#94979E' content="Electric, heat pump" />
@@ -87,7 +90,7 @@ const CardWrapper = ({ src }: CardWrapperProps) => (
                     <ListText color='#94979E' content="9,466sqft" />
                     <ListText color='#94979E' content="2% buyers agency fee" />
                 </Stack>
-                <Box sx={{ width: '100%', height: '1px', background: '#D03A67' }} />
+                <Box sx={{ width: '100%', height: '1px', background: '#94979E' }} />
                 <Typography fontSize={32} fontWeight={700} color='white'>$197</Typography>
                 <Typography color='#94979E'>price/sqft</Typography>
             </Stack>
@@ -99,6 +102,7 @@ const CardWrapper = ({ src }: CardWrapperProps) => (
 RealEstate.getLayout = (page: React.ReactElement) => <DashboardLayout>{page}</DashboardLayout>;
 
 export default function RealEstate() {
+    const isLargeDesktop = useResponsive('up',1100)
     const getDefaultTextGenerator = useCallback((subpath: string) => (
         {
             "buildmetaverse": "Build Metaverse",
@@ -114,9 +118,10 @@ export default function RealEstate() {
     return (
         <Stack fontFamily='Neue Haas Grotesk Display Pro' direction='column' sx={{}} gap='24px' padding='0 24px 24px 24px'>
             <NextBreadcrumbs
+                breadcrumbCase
                 getDefaultTextGenerator={getDefaultTextGenerator}
                 getTextGenerator={getTextGenerator} />
-            <Grid container justifyContent='space-between'>
+            <Grid container  justifyContent='space-between'>
                 <Grid item>
                     <MetaverseClassifyButton>Real Estate</MetaverseClassifyButton>
                 </Grid>
@@ -185,10 +190,10 @@ export default function RealEstate() {
                             <Box padding='12px' textAlign='center' sx={{ border: '1px solid transparent' }}>Land</Box>
                         </Stack>
                     </Box>
-                    <Stack direction='column' sx={{ width: '100%' }} gap="26px">
-                        <Stack direction='row' borderRadius='16px' sx={{ width: '100%' }}>
-                            <Box position='relative' width='inherit'>
-                                <img src='/assets/images/metaverse/realestate/SFR1.png' alt="SFR" style={{width:'100%' , height:'100%'}} />
+                    <Stack direction='column' sx={{ width: '100%' }} gap="26px" >
+                        <Stack direction='row' borderRadius='16px' >
+                            <Box position='relative' width='inherit' >
+                                <img src='/assets/images/metaverse/realestate/SFR1.png' alt="SFR" style={{ width: '100%', height: '100%' }} />
                                 <Box position='absolute' top={15} left={19}>
                                     <Stack direction='row' padding='8px' gap='20px' borderRadius='4px' sx={{ background: 'rgba(12, 13, 14, 0.20)' }}>
                                         <Icon icon="tabler:capture" color="white" width="24" height="24" />
@@ -219,25 +224,27 @@ export default function RealEstate() {
                                     <Typography color='#edb3c4'>price/sqft</Typography>
                                 </Stack>
                                 <Stack justifyContent='center' alignItems='center'
-                                    sx={{ flexGrow: '1', background: 'black', borderBottomRightRadius: '16px' , padding:'16px 0' }}>
+                                    sx={{ flexGrow: '1', background: 'black', borderBottomRightRadius: '16px', padding: '16px 0' }}>
                                     <Typography color='white'>Take A Tour</Typography>
                                 </Stack>
                             </Stack>
                         </Stack>
-                        <Grid container gap='32px' justifyContent='space-around'>
-                            <Grid item>
-                                <CardWrapper src="/assets/images/metaverse/realestate/SFR2.png" />
+                            <Grid container gap='32px' justifyContent='space-around' >
+                                <Grid item>
+                                    <Link underline='none' component={NextLink} href='/metaverse/buildmetaverse/realestate/singlefamilyresidence'>
+                                        <CardWrapper src="/assets/images/metaverse/realestate/SFR2.png" />
+                                    </Link>
+                                </Grid>
+                                <Grid item>
+                                    <CardWrapper src="/assets/images/metaverse/realestate/SFR3.png" />
+                                </Grid>
+                                <Grid item>
+                                    <CardWrapper src="/assets/images/metaverse/realestate/SFR3.png" />
+                                </Grid>
+                                <Grid item>
+                                    <CardWrapper src="/assets/images/metaverse/realestate/SFR2.png" />
+                                </Grid>
                             </Grid>
-                            <Grid item>
-                                <CardWrapper src="/assets/images/metaverse/realestate/SFR3.png" />
-                            </Grid>
-                            <Grid item>
-                                <CardWrapper src="/assets/images/metaverse/realestate/SFR3.png" />
-                            </Grid>
-                            <Grid item>
-                                <CardWrapper src="/assets/images/metaverse/realestate/SFR2.png" />
-                            </Grid>
-                        </Grid>
                     </Stack>
                 </Stack>
             </Wrapper>
