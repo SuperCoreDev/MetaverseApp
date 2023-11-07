@@ -1,9 +1,17 @@
 import { Stack , Typography , Button} from "@mui/material"
+import { useRef , useEffect } from "react"
 import StylingRowsGrid from "./dappsgrid"
 
+
 export default function DappsView() {
+    const ref = useRef<HTMLDivElement>(null);
+    useEffect(()=>{
+        if(ref.current)
+        {ref.current.style.opacity = '1';
+        ref.current.style.transition = 'opacity 2s ease';}
+    } , [])
     return (
-        <Stack direction="column" gap={4}>
+        <Stack ref={ref} sx={{opacity:'0' , transition:'none'}} direction="column" gap={4}>
             <Stack direction="row" justifyContent='space-between' width='100%'>
                 <Typography fontSize={20} fontWeight={600} color='white'>Top  And Trending NFTs</Typography>
                 <Button sx={{

@@ -5,7 +5,7 @@ import Head from 'next/head';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { useRef,ReactNode,useState } from 'react';
 import { Icon } from '@iconify/react';
-import { Container, Typography,SelectChangeEvent,Select,MenuItem } from '@mui/material';
+import { Container, Typography,SelectChangeEvent,Select,MenuItem,Stack } from '@mui/material';
 import NftOverView from 'src/layouts/dashboard/market_overview/nftOverview';
 import Walletpanel from 'src/layouts/dashboard/Walletpanel';
 import DappsView from 'src/layouts/dashboard/market_overview/dappsview';
@@ -50,7 +50,7 @@ export default function PageOne() {
         <title> Dashboard </title>
       </Head>
       {/* <Container maxWidth={themeStretch ? false : 'xl'}>  */}
-      <div style={{ paddingLeft: '8px', paddingRight: '16px' }}>
+      <Stack width='100%' sx={{ paddingLeft: '8px', paddingRight: '16px' }}>
         <div className={styles.OneWrapper}>
           <div className={styles.StatisticWrapper}>
             <div className={styles.descriptionboard}>
@@ -143,7 +143,7 @@ export default function PageOne() {
                     </div>
                   </div>
                   <Chart />
-                  {classifyLabel === 'Metaverse' ? (<Metaverse />) :
+                  {classifyLabel === 'Metaverse' ? (<Metaverse/>) :
                   classifyLabel === 'NFTS' ? (<NftOverView />) : classifyLabel === 'DAPPS' ? (<DappsView/>) : (<></>)
                 }
                 </div>
@@ -152,7 +152,7 @@ export default function PageOne() {
             </div>
             <Walletpanel />
           </div>
-        </div>
+        </Stack>
       </>
       );
 }

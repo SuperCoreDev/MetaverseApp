@@ -26,25 +26,6 @@ import styled from '@emotion/styled';
 import Scrollbar from 'src/components/scrollbar/Scrollbar';
 // components
 
-const LeftCircle = styled('div')({
-  position: 'absolute',
-  width: '700px',
-  height: '700px',
-  borderRadius: '100%',
-  background: 'rgba(104, 204, 235, 0.40)',
-  filter: 'blur(150px)',
-});
-
-const RightCircle = styled('div')({
-  position: 'absolute',
-  top: '-50px',
-  right: '0px',
-  width: '700px',
-  height: '700px',
-  borderRadius: '100%',
-  background: 'rgba(235, 104, 198, 0.40)',
-  filter: 'blur(150px)',
-});
 
 const CategoryButton = styled('div')(({ ...props }) => {
   return {
@@ -77,6 +58,7 @@ const MetaverseItem = styled('div')(({ ...props }) => {
     borderRadius: '10px',
     justifyContent: 'space-between',
     height: '300px',
+    overflow:'hidden',
   };
 });
 
@@ -92,16 +74,20 @@ const TrendingButton = styled('div')(({ ...props }) => {
   };
 });
 
-const RightPart = styled('div')({
-  display: 'flex',
-  flex: 'none',
-  flexDirection: 'column',
-  color: 'white',
-  width: '300px',
-  padding: '20px',
-  height: '300px',
-  justifyContent: 'space-between',
-});
+const RightPart = styled('div')(({...props}) => {
+  return {
+    display: 'flex',
+    opacity: props.flag ? '1' : '0',
+    transition: '0.3s ease-out',
+    flex: 'none',
+    flexDirection: 'column',
+    color: 'white',
+    width: props.flag ? '300px' : '0px',
+    padding: props.flag ? '20px' : '0px',
+    height: '300px',
+    justifyContent: 'space-between',
+  }
+})
 
 const ViewButton = styled('div')({
   color: '#191919',
@@ -127,9 +113,10 @@ const PopularItem = styled('div')(({ ...props }) => {
     border: 'solid 1px gray',
     justifyContent: 'space-between',
     ':hover': {
-      transform: 'scale(1.5, 1.5)',
+      transform: 'scale(1.3, 1.3)',
       transition: '1s',
       position: 'absolute',
+      top: '20px'
     },
   };
 });
@@ -208,8 +195,6 @@ export default function MetaverseOverview() {
         }}
         gap={4}
       >
-        <LeftCircle />
-        <RightCircle />
         <Grid container spacing={2} style={{ position: 'relative', zIndex: '2', width: 'full' }}>
           {labels.map((x, index) => (
             <Grid item md={3} lg={1.5}>
@@ -331,7 +316,6 @@ export default function MetaverseOverview() {
               flex: 'none',
               width: 'auto',
               gap: '10px',
-              justifyContent: 'center',
             }}
           >
             {metaverseArray.map((x) => (
@@ -356,8 +340,8 @@ export default function MetaverseOverview() {
                   />
                   <span style={{ color: 'white', fontSize: '32px' }}>Illuvium</span>
                 </TrendingButton>
-                {current == x && (
-                  <RightPart>
+                {(
+                  <RightPart flag={current == x}>
                     <div style={{ display: 'flex', flexDirection: 'column', paddingTop: '100px' }}>
                       <div>
                         Decentraland is a decentralized virtual reality platform powered by

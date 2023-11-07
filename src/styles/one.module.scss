@@ -90,7 +90,7 @@ $font-family: 'Neue Haas Grotesk Display Pro';
                         font-weight: 600;
                         line-height: 17px;
                         color: white;
-
+                        cursor: pointer;
                         &:active {
                             background-color: #D96BFF;
                             border-color: transparent;
@@ -234,7 +234,10 @@ $font-family: 'Neue Haas Grotesk Display Pro';
         background-color: #1E2121;
         border-color: #2B2E31;
         height: 100%;
-
+        width:35%;
+        @media (max-width:900px) {
+            width:100%
+        }
         .Buttongroup {
             display: flex;
             flex-direction: row;

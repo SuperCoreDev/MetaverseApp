@@ -1,7 +1,7 @@
 import Scrollbar from 'src/components/scrollbar/Scrollbar';
 import { Icon } from '@iconify/react';
 import {MenuItem, Select,SelectChangeEvent } from '@mui/material';
-import { useState , ReactNode } from "react";
+import { useState , ReactNode, useEffect, useRef } from "react";
 import Image from 'next/image'
 
 import styles from './style.module.scss';
@@ -9,10 +9,15 @@ import styles from './style.module.scss';
 
 
 export default function Metaverse() {
-
+    const ref = useRef<HTMLDivElement>(null);
+    useEffect(()=>{
+        if(ref.current)
+        {ref.current.style.opacity = '1';
+        ref.current.style.transition = 'opacity 2s ease';}
+    } , [])
     return (
         
-            <div className={styles.MarketOverview__metaversegallery}>
+            <div ref={ref} className={styles.MarketOverview__metaversegallery}>
                 <div className={styles.galleryHeaderBoard}>
                     <span className={styles.galleryHeaderBoard__headerTitle}>Top 3 Metaverses</span>
                     <div className={styles.galleryHeaderBoard__viewmorebtn}><span>View More</span></div>

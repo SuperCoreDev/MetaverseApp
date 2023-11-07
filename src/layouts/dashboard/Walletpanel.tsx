@@ -216,7 +216,7 @@ export default function Walletpanel() {
                     </>) : (
                         <Stack direction='column' alignItems='center' justifyContent='center' gap='40px' paddingTop={21} paddingBottom={21}>
                             <img src="/assets/icons/dashboard/transaction_pending.png"/>
-                            <Box sx={{padding:'0 200px' , textAlign:'center'}}>Your recent transactions will appear here.</Box>
+                            <Box sx={{textAlign:'center'}}>Your recent transactions <br/> will appear here.</Box>
                         </Stack>
                     )
                     }

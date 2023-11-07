@@ -102,6 +102,8 @@ export default function NavVertical({ openNav, onCloseNav }: Props) {
               width: toggle ? '272px' : NAV.W_DASHBOARD,
               bgcolor: 'transparent',
               border : 'none',
+              transform:'none',
+              transition: 'width 0.5s ease',
               // borderRightStyle: 'dashed',
               // '&:hover':{
               //   width:'272px',

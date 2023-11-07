@@ -4,8 +4,10 @@ $font-family: 'Neue Haas Grotesk Display Pro';
     display: flex;
     flex-direction: column;
     gap: 24px;
-
-    @media (max-width: 1435px) {
+    opacity: 0;
+    transition: 'none';
+    @media(max-width: 1435px)
+    {
         // overflow-x: scroll;
     }
 
