@@ -28,24 +28,24 @@ import useResponsive from 'src/hooks/useResponsive';
 
 const Bar = styled('div')({
   display: 'flex',
-  flexDirection: 'column',
+  flexDirection: 'row',
   justifyContent: 'space-between',
   color: '#4A4D52',
 
   // Media query for responsive mode
-  '@media (min-width: 1069px)': {
-    flexDirection: 'row',
+  '@media (max-width: 837px)': {
+    flexDirection: 'column',
   },
 })
 
 const Comp = styled('div')({
   display: 'flex',
   gap: '20px',
-  flexDirection: 'column',
+  flexDirection: 'row',
 
   // Media query for responsive mode
-  '@media (min-width: 768px)': {
-    flexDirection: 'row',
+  '@media (max-width: 837px)': {
+    'justifyContent':'space-between'
   },
 })
 interface ButtonProps {
@@ -73,42 +73,50 @@ const CButton = styled('button')<ButtonProps>`
 SingleFamilyResidence.getLayout = (page: React.ReactElement) => <DashboardLayout>{page}</DashboardLayout>;
 
 export default function SingleFamilyResidence() {
-  const isLg = useResponsive('up',1310)
+  const isLg = useResponsive('up',1420)
   const ref = useRef<HTMLDivElement>(null);
-  const [windowWidth, setWindowWidth] = useState<number>(window.innerWidth);
-  const [isHidden, setIsHidden] = useState(true);
-  useEffect(() => {
-    const handleResize = () => {
-      setWindowWidth(window.innerWidth);
-    };
+  // const [windowWidth, setWindowWidth] = useState<number>(window.innerWidth);
+  // const [isHidden, setIsHidden] = useState(true);
+  const mainRef = useRef<HTMLDivElement>(null);
+  useEffect(()=>{
+    if(mainRef.current)
+    {
+      mainRef.current.style.marginTop = '0'
+      mainRef.current.style.transition = '1s ease'
+    }
+  },[])
+  // useEffect(() => {
+  //   const handleResize = () => {
+  //     setWindowWidth(window.innerWidth);
+  //   };
 
-    window.addEventListener('resize', handleResize);
+  //   window.addEventListener('resize', handleResize);
 
-    return () => {
-      window.removeEventListener('resize', handleResize);
-    };
-  }, []);
-  useEffect(() => {
-    const handleMouseMove = (event:MouseEvent) => {
-      event.preventDefault();
-      const mouseX = event.clientX;
-      if(!isLg){
-        if (mouseX >= windowWidth-100) { // Adjust the threshold as needed
-          setIsHidden(true);
-        } else {
-          setIsHidden(false);
-        }
-      }else{
-        setIsHidden(true);
-      }
-    };
+  //   return () => {
+  //     window.removeEventListener('resize', handleResize);
+  //   };
+  // }, []);
+  // useEffect(() => {
+  //   const handleMouseMove = (event:MouseEvent) => {
+  //     event.preventDefault();
+  //     const mouseX = event.clientX;
+  //     if(!isLg){
+  //       if (mouseX >= windowWidth-100) { // Adjust the threshold as needed
+  //         setIsHidden(true);
+  //       } else {
+  //         setIsHidden(false);
+  //       }
+  //     }else{
+  //       setIsHidden(true);
+  //     }
+  //   };
     
-    window.addEventListener('mousemove', handleMouseMove);
+  //   window.addEventListener('mousemove', handleMouseMove);
     
-    return () => {
-      window.removeEventListener('mousemove', handleMouseMove);
-    };
-  }, [isLg , isHidden , windowWidth]);
+  //   return () => {
+  //     window.removeEventListener('mousemove', handleMouseMove);
+  //   };
+  // }, [isLg , isHidden , windowWidth]);
   const getDefaultTextGenerator = useCallback((subpath: string) => (
     {
       "buildmetaverse": "Build Metaverse",
@@ -127,6 +135,17 @@ export default function SingleFamilyResidence() {
   useEffect(()=>{
     onHandler(0)
   },[])
+  const similarref = useRef<HTMLDivElement>(null);
+  useEffect(()=>{
+    if(index === 0){
+      if(similarref.current){
+        const currentref = similarref.current
+        requestAnimationFrame(() => {
+          currentref.style.marginTop = '0'
+        })
+      }
+    }
+  },[index])
   const onHandler = (id:number) => {
     setIndex(id);
     if(ref.current){
@@ -171,16 +190,16 @@ export default function SingleFamilyResidence() {
       <Head>
         <title> Single Family Residence </title>
       </Head>
-      <Stack sx={{
-        position:'relative' , width: '100%', color: 'white', fontFamily: "Neue Haas Grotesk Display Pro", padding: '0 32px 32px 32px', gap: '20px'
+      <Stack ref={mainRef} sx={{
+        marginTop:'100%' , position:'relative' , width: '100%', color: 'white', fontFamily: "Neue Haas Grotesk Display Pro", padding: '0 32px 32px 32px', gap: '20px'
       }}>
         <Bar>
           <NextBreadcrumbs breadcrumbCase getDefaultTextGenerator={getDefaultTextGenerator} getTextGenerator={getTextGenerator}/>
           <Comp>
-            <Button variant="outlined" style={{ color: 'white', borderColor: '#A3A3A3', borderRadius: '8px' }} startIcon={<Icon icon="ooui:next-rtl" />}>
+            <Button  style={{ color: 'white', borderColor: '#A3A3A3', borderRadius: '8px' }} startIcon={<Icon icon="ooui:next-rtl" />}>
               Prev
             </Button>
-            <Button variant="outlined" style={{ color: 'white', borderColor: '#A3A3A3', borderRadius: '8px' }} endIcon={<Icon icon="ooui:next-ltr" />}>
+            <Button  style={{ color: 'white', borderColor: '#A3A3A3', borderRadius: '8px' }} endIcon={<Icon icon="ooui:next-ltr" />}>
               Next
             </Button>
           </Comp>
@@ -203,9 +222,10 @@ export default function SingleFamilyResidence() {
               </Grid>
           </Grid>
         </Box>
-        <div style={{ display: 'flex', justifyContent: 'space-between', gap: '20px'}}>
+        <div style={{ display: 'flex',flexDirection:'row', gap: '20px' , }}>
+        
           <div style={{ display: 'flex', flexDirection: 'column', gap: '20px', alignItems: 'flex-start', width: `${isLg ? '70%' : '100%'}`}}>
-            <div style={{ fontSize: '56px', fontWeight: '700' }}>Single Family Residence</div>
+            <Typography sx={{fontSize : {lg : 56  , md : 32 , sm:24} , fontWeight : 700}}>Single Family Residence</Typography>
             
             <div style={{ display: 'flex', flexDirection:'column', padding: '32px 24px 32px 24px', gap: '48px', backgroundColor: '#202324', borderRadius: '16px',width: '100%'}}>
               <Scrollbar sx={{padding:'10px 10px 10px 0px'}}>
@@ -224,25 +244,10 @@ export default function SingleFamilyResidence() {
             </div>
             
           </div>
-        </div>
-        {index === 0 && (<div style={{ display: 'flex', padding: '24px', flexDirection: 'column', alignItems: 'flex-start', gap: '16px', height: 'fit-content', width: '100%', backgroundColor: '#202324', borderRadius: '16px'}}>
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', width: '100%' }}>
-            Similar Properties
-            <div style={{ borderRadius: '32px', border: '1px solid #2B2E31', backgroundColor: '#1E2121', padding: '12px 18px 12px 18px', whiteSpace: 'nowrap' }}>View more</div>
-          </div>
-          <Box sx={{width:'100%'}}>
-          <Scrollbar sx={{width:'100%'}}>
-            <Stack direction='row' gap="32px" justifyContent='space-between'>
-              <CardWrapper src="/assets/images/metaverse/realestate/SFR2.png" />
-              <CardWrapper src="/assets/images/metaverse/realestate/SFR3.png" />
-              <CardWrapper src="/assets/images/metaverse/realestate/SFR2.png" />
-            </Stack>
-          </Scrollbar>
-          </Box>
-        </div>)}
-        {(isHidden || isLg) && <Box sx={{ position:'absolute' , zIndex:'100' , top:'450px' , right:'10px' , display:'flex', border:'1px solid #1A1A1A', padding: '24px', 
+
+          {isLg && <Box sx={{display:'flex', border:'1px solid #1A1A1A', padding: '24px', 
             flexDirection: 'column', alignItems: 'flex-start', gap: '16px', height: 'fit-content', 
-            width: '350px', backgroundColor: '#202324', borderRadius: '16px'}}>
+            minWidth: '350px', width:'30%' , backgroundColor: '#202324', borderRadius: '16px'}}>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', alignSelf: 'stretch' }}>
               <div style={{ color: '#8D8E8D', fontSize: '20px', fontWeight: '500' }}>Price/sqft</div>
               <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: '8px', justifyContent: 'space-between' }}>
@@ -269,6 +274,23 @@ export default function SingleFamilyResidence() {
             </div>
             <Button sx={{width:'100%' , color:'white' , background:'linear-gradient(264deg, #F75BB1 -6.74%, #C392DC 43.26%, #008782 103.97%)'}}>Book Appointment</Button>
           </Box>}
+        </div>
+        {index === 0 && (<div ref={similarref} style={{ marginTop:'300px' , transition:'1s ease' ,  display: 'flex', padding: '24px', flexDirection: 'column', alignItems: 'flex-start', gap: '16px', height: 'fit-content', width: '100%', backgroundColor: '#202324', borderRadius: '16px'}}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', width: '100%' }}>
+            Similar Properties
+            <div style={{ borderRadius: '32px', border: '1px solid #2B2E31', backgroundColor: '#1E2121', padding: '12px 18px 12px 18px', whiteSpace: 'nowrap' }}>View more</div>
+          </div>
+          <Box sx={{width:'100%'}}>
+          <Scrollbar sx={{width:'100%'}}>
+            <Stack direction='row' gap="32px" justifyContent='space-between'>
+              <CardWrapper src="/assets/images/metaverse/realestate/SFR2.png" />
+              <CardWrapper src="/assets/images/metaverse/realestate/SFR3.png" />
+              <CardWrapper src="/assets/images/metaverse/realestate/SFR2.png" />
+            </Stack>
+          </Scrollbar>
+          </Box>
+        </div>)}
+        
       </Stack>
     </>)
 }

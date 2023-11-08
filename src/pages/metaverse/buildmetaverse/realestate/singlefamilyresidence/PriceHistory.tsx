@@ -6,7 +6,7 @@ import Box from '@mui/material/Box';
 import { DataGrid, GridColDef, GridRenderCellParams } from '@mui/x-data-grid';
 // import { useDemoData } from '@mui/x-data-grid-generator';
 import { styled, darken, lighten } from '@mui/material/styles';
-import { ReactNode } from 'react';
+import { ReactNode , useRef , useEffect} from 'react';
 import { Stack, Typography } from '@mui/material';
 import Scrollbar from 'src/components/scrollbar/Scrollbar';
 
@@ -203,10 +203,21 @@ export default function PriceHistory() {
   //     dataSet: 'Commodity',
   //     rowLength: 100,
   //   });
+  const mainRef= useRef<HTMLDivElement>(null);
+  useEffect(() => {
+      if(mainRef.current)
+      {
+          const currentRef = mainRef.current;
+          requestAnimationFrame(() => {
+              currentRef.style.opacity = '1';
+          });
+      }
+      //opacity:0 , transition:'opacity 1s ease'
+  },[])
   return (
     <Scrollbar>
-      <Box sx={{
-        width: '100%', '& .super-app-theme--header': {
+      <Box ref={mainRef} sx={{
+        width: '100%', opacity:0 , transition:'opacity 1s ease','& .super-app-theme--header': {
           backgroundColor: '#191919', color: 'white'
         }
       }}>

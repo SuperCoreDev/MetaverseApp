@@ -4,7 +4,7 @@
 import Head from 'next/head';
 import NextLink from 'next/link'
 // eslint-disable-next-line import/no-extraneous-dependencies
-import { useRef, ReactNode, useState, useCallback } from 'react';
+import { useRef, useEffect, ReactNode, useState, useCallback } from 'react';
 import { styled } from '@mui/material/styles';
 import { Icon } from '@iconify/react';
 import { Container, Typography, Stack, TextField, InputAdornment, Link } from '@mui/material';
@@ -107,12 +107,21 @@ const Comp = styled('div')({
 const MakeLowerStipeSpace = (url: string): string => url.toLowerCase().replace(' ', '');
 
 export default function BuildMetaverse() {
+  const mainRef = useRef<HTMLDivElement>(null);
+  useEffect(()=>{
+    if(mainRef.current)
+    {
+      mainRef.current.style.marginTop = '0'
+      mainRef.current.style.transition = '1s ease'
+    }
+  },[])
   return (
     <>
       <Head>
         <title> Build Metaverse </title>
       </Head>
-      <Stack sx={{
+      <Stack ref={mainRef} sx={{
+        marginTop:'100%',
         width: '100%', boxShadow: '0px 6px 12px 0px #00000033',
         background: '#202324', color: 'white', fontFamily: "Neue Haas Grotesk Display Pro", padding: '32px', gap: '20px'
       }}>

@@ -100,6 +100,14 @@ export default function MetaverseDecentraland() {
   const [currentClassifySelected , setClassifySelect] = useState(0);
   const ref = useRef<HTMLDivElement>(null);
   const [isSocialBoxHidden , setSocialBoxHidden] = useState(false);
+  const mainRef = useRef<HTMLDivElement>(null);
+  useEffect(()=>{
+    if(mainRef.current)
+    {
+      mainRef.current.style.marginTop = '0'
+      mainRef.current.style.transition = '1s ease-out'
+    }
+  },[])
   useEffect(() => {
     handleClassify(currentClassifySelected)
   } , [])
@@ -146,7 +154,7 @@ export default function MetaverseDecentraland() {
         <title> Page Two | Minimal UI</title>
       </Head>
       {/* sx={{ paddingLeft: '100px'}} */}
-      <Container  maxWidth={themeStretch ? false : 'xl'} sx={{paddingBottom:'36px'}}>
+      <Container ref={mainRef} maxWidth={themeStretch ? false : 'xl'} sx={{marginTop:'100%' , paddingBottom:'36px'}}>
         {/* <Typography color="white">Metaverse / Decentraland</Typography> */}
         <NextBreadcrumbs breadcrumbCase={false} getDefaultTextGenerator={getDefaultTextGenerator} getTextGenerator={getTextGenerator}/>
         <Box sx={{ height: "20px" }} />

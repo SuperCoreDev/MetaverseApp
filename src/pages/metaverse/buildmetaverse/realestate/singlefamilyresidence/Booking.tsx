@@ -242,8 +242,19 @@ export default function Booking() {
             </Stack>
         </Stack>
     )
+    const mainRef= useRef<HTMLDivElement>(null);
+    useEffect(() => {
+        if(mainRef.current)
+        {
+            const currentRef = mainRef.current;
+            requestAnimationFrame(() => {
+                currentRef.style.opacity = '1';
+            });
+        }
+        
+    },[])
     return (
-        <Stack direction='column' fontFamily='Neue Haas Grotesk Display Pro' gap='48px'>
+        <Stack ref={mainRef} sx={{opacity:0 , transition:'opacity 1s ease'}} direction='column' fontFamily='Neue Haas Grotesk Display Pro' gap='48px'>
             <Stack ref={ref} direction='row' gap="32px" >
                 <Stack direction='row' gap='4px' padding='12px 24px' width='341px' alignItems='center'
                     sx={{ borderRadius: '12px', background: '#2B2E31' , filter:'grayScale(100%)' }} onClick={() => onSwitchHandler(0)}>

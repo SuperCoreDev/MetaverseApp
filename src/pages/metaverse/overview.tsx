@@ -35,6 +35,7 @@ const CategoryButton = styled('div')(({ ...props }) => {
     padding: '8px 14px',
     width: '120px',
     textAlign: 'center',
+    cursor:'pointer',
     fontSize: '12px',
     '@media (max-width:700px)': {
       fontSize: '13px',
@@ -178,13 +179,21 @@ export default function MetaverseOverview() {
   const handleChange = (event: SelectChangeEvent) => {
     setItemperPage(event.target.value as string);
   };
-
+  const mainRef = useRef<HTMLDivElement>(null);
+  useEffect(()=>{
+    if(mainRef.current)
+    {
+      mainRef.current.style.marginTop = '0'
+      mainRef.current.style.transition = '1s ease'
+    }
+  },[])
   return (
     <>
       <Head>
         <title> Metaverse </title>
       </Head>
       <Stack
+        ref={mainRef}
         sx={{
           width: '100%',
           height: 'auto',
@@ -192,6 +201,7 @@ export default function MetaverseOverview() {
           background: '#202324',
           paddingLeft: '20px',
           paddingRight: '20px',
+          marginTop:'100%'
         }}
         gap={4}
       >
@@ -201,6 +211,7 @@ export default function MetaverseOverview() {
               <CategoryButton
                 bg={`${category === index ? '#d96bff' : '#191919'}`}
                 color={`${category === index ? '#191919' : 'white'}`}
+                onClick={()=>setCategory(index)}
               >
                 {x}
               </CategoryButton>

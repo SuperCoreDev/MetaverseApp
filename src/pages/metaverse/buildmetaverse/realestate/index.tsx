@@ -5,7 +5,7 @@ import Head from 'next/head';
 import Image from 'next/image';
 import NextLink from 'next/link'
 // eslint-disable-next-line import/no-extraneous-dependencies
-import { useRef, ReactNode, useState, useCallback } from 'react';
+import { useRef, ReactNode, useState, useEffect , useCallback } from 'react';
 import { styled } from '@mui/material/styles';
 import SearchIcon from "@mui/icons-material/Search";
 import NextBreadcrumbs from 'src/components/NextBreadCrumbs';
@@ -62,8 +62,8 @@ type CardWrapperProps = {
 }
 export const CardWrapper = ({ src }: CardWrapperProps) => (
 
-    <Stack direction='column' padding='14px' gap="17px"
-        sx={{ borderRadius: '16px', border: '1px solid #4A4D52', background: '#202324' , minWidth:'231px'}}>
+    <Stack direction='column' padding='14px' gap="17px" 
+        sx={{ borderRadius: '16px', border: '1px solid #4A4D52', background: '#202324' , minWidth:'422px'}}>
         <Box position='relative' width='inherit'>
             <Image src={src} alt="SFR" width={393} height={208} />
             <Box position='absolute' top={15} left={19}>
@@ -115,8 +115,16 @@ export default function RealEstate() {
             'realestate': 'Real Estate'
         }[param]
     ), []);
+    const mainRef = useRef<HTMLDivElement>(null);
+    useEffect(()=>{
+        if(mainRef.current)
+        {
+        mainRef.current.style.marginTop = '0'
+        mainRef.current.style.transition = '1s ease'
+        }
+    },[])
     return (
-        <Stack fontFamily='Neue Haas Grotesk Display Pro' direction='column' sx={{}} gap='24px' padding='0 24px 24px 24px'>
+        <Stack ref={mainRef} marginTop='100%' fontFamily='Neue Haas Grotesk Display Pro' direction='column' sx={{}} gap='24px' padding='0 24px 24px 24px'>
             <NextBreadcrumbs
                 breadcrumbCase
                 getDefaultTextGenerator={getDefaultTextGenerator}

@@ -4,7 +4,7 @@
 import Head from 'next/head';
 import Image from 'next/image';
 // eslint-disable-next-line import/no-extraneous-dependencies
-import { useRef, ReactNode, useState } from 'react';
+import { useRef, ReactNode, useState , useEffect} from 'react';
 import { styled } from '@mui/material/styles';
 import MarketPlaceGridItem from 'src/components/metaverse/marketplace/MarketplaceGridItem';
 import { Icon } from '@iconify/react';
@@ -50,12 +50,21 @@ const labels = [
 
 export default function MetaverseMarketPlace() {
     const [category, setCategory] = useState(0);
+    const mainRef = useRef<HTMLDivElement>(null);
+    useEffect(()=>{
+        if(mainRef.current)
+        {
+        mainRef.current.style.marginTop = '0'
+        mainRef.current.style.transition = '1s ease'
+        }
+    },[])
     return (
         <>
             <Head>
                 <title> Metaverse Marketplace </title>
             </Head>
-            <Stack sx={{
+            <Stack ref={mainRef} sx={{
+                marginTop:'100%',
                 width: '100%', boxShadow: '0px 6px 12px 0px #00000033',
                 background: '#202324', padding: '0px 32px 32px 32px'
             }}>

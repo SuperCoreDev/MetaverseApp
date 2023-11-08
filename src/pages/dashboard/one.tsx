@@ -3,7 +3,7 @@
 // next
 import Head from 'next/head';
 // eslint-disable-next-line import/no-extraneous-dependencies
-import { useRef,ReactNode,useState } from 'react';
+import { useRef,ReactNode,useState, useEffect } from 'react';
 import { Icon } from '@iconify/react';
 import { Container, Typography,SelectChangeEvent,Select,MenuItem,Stack } from '@mui/material';
 import NftOverView from 'src/layouts/dashboard/market_overview/nftOverview';
@@ -43,14 +43,21 @@ export default function PageOne() {
     e.currentTarget.className += ` ${styles.selected}`;
     setClassifyLable(label);
   }
-
+  const mainRef = useRef<HTMLDivElement>(null);
+  useEffect(()=>{
+    if(mainRef.current)
+    {
+      mainRef.current.style.marginTop = '0'
+      mainRef.current.style.transition = '1s ease'
+    }
+  },[])
   return (
     <>
       <Head>
         <title> Dashboard </title>
       </Head>
       {/* <Container maxWidth={themeStretch ? false : 'xl'}>  */}
-      <Stack width='100%' sx={{ paddingLeft: '8px', paddingRight: '16px' }}>
+      <Stack ref={mainRef} width='100%' sx={{ paddingLeft: '8px', paddingRight: '16px'  , marginTop:'100%'}}>
         <div className={styles.OneWrapper}>
           <div className={styles.StatisticWrapper}>
             <div className={styles.descriptionboard}>
