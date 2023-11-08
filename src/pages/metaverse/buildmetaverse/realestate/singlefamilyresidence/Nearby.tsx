@@ -29,7 +29,7 @@ const ContentWrapper = styled('div')({
     alignItems: 'flex-start',
     gap: '43px',
     alignSelf: 'stretch',
-    '@media (max-width: 800px)': {
+    '@media (max-width: 900px)': {
         'flexDirection':'column',
         
     },
@@ -49,7 +49,7 @@ export default function Nearby() {
         <div ref={mainRef} style={{ opacity: 0, transition: 'opacity 1s ease', display: 'flex', flexDirection: 'column', gap: '48px', overflow: 'hidden', width: '100%' }}>
 
             <ContentWrapper>
-                <img src={buildingItems[0].img} style={{width:'100%'}}></img>
+                <img src={buildingItems[0].img} style={{width:'303px' , height:'179px'}}/>
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', alignItems: 'flex-start' }}>
                     <div style={{ fontSize: '32px', fontWeight: '600' }}>{buildingItems[0].name}</div>
                     <div>{buildingItems[0].topic}</div>
@@ -60,7 +60,7 @@ export default function Nearby() {
             <div style={{ width: '100%', height: '1px', backgroundColor: '#4A4D52' }}></div>
 
             <ContentWrapper>
-                <img src={buildingItems[1].img} style={{width:'100%'}}></img>
+                <img src={buildingItems[1].img} style={{width:'303px' , height:'179px'}}/>
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', alignItems: 'flex-start' }}>
                     <div style={{ fontSize: '32px', fontWeight: '600' }}>{buildingItems[1].name}</div>
                     <div>{buildingItems[1].topic}</div>
@@ -71,7 +71,7 @@ export default function Nearby() {
             <div style={{ width: '100%', height: '1px', backgroundColor: '#4A4D52' }}></div>
 
             <ContentWrapper>
-                <img src={buildingItems[2].img} style={{width:'100%'}}></img>
+                <img src={buildingItems[2].img} style={{width:'303px' , height:'179px'}}/>
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', alignItems: 'flex-start' }}>
                     <div style={{ fontSize: '32px', fontWeight: '600' }}>{buildingItems[2].name}</div>
                     <div>{buildingItems[2].topic}</div>

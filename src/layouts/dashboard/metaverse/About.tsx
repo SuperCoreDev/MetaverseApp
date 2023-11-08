@@ -1,5 +1,6 @@
 import { Container, Box, TextField, Typography, Switch, Stack, Button, InputBase } from '@mui/material';
 import { Icon } from '@iconify/react'
+import { useRef,useEffect } from 'react';
 import { styled, alpha } from '@mui/material/styles';
 import SearchIcon from '@mui/icons-material/Search';
 import FormControlLabel from '@mui/material/FormControlLabel';
@@ -79,8 +80,18 @@ const Pad = styled('div')({
 
 export default function About() {
   const isdesktop = useResponsive('up',1380);
+  const mainRef= useRef<HTMLDivElement>(null);
+    useEffect(()=>{
+        if(mainRef.current){
+            const currentMainRef = mainRef.current;
+            requestAnimationFrame(()=>{
+                currentMainRef.style.opacity = '1'
+            })
+            
+        }
+    },[])
   return (
-    <div style={{ display: 'flex', gap: '20px' , flexDirection:`${isdesktop?'row':'column'}`}}>
+    <div ref={mainRef} style={{opacity:'0' , transition:'opacity 1s ease', display: 'flex', gap: '20px' , flexDirection:`${isdesktop?'row':'column'}`}}>
       <LeftComp sx={{width:`${isdesktop?'70%':'100%'}`}}>
         <Typography color='white' fontFamily='Neue Haas Grotesk Display Pro' fontSize={32} fontWeight={600}>Smart Contracts (5432)</Typography>
         <Search>

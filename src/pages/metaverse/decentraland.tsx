@@ -1,7 +1,7 @@
 // next
 import Head from 'next/head';
 import Image from 'next/image';
-import { Container, Box, TextField, Typography, Switch , Stack } from '@mui/material';
+import { Container, Box, TextField, Typography, Switch , Stack , Button } from '@mui/material';
 
 // components
 import { Icon } from '@iconify/react'
@@ -41,13 +41,20 @@ const TopBar = styled('div')({
   paddingBottom: '40px'
 })
 
-const TopButton = styled('div')({
+const TopButton = styled(Button)(()=>({
   color: 'white',
   padding: '10px 20px 10px 20px',
-  border: 'solid 1px gray',
+  background:'transparent',
+   border: 'solid 1px gray',
   borderRadius: '50px',
-  fontSize: '14px'
-})
+  fontSize: '14px',
+  cursor:'pointer',
+  '&:hover':{
+    background : '#23b3e5',
+    border:'none'
+  },
+  transition : 'background 1s ease'
+}))
 
 interface ButtonProps {
   bgColor : string;

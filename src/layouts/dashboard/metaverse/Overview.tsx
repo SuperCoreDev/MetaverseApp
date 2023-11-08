@@ -10,6 +10,7 @@ import InputAdornment from '@mui/material/InputAdornment';
 import Grid from '@mui/material/Grid';
 import NewsItem from './NewsItem';
 import NftCard from './NftCard';
+import { useEffect, useRef } from 'react';
 
 
 const ApexChart = dynamic(() => import("react-apexcharts"), { ssr: false });
@@ -251,8 +252,14 @@ const topNftSalesItems = [
 export default function Overview() {
     const isDesktop = useResponsive('up', 1430);
     const isMiniDesktop = useResponsive('down', 1290);
+    const mainRef= useRef<HTMLDivElement>(null);
+    useEffect(()=>{
+        if(mainRef.current){
+            mainRef.current.style.opacity = '1'
+        }
+    },[])
     return (
-        <div style={{ display: 'flex', gap: '20px', flexDirection: `${isDesktop ? 'row' : 'column'}` }}>
+        <div ref={mainRef} style={{ opacity:'0' , transition:'opacity 1s ease' , display: 'flex', gap: '20px', flexDirection: `${isDesktop ? 'row' : 'column'}` }}>
             <LeftComp sx={{ width: `${isDesktop ? '70%' : '100%'}` }}>
                 <Typography color='white' fontFamily='Neue Haas Grotesk Display Pro' fontSize={32} fontWeight={600}>Decentraland Stat</Typography>
                 {/* <div style={{ display: 'flex', gap: '10px' }}>

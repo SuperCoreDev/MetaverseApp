@@ -1,7 +1,7 @@
 import { Container, Box, TextField, Typography, Switch, Stack, Button } from '@mui/material';
 import { Icon } from '@iconify/react'
 import { styled } from '@mui/material/styles';
-
+import { useRef, useEffect } from 'react';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import InputAdornment from '@mui/material/InputAdornment';
 import Grid from '@mui/material/Grid';
@@ -17,7 +17,9 @@ const LeftComp = styled('div')({
     gap: '32px',
     borderRadius: '18px',
     padding: '24px',
-    border: '1px solid #2B2E31'
+    border: '1px solid #2B2E31',
+    opacity:'0',
+    transition:'opacity 1s ease'
 })
 
 const fontName = 'Neue Haas Grotesk Display Pro'
@@ -101,8 +103,18 @@ const decentralizedNews = [
 export default function News() {
     const isdesktop = useResponsive('up',1200)
     const ismini = useResponsive('down',870);
+    const mainRef= useRef<HTMLDivElement>(null);
+    useEffect(()=>{
+        if(mainRef.current){
+            const currentMainRef = mainRef.current;
+            requestAnimationFrame(()=>{
+                currentMainRef.style.opacity = '1'
+            })
+            
+        }
+    },[])
     return (
-        <LeftComp>
+        <LeftComp ref={mainRef}>
             <Typography color='white' fontSize={32} fontWeight={600} textAlign='left'>Decentralized News</Typography>
             <Grid container wrap='wrap' justifyContent='space-evenly' gap='24px'>
                 {

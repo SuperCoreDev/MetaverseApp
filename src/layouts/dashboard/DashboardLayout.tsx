@@ -83,9 +83,9 @@ export default function DashboardLayout({ children }: Props) {
 
     return (
       <div style={{position:'relative' , backgroundColor:'#202324'}}>
-        {!isDashboard && (<><div style={{position:'fixed', top:'136px' , left:'16px' , width: '330px', height: '330px', background: 'rgba(104, 203.56, 235, 0.40)', 
+        {!isDashboard && (<><div style={{position:'fixed', top:'136px' , left:'16px' , width: '330px', height: '330px', zIndex:'-999' , background: 'rgba(104, 203.56, 235, 0.40)', 
         boxShadow: '300px 300px 300px ', borderRadius: 9999, filter: 'blur(300px)'}} />
-        <div style={{width: '330px', height: '330px', right: '70px', bottom: '50px', position: 'fixed', 
+        <div style={{width: '330px', height: '330px', right: '70px', bottom: '50px', position: 'fixed',  zIndex:'-999',
         background: 'rgba(235, 104, 198.32, 0.40)', boxShadow: '300px 300px 300px ', borderRadius: 9999, filter: 'blur(300px)'}} /></>)}
 
         <Header onOpenNav={handleOpen} />

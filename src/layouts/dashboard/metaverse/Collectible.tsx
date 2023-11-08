@@ -1,7 +1,7 @@
 import { Container, Box, TextField, Typography, Switch, Stack, Button, Checkbox } from '@mui/material';
 import { Icon } from '@iconify/react'
 import { styled } from '@mui/material/styles';
-import { useState } from 'react';
+import { useState , useRef, useEffect } from 'react';
 import useResponsive from 'src/hooks/useResponsive';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import InputAdornment from '@mui/material/InputAdornment';
@@ -63,23 +63,31 @@ const Clothes = [
     'Blue Dress',
     'Blue Dress',
 ];
+type StyledButtonProps = {
+    bg : 'string',
+    color : 'string'
+}
+const StyledButton = styled(Button , {
+    shouldForwardProp:(prop) => prop !== 'bg' && prop !== 'color'})<StyledButtonProps>(({bg , color}) => ({
+   
+            background: bg,
+            color,
+            borderRadius: '50px',
+            padding:'8px 12px',
+            textAlign: 'center',
+            border: 'solid 1px gray',
+            fontSize:'18px',
+            '@media (max-width:700px)' :{
+                fontSize:'13px'
+            },
+            '&:hover':{
+                background:'#23b3e5',
+                border:'none'
+            }
+   
+}))
 
-const StyledButton = styled('div')(({ ...props }) => {
-    return {
-        background: props.bg,
-        color: props.color,
-        borderRadius: '50px',
-        padding:'2px 8px',
-        textAlign: 'center',
-        border: 'solid 1px gray',
-        fontSize:'18px',
-        '@media (max-width:700px)' :{
-            fontSize:'13px'
-        }
-    };
-});
-
-const Submit = styled('div')({
+const Submit = styled(Button)({
     background: 'linear-gradient(45deg, #11636f, #F75BB1)',
     textAlign: 'center',
     padding: '1px',
@@ -90,9 +98,15 @@ const Submit = styled('div')({
     WebkitMask: 'linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)',
     WebkitMaskComposite: 'xor',
     maskComposite: 'exclude',
+    '&:hover':{
+        opacity : 0.5,
+        transition: 'opacity 1s ease'
+    }
 });
 
 const SubmitText = styled('div')({
+    fontSize:'28px',
+    fontWeight:'500',
     background:
         'var(--Gradient, linear-gradient(264deg, #F75BB1 -6.74%, #C392DC 43.26%, #008782 103.97%))',
     backgroundClip: 'text',
@@ -209,8 +223,18 @@ export default function Collectible() {
     const [status, setStatus] = useState(1);
     const [checkIndex, setCheckIndex] = useState(0);
     const isDesktop = useResponsive('up', 1200);
+    const mainRef= useRef<HTMLDivElement>(null);
+    useEffect(()=>{
+        if(mainRef.current){
+            const currentMainRef = mainRef.current;
+            requestAnimationFrame(()=>{
+                currentMainRef.style.opacity = '1'
+            })
+            
+        }
+    },[])
     return (
-        <div style={{ display: 'flex', gap: '20px' , flexDirection:`${isDesktop ? 'row' : 'column'}`}}>
+        <div ref={mainRef} style={{ opacity:'0' , transition:'opacity 1s ease' , display: 'flex', gap: '20px' , flexDirection:`${isDesktop ? 'row' : 'column'}`}}>
             <LeftComp style={{width:`${isDesktop ? '70%' : '100%'}`}}>
                 <div style={{ display: 'flex', gap: '10px' }}>
                     <FormControlLabel control={<Switch defaultChecked />} label="Live data" style={{ color: 'white' }} />
@@ -443,8 +467,8 @@ export default function Collectible() {
                         />
                     </div>
                     <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                        <SubmitText style={{ position: 'absolute' }}>Submit</SubmitText>
-                        <Submit>Submit</Submit>
+                    <SubmitText style={{ position: 'absolute' }}>Submit</SubmitText>
+                        <Submit/>
                     </div>
                 </Stack>
                 <Stack direction='column' gap="32px" sx={{minWidth:'220px'}}>
@@ -452,7 +476,7 @@ export default function Collectible() {
                         <div>Properties</div>
                         <Icon icon="ic:sharp-navigate-next" color="gray" />
                     </StatusText>
-                    {visible && <>
+                    <div style={{gap:'20px' , display:'flex' ,overflow:'hidden', flexDirection:'column',height: visible ? '100%' : '0' ,transition:'height 0.3s ease'}}>
                         <TextField
                             variant="standard"
                             InputProps={{
@@ -475,11 +499,11 @@ export default function Collectible() {
 
                         {Items.map((x, ind) => (
                             <div>
-                                <StatusText style={{ cursor: 'pointer' }} onClick={() => checkIndex == ind ? setCheckIndex(-1) : setCheckIndex(ind)}>
+                                <StatusText style={{ cursor: 'pointer' }} onClick={() => checkIndex === ind ? setCheckIndex(-1) : setCheckIndex(ind)}>
                                     <div>{x}</div>
                                     <Icon icon="ic:sharp-navigate-next" color="gray" />
                                 </StatusText>
-                                <div style={{ display: `${checkIndex == ind ? 'block' : 'none'}` }}>
+                                <div style={{ overflow:'hidden' , height: `${checkIndex === ind ? '100%' : '0'}` , transition:'height 0.3s ease'}}>
                                     {Clothes.map((x) => (
                                         <FormControlLabel
                                             label={
@@ -498,7 +522,7 @@ export default function Collectible() {
                                 </div>
                             </div>
                         ))}
-                    </>}
+                    </div>
                 </Stack>
             </RightComp>
         </div>)

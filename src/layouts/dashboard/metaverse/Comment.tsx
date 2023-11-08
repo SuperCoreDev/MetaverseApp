@@ -1,7 +1,7 @@
 import { Container, Box, TextField, Typography, Switch, Stack, Button, Autocomplete } from '@mui/material';
 import { Icon } from '@iconify/react'
 import { styled } from '@mui/material/styles';
-
+import { useRef, useEffect } from 'react';
 import InputAdornment from '@mui/material/InputAdornment';
 import CommentItem from './CommentItem';
 import useResponsive from 'src/hooks/useResponsive';
@@ -119,8 +119,18 @@ const CommentItems = [
 
 export default function Comment() {
     const isMiniDesktop = useResponsive('down' , 900)
+    const mainRef= useRef<HTMLDivElement>(null);
+    useEffect(()=>{
+        if(mainRef.current){
+            const currentMainRef = mainRef.current;
+            requestAnimationFrame(()=>{
+                currentMainRef.style.opacity = '1'
+            })
+            
+        }
+    },[])
     return (
-        <div style={{ display: 'flex', gap: '20px', fontFamily: fontName, fontSize: '20px', fontWeight: '500' }}>
+        <div ref={mainRef} style={{opacity:'0' , transition:'opacity 1s ease',  display: 'flex', gap: '20px', fontFamily: fontName, fontSize: '20px', fontWeight: '500' }}>
             <Scrollbar>
                 <LeftComp sx={{minWidth:'480px' , width:`${isMiniDesktop?'100%':'80%'}`}}>
                     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', color: 'white', width: '100%' }}>
