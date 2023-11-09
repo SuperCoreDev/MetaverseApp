@@ -148,17 +148,18 @@ export default function RealEstate() {
         }
     },[])
     const handlerButtonClick = (id:number)  => {
+        
         if(ref.current){
-           const styledButtonElements = Array.from(ref.current.childNodes).filter((node) : node is HTMLDivElement => node instanceof HTMLDivElement)
-           styledButtonElements.forEach((node)=>{
-            const children : HTMLElement = node?.firstChild;
-            children.style.color = 'white',
-            children.style.backgroundColor = 'transparent'
-           })
-           const indexElement : HTMLElement = styledButtonElements[id]?.firstChild;
-           
-           indexElement.style.color= 'black';
-           indexElement.style.backgroundColor='#D96BFF'
+            const children = ref.current.children
+            Array.from(children).forEach((child) => {
+                child.children.item(0)?.classList.remove('highlight');
+                child.children.item(0)?.removeAttribute('style');
+            })
+            const child = children.item(id);
+                const ch = child?.children.item(0) as HTMLElement;
+                ch?.classList.add('highlight')
+                ch.style.color='black'
+                ch.style.backgroundColor='#D96BFF'
         }
     }
     const theme = useTheme();

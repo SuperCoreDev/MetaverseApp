@@ -33,6 +33,10 @@ const CustomText = styled('div')({
     color: 'white',
     fontSize: '12px'
 })
+type StyledButtonProps = {
+    bg : 'string',
+    color : 'string'
+}
 const StyledButton = styled(Button , {
     shouldForwardProp:(prop) => prop !== 'bg' && prop !== 'color'})<StyledButtonProps>(({bg , color}) => ({
    

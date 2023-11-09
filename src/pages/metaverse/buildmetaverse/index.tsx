@@ -158,7 +158,7 @@ export default function BuildMetaverse() {
             />
           </Comp>
         </Bar>
-        <div style={{ display: 'flex', alignItems: 'flex-start', alignContent: 'flex-start', gap: '20px', flexWrap: 'wrap', padding: '20px' }}>
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent:'center', alignContent: 'flex-start', gap: '20px', flexWrap: 'wrap', padding: '20px' }}>
 
           {MetaverseItem.map(item => (
             <Link component={NextLink} href={`/metaverse/buildmetaverse/${MakeLowerStipeSpace(item.name)}`} underline="none">

@@ -20,20 +20,29 @@ const CustomText = styled('div')({
     fontSize: '12px'
 })
 
-const CategoryButton = styled('div')(({ ...props }) => {
-    return {
-        background: props.bg,
-        color: props.color,
-        borderRadius: '10px',
-        padding: '8px 14px',
-        width: '120px',
-        textAlign: 'center',
-        fontSize: '12px',
-        '@media (max-width:700px)': {
-            fontSize: '13px',
-        },
-    };
-});
+type StyledButtonProps = {
+    bg : 'string',
+    color : 'string'
+  }
+  const StyledButton = styled(Button , {
+    shouldForwardProp:(prop) => prop !== 'bg' && prop !== 'color'})<StyledButtonProps>(({bg , color}) => ({
+   
+            background: bg,
+            color,
+            borderRadius: '50px',
+            padding:'8px 12px',
+            textAlign: 'center',
+            border: 'solid 1px gray',
+            fontSize:'18px',
+            '@media (max-width:700px)' :{
+                fontSize:'13px'
+            },
+            '&:hover':{
+                background:'#23b3e5',
+                border:'none'
+            },
+   
+  }))
 
 MetaverseMarketPlace.getLayout = (page: React.ReactElement) => <DashboardLayout>{page}</DashboardLayout>;
 
@@ -52,12 +61,29 @@ export default function MetaverseMarketPlace() {
     const [category, setCategory] = useState(0);
     const mainRef = useRef<HTMLDivElement>(null);
     useEffect(()=>{
+        handleGridItemButtonClick(0);
         if(mainRef.current)
         {
         mainRef.current.style.marginTop = '0'
         mainRef.current.style.transition = '1s ease'
         }
     },[])
+    const gridref = useRef(null);
+    const handleGridItemButtonClick = (idx:number) => {
+        setCategory(idx);
+        if(gridref.current){
+            const children = gridref.current.children
+            Array.from(children).forEach((child) => {
+                child.children.item(0)?.classList.remove('highlight');
+                child.children.item(0)?.removeAttribute('style');
+            })
+            const child = children.item(idx);
+                const ch = child?.children.item(0) as HTMLElement;
+                ch?.classList.add('highlight')
+                ch.style.color='black'
+                ch.style.backgroundColor='#D96BFF'
+        }
+    }
     return (
         <>
             <Head>
@@ -69,26 +95,27 @@ export default function MetaverseMarketPlace() {
                 background: '#202324', padding: '0px 32px 32px 32px'
             }}>
                 <Stack direction="column" gap={4}>
-                    <Grid container spacing={2} style={{ position: 'relative', zIndex: '2', width: 'full' }}>
+                    <Grid ref={gridref} container spacing={2} style={{ position: 'relative', zIndex: '2', width: 'full' }}>
                         {labels.map((x, index) => (
-                            <Grid item md={3} lg={1.5}>
-                                <CategoryButton
-                                    bg={`${category === index ? '#d96bff' : 'black'}`}
-                                    color={`${category === index ? '#black' : 'white'}`}
+                            <Grid ref={gridref} item md={3} lg={1.5}>
+                                <StyledButton
+                                    bg={`${category === index ? '#d96bff' : 'transparent'}`}
+                                    color={`${category === index ? 'black' : 'white'}`}
+                                    onClick={()=>handleGridItemButtonClick(index)}
                                 >
                                     {x}
-                                </CategoryButton>
+                                </StyledButton>
                             </Grid>
                         ))}
                         <Grid item sm={1.5}>
-                            <CategoryButton
-                                bg={`black`}
+                            <StyledButton
+                                bg={`transparent`}
                                 color={'white'}
                                 style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}
                             >
                                 More
                                 <Icon icon="mingcute:down-line" color="white" />
-                            </CategoryButton>
+                            </StyledButton>
                         </Grid>
                     </Grid>
                     <Grid container spacing={2}>

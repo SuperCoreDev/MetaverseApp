@@ -253,11 +253,17 @@ $font-family: 'Neue Haas Grotesk Display Pro';
                 align-items: center;
                 justify-content: center;
                 width: 33%;
-
+                cursor: pointer;
+                
+                &:hover{
+                    filter: grayscale(0%);
+                    -webkit-filter: grayscale(0%);
+}
                 @media (max-width: 1455px) {
                     width: 100%;
                 }
-
+                transition : filter 0.3s ease;
+                filter : grayscale(70%);
                 .Content {
                     display: flex;
                     flex-direction: column;

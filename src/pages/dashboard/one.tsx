@@ -5,7 +5,8 @@ import Head from 'next/head';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { useRef,ReactNode,useState, useEffect } from 'react';
 import { Icon } from '@iconify/react';
-import { Container, Typography,SelectChangeEvent,Select,MenuItem,Stack } from '@mui/material';
+import { Container, Button ,Typography,SelectChangeEvent,Select,MenuItem,Stack } from '@mui/material';
+import { styled } from '@mui/material/styles';
 import NftOverView from 'src/layouts/dashboard/market_overview/nftOverview';
 import Walletpanel from 'src/layouts/dashboard/Walletpanel';
 import DappsView from 'src/layouts/dashboard/market_overview/dappsview';
@@ -23,25 +24,62 @@ import styles from '../../styles/one.module.scss';
 
 PageOne.getLayout = (page: React.ReactElement) => <DashboardLayout>{page}</DashboardLayout>;
 
+
+type StyledButtonProps = {
+  bg : 'string',
+  color : 'string'
+}
+const StyledButton = styled(Button , {
+  shouldForwardProp:(prop) => prop !== 'bg' && prop !== 'color'})<StyledButtonProps>(({bg , color}) => ({
+ 
+          background: bg,
+          color,
+          borderRadius: '50px',
+          padding:'4px 24px',
+          textAlign: 'center',
+          border: 'solid 1px gray',
+          fontSize:'14px',
+          fontWeight : 500,
+          '@media (max-width:700px)' :{
+              fontSize:'13px'
+          },
+          '&:hover':{
+              background:'#23b3e5',
+              border:'none'
+          },
+ 
+}))
+
 // ----------------------------------------------------------------------
 export default function PageOne() {
   // const { themeStretch } = useSettingsContext();
-  const [classifyLabel , setClassifyLable] = useState('Metaverse');
+  const [classifyLabel , setClassifyLable] = useState(0);
   const [chartViewoption, setOptionChart] = useState(10 as ReactNode);
     const handleChange = (event: SelectChangeEvent) => {
         setOptionChart(event.target.value as ReactNode);
     };
+  useEffect(()=>{
+    onMarketOverviewClassyHandler(0)
+  },[])
   const ref = useRef<HTMLDivElement>(null);
-  const onMarketOverviewClassyHandler = (e: React.MouseEvent<HTMLDivElement> , label:string) => {
-    e.preventDefault();
-    let childlist = null;
-    if (ref.current) childlist = ref.current.querySelectorAll(`.${styles.mcbtn}`);
-    console.log(childlist);
-    childlist?.forEach((element) => {
-      element.className = `${styles.mcbtn}`;
-    });
-    e.currentTarget.className += ` ${styles.selected}`;
-    setClassifyLable(label);
+  const onMarketOverviewClassyHandler = (idx:number) => {
+    
+    setClassifyLable(idx);
+    if(ref.current){
+      const children = ref.current.children;
+      Array.from(children).forEach((child) => {
+        child.classList.remove('highlight');
+        child.removeAttribute('style');
+      })
+      
+      const child = children.item(idx) as HTMLElement;
+      if (child !== null && child !== undefined) {
+        child.classList.add('highlight');
+        child.style.backgroundColor = '#D96BFF';
+        child.style.color = 'black';
+      }
+    }
+    
   }
   const mainRef = useRef<HTMLDivElement>(null);
   useEffect(()=>{
@@ -67,10 +105,10 @@ export default function PageOne() {
             <div className={styles.MarketOverviewWrapper}>
               <div className={styles.MarketOverviewContainer}>
                 <div ref={ref} className={styles.ClassifyButtons}>
-                  <div className={`${styles.mcbtn} + ${styles.selected}`} onClick={(e)=> onMarketOverviewClassyHandler(e, 'Metaverse')}>Metaverse</div>
-                  <div className={styles.mcbtn} onClick={(e)=> onMarketOverviewClassyHandler(e, 'NFTS')}>NFTs</div>
-                  <div className={styles.mcbtn} onClick={(e)=> onMarketOverviewClassyHandler(e, 'DAPPS')}>DApps</div>
-                  <div className={styles.mcbtn} onClick={(e)=> onMarketOverviewClassyHandler(e, 'Metaverse')}>Blockchain</div>
+                  <StyledButton color='white' onClick={(e)=> onMarketOverviewClassyHandler(0)}>Metaverse</StyledButton>
+                  <StyledButton color='white' onClick={(e)=> onMarketOverviewClassyHandler(1)}>NFTs</StyledButton>
+                  <StyledButton color='white' onClick={(e)=> onMarketOverviewClassyHandler(2)}>DApps</StyledButton>
+                  <StyledButton color='white' onClick={(e)=> onMarketOverviewClassyHandler(3)}>Blockchain</StyledButton>
                 </div>
                 <div className={styles.MarketOverview}>
                   <span className={styles.MarketOverview__header}> Metaverse Market Overview </span>
@@ -150,8 +188,8 @@ export default function PageOne() {
                     </div>
                   </div>
                   <Chart />
-                  {classifyLabel === 'Metaverse' ? (<Metaverse/>) :
-                  classifyLabel === 'NFTS' ? (<NftOverView />) : classifyLabel === 'DAPPS' ? (<DappsView/>) : (<></>)
+                  {classifyLabel === 0 ? (<Metaverse/>) :
+                  classifyLabel === 1 ? (<NftOverView />) : classifyLabel === 2 ? (<DappsView/>) : (<></>)
                 }
                 </div>
                 </div>

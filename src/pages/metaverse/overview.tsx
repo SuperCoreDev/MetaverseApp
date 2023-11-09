@@ -8,6 +8,7 @@ import { useRef, ReactNode, useState, useEffect } from 'react';
 import { Icon } from '@iconify/react';
 import {
   Container,
+  Button,
   Typography,
   Stack,
   Grid,
@@ -26,22 +27,30 @@ import styled from '@emotion/styled';
 import Scrollbar from 'src/components/scrollbar/Scrollbar';
 // components
 
+type StyledButtonProps = {
+  bg : 'string',
+  color : 'string'
+}
+const StyledButton = styled(Button , {
+  shouldForwardProp:(prop) => prop !== 'bg' && prop !== 'color'})<StyledButtonProps>(({bg , color}) => ({
+ 
+          background: bg,
+          color,
+          borderRadius: '50px',
+          padding:'8px 12px',
+          textAlign: 'center',
+          border: 'solid 1px gray',
+          fontSize:'18px',
+          '@media (max-width:700px)' :{
+              fontSize:'13px'
+          },
+          '&:hover':{
+              background:'#23b3e5',
+              border:'none'
+          },
+ 
+}))
 
-const CategoryButton = styled('div')(({ ...props }) => {
-  return {
-    background: props.bg,
-    color: props.color,
-    borderRadius: '10px',
-    padding: '8px 14px',
-    width: '120px',
-    textAlign: 'center',
-    cursor:'pointer',
-    fontSize: '12px',
-    '@media (max-width:700px)': {
-      fontSize: '13px',
-    },
-  };
-});
 
 const Title = styled('div')({
   color: 'white',
@@ -208,24 +217,24 @@ export default function MetaverseOverview() {
         <Grid container spacing={2} style={{ position: 'relative', zIndex: '2', width: 'full' }}>
           {labels.map((x, index) => (
             <Grid item md={3} lg={1.5}>
-              <CategoryButton
+              <StyledButton
                 bg={`${category === index ? '#d96bff' : '#191919'}`}
                 color={`${category === index ? '#191919' : 'white'}`}
                 onClick={()=>setCategory(index)}
               >
                 {x}
-              </CategoryButton>
+              </StyledButton>
             </Grid>
           ))}
           <Grid item sm={1.5}>
-            <CategoryButton
+            <StyledButton
               bg={`#191919`}
               color={'white'}
               style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}
             >
               More
               <Icon icon="mingcute:down-line" color="white" />
-            </CategoryButton>
+            </StyledButton>
           </Grid>
         </Grid>
         <Grid container spacing={2}>

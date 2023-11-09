@@ -76,8 +76,8 @@ export default function Walletpanel() {
                                     Solana SOL
                                 </div>
                             </MenuItem>
-                        </Select>):(<Box sx={{width:'100%', display:'flex' , alignItems:'center' , justifyContent:'center' , background: "linear-gradient(264.4deg, #F75BB1 -6.74%, #C392DC 43.26%, #008782 103.97%)" , height:'40px',
-                            border:'1px solid transparent', borderRadius:'24px'}} onClick={()=>setStatus(true)}>
+                        </Select>):(<Box sx={{width:'100%', opacity : 0.8 , cursor:'pointer', display:'flex' , alignItems:'center' , justifyContent:'center' , background: "linear-gradient(264.4deg, #F75BB1 -6.74%, #C392DC 43.26%, #008782 103.97%)" , height:'40px',
+                            border:'1px solid transparent', borderRadius:'24px' ,transition:'opacity 1s ease', '&:hover':{opacity:1}}} onClick={()=>setStatus(true)}>
                                 + Add Wallet
                         </Box>)}
                     
